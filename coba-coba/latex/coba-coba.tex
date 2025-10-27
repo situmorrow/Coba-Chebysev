@@ -1,0 +1,172 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+
+\begin{document}
+
+\section*{Model Kapal}
+
+\begin{align*}
+    \dot{v}' &= a'_{11}v' + a'_{12}r' + b'_1\delta' \\
+    \dot{r}' &= a'_{21}v' + a'_{22}r' + b'_2\delta' \\
+    \dot{\psi}' &= r' \\
+    \dot{x}' &= u'_0 \cos\psi' - v'\sin\psi' \\
+    \dot{y}' &= u'_0 \sin\psi' + v'\cos\psi'
+\end{align*}
+Persamaan ini dapat ditulis menjadi
+\begin{align*}
+    \dot{\mathbf{S}} = f(\mathbf{S},\mathbf{u})
+\end{align*}
+Dengan $S = \left[ \begin{matrix}
+    v' & r' & \psi' & x' & y'
+\end{matrix} \right]^T$. Untuk persamaan model pengukuran output diberikan sebagai berikut
+
+\[
+\mathbf{h} = \mathbf{C}\mathbf{S}
+\]
+dengan
+
+\[
+\mathbf{C} = 
+\begin{bmatrix}
+0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+\]
+Output sistem adalah sudut \textit{yaw}($\psi$), posisi kapal pada sumbu-x ($x$), dan posisi kapal pada sumbu-y ($y$).
+\\
+Lalu horizon waktu $[t_0, t_0 + T]$ diubah ke domain Chebyshev $\tau \in [-1, 1]$ dengan
+\[
+\tau = \frac{2(t - t_0)}{T} - 1 
+\qquad \Longleftrightarrow \qquad 
+t = t_0 + \frac{T}{2}(\tau + 1).
+\]
+Turunkan $t$ terhadap $\tau$:
+\[
+\frac{dt}{d\tau} = \frac{T}{2}.
+\]
+Dengan menggunakan aturan rantai untuk turunan terhadap $\tau$, diperoleh
+\[
+\frac{dS}{d\tau} = \frac{dS}{dt} \frac{dt}{d\tau} 
+= f(S(\tau), u(\tau)) \cdot \frac{T}{2}.
+\]
+Sehingga persamaan model $\dot{\mathbf{S}} = f(\mathbf{S},\mathbf{u})$ menjadi $\bold{\dot{S}(\tau) = \frac{T}{2}f(S(\tau),u(\tau))}$. \\
+
+Lalu \textbf{S} dan \textbf{U} diaproksimasi dengan interpolasi polinomial Langrange, yaitu
+\begin{align}
+    S(\tau) = \sum_{i=0}^{N} S_i \, \phi_i(\tau) \label{eq.S_tau}\\
+    u(\tau) = \sum_{i=0}^{N} u_i \, \phi_i(\tau) \label{eq.u_tau}
+\end{align}
+Dengan N adalah order polinomial dan $\phi_i$ adalah basis fungsi langrange.
+\begin{align}
+    \phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j} \label{eq.phi_tau}
+\end{align}
+Dari persamaan \eqref{eq.S_tau} diturunkan terhadap $\tau$, sehingga menjadi
+\[
+\dot{S}(\tau) = \sum_{i=0}^{N} S_i \frac{d\phi_i(\tau)}{d\tau}
+\]
+Lalu persamaan \eqref{eq.phi_tau} terhadap $\tau$, sehingga menjadi
+\[
+\phi_i'(\tau) = \phi_i(\tau) 
+\sum_{j \ne i} \frac{1}{\tau - \tau_j}
+\]
+Sehingga diperoleh 
+\begin{align*}
+    \dot{S}(\tau) = \sum_{i=0}^{N} S_i \phi_i(\tau) \left( 
+    \sum_{\substack{j=0 \\ j \ne i}}^{N} \frac{1}{\tau - \tau_j} 
+    \right)
+\end{align*}
+Untuk $k = 1, 2, \ldots, N$ pilih titik Chebyshev-Gauss-Lobatto sebagai titik interpolasi yang diberikan oleh
+\[
+\tau_k = \cos(\frac{\pi k }{N})
+\]
+
+\section*{Design NMPC}
+\begin{align*}
+J(k) = \sum_{i=1}^{N_p} 
+\left\| \mathbf{h}_{\text{ref}}(k+i|k) - \mathbf{h}(k+i|k) \right\|_{Q_{(i)}}^{2}
++ 
+\left\| \Delta \mathbf{u}(k+i-1|k) \right\|_{R_{(i)}}^{2}
+\end{align*}
+dengan kendala
+
+\begin{align*}
+\mathbf{s}(k+i|k) &= \mathbf{f}_d\big(\mathbf{s}(k+i-1|k), \mathbf{u}(k+i-1|k)\big) \\
+\mathbf{h}(k+i|k) &= \mathbf{C}\mathbf{s}(k+i|k) \\
+\mathbf{s}_{\min} &\leq \mathbf{s}(k+i|k) \leq \mathbf{s}_{\max} \\
+\mathbf{u}_{\min} &\leq \mathbf{u}(k+i-1|k) \leq \mathbf{u}_{\max} \\
+\Delta \mathbf{u}_{\min} &\leq \Delta \mathbf{u}(k+i-1|k) \leq \Delta \mathbf{u}_{\max}
+\end{align*}
+untuk $i = 1, 2, \ldots, N_p$. Dengan $\Delta \mathbf{u}(k) = \mathbf{u}(k) - \mathbf{u}(k-1)$ 
+
+\subsection*{Dengan Chebysev}
+Karena $\Delta \mathbf{u}(k) = \mathbf{u}(k) - \mathbf{u}(k-1)$ dapat diaproksimasi menjadi turunan $\mathbf{u}$ yaitu berdasarkan \eqref{eq.u_tau}, diperoleh
+
+\[
+u(\tau) = \sum_{i=0}^{N} u_i \, \phi_i(\tau), 
+\qquad \tau \in [-1, 1].
+\]
+Turunan terhadap waktu:
+
+\begin{align*}
+    \dot{u}(t) = \frac{du}{dt} 
+= \frac{2}{T} \frac{du}{d\tau} \\
+\left.\frac{du}{d\tau}\right|_{\tau_k} 
+= \sum_{i=0}^{N} D_{ki} u_i,
+\end{align*}
+Sehingga fungsi tujuan menjadi:
+
+\begin{align*}
+J = \frac{T}{2} \sum_{k=0}^{N} w_k 
+\left[ 
+\left\| h(x_k) - h_d(\tau_k) \right\|_{Q}^{2} 
++ 
+\left\| \frac{2}{T} \sum_{i=0}^{N} D_{ki} u_i \right\|_{R}^{2}
+\right]
+\end{align*}
+Dengan kendala
+\begin{align*}
+    \frac{2}{T} \sum_{i=0}^{N} D_{ki} s_i &= \frac{T}{2}f(S(\tau), u(\tau)) \\
+    h_k &= C s_k \\
+    s_{\min} \leq &s_k \leq s_{\max} \\
+    u_{\min} \leq &u_k \leq u_{\max} \\
+    \dot{u}_{\min} \leq \frac{2}{T} &\sum_{i=0}^{N} D_{ki} u_i \leq \dot{u}_{\max} \\
+\end{align*}
+untuk $k = 0, \ldots, N$. Dengan $D_{ki}$ adalah evaluasi turunan pada titik kolokasi $\tau = \tau_k$ menghasilkan elemen dari matriks diferensiasi Chebyshev–Gauss–Lobatto (CGL):
+\begin{equation}
+    D_{ki} = \phi_i'(\tau_k).
+\end{equation}
+
+Matriks diferensiasi $D_{ki}$ dapat dinyatakan secara eksplisit sebagai:
+\begin{equation}
+D_{ki} = 
+\begin{cases}
+\dfrac{c_k}{c_i}\dfrac{(-1)^{k+i}}{\tau_k - \tau_i}, & k \neq i, \\[8pt]
+-\dfrac{\tau_k}{2(1-\tau_k^2)}, & 1 \le k \le N-1, \\[8pt]
+\dfrac{2N^2 + 1}{6}, & k = 0, \\[6pt]
+-\dfrac{2N^2 + 1}{6}, & k = N,
+\end{cases}
+\label{eq:Dki}
+\end{equation}
+dengan $c_0 = c_N = 2$ dan $c_i = 1$ untuk $i = 1, 2, \ldots, N-1$.
+
+\[
+\phi_i'(\tau)=\phi_i(\tau)\sum_{j\ne i}\frac{1}{\tau-\tau_j}.
+\]
+
+\[
+D_{ki}=\phi_i'(\tau_k)=
+\begin{cases}
+\dfrac{c_k}{c_i}\dfrac{(-1)^{k+i}}{\tau_k-\tau_i}, & k\ne i,\\[6pt]
+-\dfrac{\tau_k}{2(1-\tau_k^2)}, & 1\le k\le N-1,\\[6pt]
+\dfrac{2N^2+1}{6}, & k=0,\\[6pt]
+-\dfrac{2N^2+1}{6}, & k=N,
+\end{cases}
+\quad c_0=c_N=2,\; c_i=1.
+\]
+
+\end{document}
