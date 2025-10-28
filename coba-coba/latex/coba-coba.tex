@@ -4,6 +4,7 @@
 \usepackage{amsthm}
 \usepackage{bm}
 \usepackage{graphicx}
+\usepackage{physics}
 
 \begin{document}
 
@@ -85,6 +86,7 @@ Untuk $k = 1, 2, \ldots, N$ pilih titik Chebyshev-Gauss-Lobatto sebagai titik in
 \]
 
 \section*{Design NMPC}
+\subsection*{Objective Function 1}
 \begin{align*}
 J(k) = \sum_{i=1}^{N_p} 
 \left\| \mathbf{h}_{\text{ref}}(k+i|k) - \mathbf{h}(k+i|k) \right\|_{Q_{(i)}}^{2}
@@ -135,11 +137,39 @@ Dengan kendala
     u_{\min} \leq &u_k \leq u_{\max} \\
     \dot{u}_{\min} \leq \frac{2}{T} &\sum_{i=0}^{N} D_{ki} u_i \leq \dot{u}_{\max} \\
 \end{align*}
-untuk $k = 0, \ldots, N$. Dengan $D_{ki}$ adalah evaluasi turunan pada titik kolokasi $\tau = \tau_k$ menghasilkan elemen dari matriks diferensiasi Chebyshev–Gauss–Lobatto (CGL):
-\begin{equation}
-    D_{ki} = \phi_i'(\tau_k).
-\end{equation} \label{eq.DKi}
+untuk $k = 0, \ldots, N$. Untuk $N$ genap, $w_k$ adalah
+\[
+w_0 = w_N = \frac{1}{N^2 - 1},
+\]
 
+\[
+w_k = \frac{2}{N} 
+\left[
+\gamma(0,k) + \gamma\left(\frac{N}{2},k\right) 
++ 2 \sum_{i=1}^{N/2 - 1} \gamma(i,k)
+\right],
+\]
+untuk $k = 1, \ldots, N - 1$, dan untuk $N$  ganjil adalah
+
+\[
+w_0 = w_N = \frac{1}{N^2},
+\]
+
+\[
+w_k = \frac{2}{N} 
+\left[
+\gamma(0,k) + 2 \sum_{i=1}^{(N-1)/2} \gamma(i,k)
+\right],
+\]
+dengan
+
+\[
+\gamma(i,k) = \frac{1}{1 - 4i^2} \cos \qty(\frac{2\pi i k}{N}).
+\] 
+Dan $D_{ki}$ adalah evaluasi turunan pada titik kolokasi $\tau = \tau_k$ menghasilkan elemen dari matriks diferensiasi Chebyshev–Gauss–Lobatto (CGL):
+\begin{equation}
+    D_{ki} = \phi_i'(\tau_k) \label{eq.DKi}
+\end{equation} 
 Matriks diferensiasi $D_{ki}$ dapat dinyatakan secara eksplisit sebagai:
 \begin{equation}
 D_{ki} = 
@@ -153,23 +183,105 @@ D_{ki} =
 \end{equation}
 dengan $c_0 = c_N = 2$ dan $c_i = 1$ untuk $i = 1, 2, \ldots, N-1$.
 
-% \[
-% \phi_i'(\tau)=\phi_i(\tau)\sum_{j\ne i}\frac{1}{\tau-\tau_j}.
-% \]
+\newpage
+\section*{Coret-Coret}
+Dengan $s=[\,v' \ r' \ \psi' \ x' \ y'\,]^\top$, kendali $u'=\delta'$, dan kecepatan surge konstan $u'_0$, model takliniernya:
+\[
+\dot s = f(s,u') \equiv
+\begin{bmatrix}
+-0.6174\,v' - 0.1036\,r' + 0.01\,u'\\
+-5.0967\,v' - 3.4047\,r' + u'\\
+r'\\
+u'_0\cos\psi' - v'\sin\psi'\\
+u'_0\sin\psi' + v'\cos\psi'
+\end{bmatrix}.
+\]
 
-% \[
-% D_{ki}=\phi_i'(\tau_k)=
-% \begin{cases}
-% \dfrac{c_k}{c_i}\dfrac{(-1)^{k+i}}{\tau_k-\tau_i}, & k\ne i,\\[6pt]
-% -\dfrac{\tau_k}{2(1-\tau_k^2)}, & 1\le k\le N-1,\\[6pt]
-% \dfrac{2N^2+1}{6}, & k=0,\\[6pt]
-% -\dfrac{2N^2+1}{6}, & k=N,
-% \end{cases}
-% \quad c_0=c_N=2,\; c_i=1.
-% \]
+Ambil titik CGL untuk $N=4$ dan $T=5$:
+\[
+\tau_0=1,\quad \tau_1=\tfrac{\sqrt2}{2},\quad \tau_2=0,\quad
+\tau_3=-\tfrac{\sqrt2}{2},\quad \tau_4=-1,
+\]
+dan tulis $S_i:=S(\tau_i)=[\,v'_i\ r'_i\ \psi'_i\ x'_i\ y'_i\,]^\top$, $u_i':=u'(\tau_i)$.
+
+\paragraph{Persamaan kolokasi.}
+Untuk setiap $k=0,\dots,4$ berlaku
+\[
+\sum_{i=0}^{4} D_{ki}\,S_i \;=\; \frac{T}{2}\, f(S_k,u'_k)
+\;=\; 5\, f(S_k,u'_k),
+\]
+yang komponen–per–komponen menjadi
+\begin{align*}
+\sum_{i=0}^{4} D_{ki}\,v'_i &= 5\Big(-0.6174\,v'_k - 0.1036\,r'_k + 0.01\,u'_k\Big),\\
+\sum_{i=0}^{4} D_{ki}\,r'_i &= 5\Big(-5.0967\,v'_k - 3.4047\,r'_k + u'_k\Big),\\
+\sum_{i=0}^{4} D_{ki}\,\psi'_i &= 5\,r'_k,\\
+\sum_{i=0}^{4} D_{ki}\,x'_i &= 5\Big(u'_0\cos\psi'_k - v'_k\sin\psi'_k\Big),\\
+\sum_{i=0}^{4} D_{ki}\,y'_i &= 5\Big(u'_0\sin\psi'_k + v'_k\cos\psi'_k\Big).
+\end{align*}
+
+\paragraph{Matriks diferensiasi CGL ($N=4$).}
+\[
+D=\begin{bmatrix}
+  5.50000000 & -6.82842712 &  2.00000000 & -1.17157288 &  0.50000000\\
+  1.70710678 & -0.70710678 & -1.41421356 &  0.70710678 & -0.29289322\\
+ -0.50000000 &  1.41421356 &  0.00000000 & -1.41421356 &  0.50000000\\
+  0.29289322 & -0.70710678 &  1.41421356 &  0.70710678 & -1.70710678\\
+ -0.50000000 &  1.17157288 & -2.00000000 &  6.82842712 & -5.50000000
+\end{bmatrix}.
+\]
+maka persamaan menjadi
+
+\paragraph{(1) Komponen $v'$:}
+\begin{align*}
+5.5v'_0 - 6.8284v'_1 + 2v'_2 - 1.1716v'_3 + 0.5v'_4 &= 5(-0.6174v'_0 - 0.1036r'_0 + 0.01u'_0),\\
+1.7071v'_0 - 0.7071v'_1 - 1.4142v'_2 + 0.7071v'_3 - 0.2929v'_4 &= 5(-0.6174v'_1 - 0.1036r'_1 + 0.01u'_1),\\
+-0.5v'_0 + 1.4142v'_1 - 1.4142v'_3 + 0.5v'_4 &= 5(-0.6174v'_2 - 0.1036r'_2 + 0.01u'_2),\\
+0.2929v'_0 - 0.7071v'_1 + 1.4142v'_2 + 0.7071v'_3 - 1.7071v'_4 &= 5(-0.6174v'_3 - 0.1036r'_3 + 0.01u'_3),\\
+-0.5v'_0 + 1.1716v'_1 - 2v'_2 + 6.8284v'_3 - 5.5v'_4 &= 5(-0.6174v'_4 - 0.1036r'_4 + 0.01u'_4).
+\end{align*}
+
+\paragraph{(2) Komponen $r'$:}
+\begin{align*}
+5.5r'_0 - 6.8284r'_1 + 2r'_2 - 1.1716r'_3 + 0.5r'_4 &= 5(-5.0967v'_0 - 3.4047r'_0 + u'_0),\\
+1.7071r'_0 - 0.7071r'_1 - 1.4142r'_2 + 0.7071r'_3 - 0.2929r'_4 &= 5(-5.0967v'_1 - 3.4047r'_1 + u'_1),\\
+-0.5r'_0 + 1.4142r'_1 - 1.4142r'_3 + 0.5r'_4 &= 5(-5.0967v'_2 - 3.4047r'_2 + u'_2),\\
+0.2929r'_0 - 0.7071r'_1 + 1.4142r'_2 + 0.7071r'_3 - 1.7071r'_4 &= 5(-5.0967v'_3 - 3.4047r'_3 + u'_3),\\
+-0.5r'_0 + 1.1716r'_1 - 2r'_2 + 6.8284r'_3 - 5.5r'_4 &= 5(-5.0967v'_4 - 3.4047r'_4 + u'_4).
+\end{align*}
+
+\paragraph{(3) Komponen $\psi'$:}
+\begin{align*}
+5.5\psi'_0 - 6.8284\psi'_1 + 2\psi'_2 - 1.1716\psi'_3 + 0.5\psi'_4 &= 5r'_0,\\
+1.7071\psi'_0 - 0.7071\psi'_1 - 1.4142\psi'_2 + 0.7071\psi'_3 - 0.2929\psi'_4 &= 5r'_1,\\
+-0.5\psi'_0 + 1.4142\psi'_1 - 1.4142\psi'_3 + 0.5\psi'_4 &= 5r'_2,\\
+0.2929\psi'_0 - 0.7071\psi'_1 + 1.4142\psi'_2 + 0.7071\psi'_3 - 1.7071\psi'_4 &= 5r'_3,\\
+-0.5\psi'_0 + 1.1716\psi'_1 - 2\psi'_2 + 6.8284\psi'_3 - 5.5\psi'_4 &= 5r'_4.
+\end{align*}
+
+\paragraph{(4) Komponen $x'$:}
+\begin{align*}
+5.5x'_0 - 6.8284x'_1 + 2x'_2 - 1.1716x'_3 + 0.5x'_4 &= 5(u'_0\cos\psi'_0 - v'_0\sin\psi'_0),\\
+1.7071x'_0 - 0.7071x'_1 - 1.4142x'_2 + 0.7071x'_3 - 0.2929x'_4 &= 5(u'_0\cos\psi'_1 - v'_1\sin\psi'_1),\\
+-0.5x'_0 + 1.4142x'_1 - 1.4142x'_3 + 0.5x'_4 &= 5(u'_0\cos\psi'_2 - v'_2\sin\psi'_2),\\
+0.2929x'_0 - 0.7071x'_1 + 1.4142x'_2 + 0.7071x'_3 - 1.7071x'_4 &= 5(u'_0\cos\psi'_3 - v'_3\sin\psi'_3),\\
+-0.5x'_0 + 1.1716x'_1 - 2x'_2 + 6.8284x'_3 - 5.5x'_4 &= 5(u'_0\cos\psi'_4 - v'_4\sin\psi'_4).
+\end{align*}
+
+\paragraph{(5) Komponen $y'$:}
+\begin{align*}
+5.5y'_0 - 6.8284y'_1 + 2y'_2 - 1.1716y'_3 + 0.5y'_4 &= 5(u'_0\sin\psi'_0 + v'_0\cos\psi'_0),\\
+1.7071y'_0 - 0.7071y'_1 - 1.4142y'_2 + 0.7071y'_3 - 0.2929y'_4 &= 5(u'_0\sin\psi'_1 + v'_1\cos\psi'_1),\\
+-0.5y'_0 + 1.4142y'_1 - 1.4142y'_3 + 0.5y'_4 &= 5(u'_0\sin\psi'_2 + v'_2\cos\psi'_2),\\
+0.2929y'_0 - 0.7071y'_1 + 1.4142y'_2 + 0.7071y'_3 - 1.7071y'_4 &= 5(u'_0\sin\psi'_3 + v'_3\cos\psi'_3),\\
+-0.5y'_0 + 1.1716y'_1 - 2y'_2 + 6.8284y'_3 - 5.5y'_4 &= 5(u'_0\sin\psi'_4 + v'_4\cos\psi'_4).
+\end{align*}
+
+
+
+
 \newpage
 \section*{Materi}
-\subsection*{Chebyshev-Gauss-Lobatto (CGL)}
+\section*{Chebyshev-Gauss-Lobatto (CGL)}
 CGL adalah sekumpulan titik kolokasi (collocation points) yang digunakan dalam metode pseudospectral untuk mendiskritisasi fungsi kontinu menjadi bentuk polinomial berderajat N.
 CGL merupakan special case dari titik Chebyshev-Gauss (CG), tetapi dengan tambahan dua titik batas $(-1,1)$ sehingga domainnya lengkap di interval $[-1,1]$. Titik ini didefinisikan sebagai:
 \[
@@ -184,4 +296,99 @@ Note:
     \end{enumerate}
 \end{enumerate}
 
+\section*{Pembukatian $D_{ki}$}
+Kita mulai dari definisi fungsi basis Lagrange untuk titik-titik kolokasi $\{\tau_j\}_{j=0}^N$:
+\begin{equation}
+    \phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N} \frac{\tau - \tau_j}{\tau_i - \tau_j},
+    \qquad
+    \phi_i(\tau_k) = \delta_{ik}.
+\end{equation}
+
+Turunan terhadap $\tau$ diberikan oleh
+\begin{equation}
+    \phi_i'(\tau) = \phi_i(\tau) 
+    \sum_{\substack{j=0 \\ j \ne i}}^{N} \frac{1}{\tau - \tau_j}.
+\end{equation}
+
+Evaluasi pada titik kolokasi $\tau = \tau_k$ memberikan elemen matriks diferensiasi:
+\begin{equation}
+    D_{ki} = \phi_i'(\tau_k).
+\end{equation}
+
+\subsection*{Bentuk Umum dengan Bobot Barisentris}
+
+Untuk sebarang himpunan titik kolokasi, definisikan bobot barisentris sebagai:
+\begin{equation}
+    w_i = \frac{1}{\displaystyle \prod_{\substack{m=0 \\ m \ne i}}^{N} (\tau_i - \tau_m)}.
+\end{equation}
+
+Dengan bobot tersebut, turunan fungsi basis pada titik-titik kolokasi dapat dinyatakan sebagai
+\begin{equation}
+    D_{ki} =
+    \begin{cases}
+        \dfrac{w_i}{w_k} \dfrac{1}{\tau_k - \tau_i}, & k \ne i, \\[8pt]
+        -\displaystyle\sum_{\substack{m=0 \\ m \ne k}}^{N} D_{km}, & k = i.
+    \end{cases}
+    \label{eq:Dki_general}
+\end{equation}
+
+\subsection*{Khusus untuk Titik Chebyshev--Gauss--Lobatto (CGL)}
+
+Untuk titik-titik Chebyshev-Gauss-Lobatto yang didefinisikan sebagai
+\begin{equation}
+    \tau_j = \cos\!\left(\frac{\pi j}{N}\right), \qquad j = 0, 1, \dots, N,
+\end{equation}
+bobot barisentrisnya memiliki bentuk proporsional sebagai berikut:
+\begin{equation}
+    w_j \propto (-1)^j \, c_j,
+    \qquad
+    c_0 = c_N = \tfrac{1}{2}, \quad c_j = 1 \text{ untuk } j = 1, \dots, N-1.
+\end{equation}
+
+Substitusi ke dalam Persamaan~\eqref{eq:Dki_general} menghasilkan
+\begin{equation}
+    \boxed{
+    D_{ki} = \frac{c_k}{c_i} \frac{(-1)^{k+i}}{\tau_k - \tau_i}, \qquad k \ne i.
+    }
+    \label{eq:Dki_offdiag}
+\end{equation}
+
+Untuk elemen diagonal diperoleh dengan memanfaatkan sifat baris-jumlah-nol
+$\sum_{m=0}^N D_{km} = 0$, sehingga
+\begin{equation}
+    D_{kk} = - \sum_{\substack{m=0 \\ m \ne k}}^{N} D_{km}.
+\end{equation}
+
+Setelah disederhanakan menggunakan identitas trigonometri
+$\tau_k = \cos\left(\frac{\pi k}{N}\right)$, bentuk eksplisitnya adalah
+\begin{equation}
+    \boxed{
+    D_{kk} =
+    \begin{cases}
+        -\dfrac{\tau_k}{2(1 - \tau_k^2)}, & 1 \le k \le N-1, \\[8pt]
+        \dfrac{2N^2 + 1}{6}, & k = 0, \\[8pt]
+        -\dfrac{2N^2 + 1}{6}, & k = N.
+    \end{cases}
+    }
+    \label{eq:Dki_diag}
+\end{equation}
+
+\subsection*{Hasil Akhir}
+
+Maka, matriks diferensiasi Chebyshev--Gauss--Lobatto dapat dinyatakan secara lengkap sebagai:
+\begin{equation}
+    \boxed{
+    D_{ki} =
+    \begin{cases}
+        \dfrac{c_k}{c_i} \dfrac{(-1)^{k+i}}{\tau_k - \tau_i}, & k \ne i, \\[8pt]
+        -\dfrac{\tau_k}{2(1 - \tau_k^2)}, & 1 \le k \le N-1, \\[8pt]
+        \dfrac{2N^2 + 1}{6}, & k = 0, \\[8pt]
+        -\dfrac{2N^2 + 1}{6}, & k = N.
+    \end{cases}
+    }
+\end{equation}
+
+Bentuk inilah yang digunakan sebagai \textit{differentiation matrix} $D_{ki}$ dalam metode
+\textit{Chebyshev pseudospectral}, yang merepresentasikan turunan fungsi kontinu terhadap
+variabel $\tau$ pada titik-titik kolokasi $\tau_k \in [-1,1]$.
 \end{document}
