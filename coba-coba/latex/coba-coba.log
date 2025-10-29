@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  28 OCT 2025 21:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  29 OCT 2025 19:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -143,35 +143,58 @@ File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count295
 ))
 Package: xparse 2024-08-16 L3 Experimental document command parser
-)) (coba-coba.aux)
+)) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+ (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+ (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen160
+\captionmargin=\dimen161
+\caption@leftmargin=\dimen162
+\caption@rightmargin=\dimen163
+\caption@width=\dimen164
+\caption@indent=\dimen165
+\caption@parindent=\dimen166
+\caption@hangindent=\dimen167
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count296
+\c@continuedfloat=\count297
+)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count298
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count299
+) (coba-coba.aux)
 \openout1 = `coba-coba.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
-LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count296
-\scratchdimen=\dimen160
+\scratchcounter=\count300
+\scratchdimen=\dimen168
 \scratchbox=\box55
-\nofMPsegments=\count297
-\nofMParguments=\count298
+\nofMPsegments=\count301
+\nofMParguments=\count302
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count299
-\MPscratchDim=\dimen161
-\MPnumerator=\count300
-\makeMPintoPDFobject=\count301
+\MPscratchCnt=\count303
+\MPscratchDim=\dimen169
+\MPnumerator=\count304
+\makeMPintoPDFobject=\count305
 \everyMPtoPDFconversion=\toks30
 ) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -179,16 +202,18 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 58.
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 60.
 
 
 
@@ -199,38 +224,49 @@ Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead
 [2]
 
 [3]
+<../gambar/CHEBYSEV_NMPC.png, id=24, 330.48468pt x 301.125pt>
+File: ../gambar/CHEBYSEV_NMPC.png Graphic file (type png)
+<use ../gambar/CHEBYSEV_NMPC.png>
+Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 194.
+(pdftex.def)             Requested size: 165.59853pt x 150.89294pt.
+<../gambar/NMPC_BIASA.png, id=26, 208.52907pt x 243.91125pt>
+File: ../gambar/NMPC_BIASA.png Graphic file (type png)
+<use ../gambar/NMPC_BIASA.png>
+Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 202.
+(pdftex.def)             Requested size: 120.7521pt x 141.24158pt.
 
-[4]
-Overfull \hbox (12.44658pt too wide) detected at line 231
+
+[4 <../gambar/CHEBYSEV_NMPC.png> <../gambar/NMPC_BIASA.png>]
+Overfull \hbox (12.44658pt too wide) detected at line 256
 \OML/cmm/m/it/10 D \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 :
  []
 
 
-Overfull \hbox (52.4309pt too wide) detected at line 241
+Overfull \hbox (52.4309pt too wide) detected at line 266
 []
  []
 
 
 
 [5]
-Overfull \hbox (32.97482pt too wide) detected at line 250
+Overfull \hbox (32.97482pt too wide) detected at line 275
 []
  []
 
 
-Overfull \hbox (8.7732pt too wide) detected at line 268
+Overfull \hbox (8.7732pt too wide) detected at line 293
 []
  []
 
 
-Overfull \hbox (4.71092pt too wide) detected at line 277
+Overfull \hbox (4.71092pt too wide) detected at line 302
 []
  []
 
 
 
 [6]
-Overfull \hbox (32.36186pt too wide) in paragraph at lines 295--296
+Overfull \hbox (32.36186pt too wide) in paragraph at lines 320--321
 \OT1/cmr/m/n/10 asanya titik-titik Cheby-shev{Gauss{Lobatto atau Leg-en-dre{Gauss{Lobatto) 
  []
 
@@ -247,17 +283,17 @@ L3 programming layer <2025-09-02>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3309 strings out of 468081
- 47049 string characters out of 5426272
- 472393 words of memory out of 5000000
- 31957 multiletter control sequences out of 15000+600000
- 635593 words of font info for 69 fonts, out of 8000000 for 9000
+ 4806 strings out of 468081
+ 76034 string characters out of 5426272
+ 501865 words of memory out of 5000000
+ 33444 multiletter control sequences out of 15000+600000
+ 635892 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,14n,77p,355b,180s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on coba-coba.pdf (9 pages, 199485 bytes).
+ 73i,14n,77p,378b,504s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on coba-coba.pdf (9 pages, 228083 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
+ 112 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

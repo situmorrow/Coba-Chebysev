@@ -5,6 +5,8 @@
 \usepackage{bm}
 \usepackage{graphicx}
 \usepackage{physics}
+\usepackage{subcaption}
+\graphicspath{{../gambar/}}
 
 \begin{document}
 
@@ -182,6 +184,29 @@ D_{ki} =
 \label{eq:Dki}
 \end{equation}
 dengan $c_0 = c_N = 2$ dan $c_i = 1$ untuk $i = 1, 2, \ldots, N-1$.
+
+\subsection*{Simulasi NMPC dengan CASADI hasil ChatGPT}
+\begin{figure}[h]
+    \centering
+    % ===== Gambar kiri =====
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{CHEBYSEV_NMPC.png}
+        \caption{Simulasi NMPC dengan Chebyshev}
+        \label{fig:chebysev}
+    \end{subfigure}
+    \hfill
+    % ===== Gambar kanan =====
+    \begin{subfigure}{0.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{NMPC_BIASA.png}
+        \caption{Simulasi NMPC konvensional}
+        \label{fig:nmpc}
+    \end{subfigure}
+
+    \caption{Perbandingan hasil simulasi antara NMPC Chebyshev dan NMPC biasa.}
+    \label{fig:comparison}
+\end{figure}
 
 \newpage
 \section*{Coret-Coret}
