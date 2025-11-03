@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  29 OCT 2025 19:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  3 NOV 2025 08:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,46 +237,48 @@ Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 202.
 
 
 [4 <../gambar/CHEBYSEV_NMPC.png> <../gambar/NMPC_BIASA.png>]
-Overfull \hbox (12.44658pt too wide) detected at line 256
+
+[5]
+Overfull \hbox (12.44658pt too wide) detected at line 261
 \OML/cmm/m/it/10 D \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 :
  []
 
 
-Overfull \hbox (52.4309pt too wide) detected at line 266
-[]
- []
-
-
-
-[5]
-Overfull \hbox (32.97482pt too wide) detected at line 275
-[]
- []
-
-
-Overfull \hbox (8.7732pt too wide) detected at line 293
-[]
- []
-
-
-Overfull \hbox (4.71092pt too wide) detected at line 302
+Overfull \hbox (52.4309pt too wide) detected at line 271
 []
  []
 
 
 
 [6]
-Overfull \hbox (32.36186pt too wide) in paragraph at lines 320--321
-\OT1/cmr/m/n/10 asanya titik-titik Cheby-shev{Gauss{Lobatto atau Leg-en-dre{Gauss{Lobatto) 
+Overfull \hbox (32.97482pt too wide) detected at line 280
+[]
+ []
+
+
+Overfull \hbox (8.7732pt too wide) detected at line 298
+[]
+ []
+
+
+Overfull \hbox (4.71092pt too wide) detected at line 307
+[]
  []
 
 
 
 [7]
+Overfull \hbox (32.36186pt too wide) in paragraph at lines 325--326
+\OT1/cmr/m/n/10 asanya titik-titik Cheby-shev{Gauss{Lobatto atau Leg-en-dre{Gauss{Lobatto) 
+ []
+
+
 
 [8]
 
-[9] (coba-coba.aux)
+[9]
+
+[10] (coba-coba.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -291,9 +293,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  73i,14n,77p,378b,504s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on coba-coba.pdf (9 pages, 228083 bytes).
+Output written on coba-coba.pdf (10 pages, 228839 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
+ 115 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1761740017.79677 "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" "coba-coba.pdf" "coba-coba" 1761740018.36843 0
+["pdflatex"] 1762134037.99472 "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" "coba-coba.pdf" "coba-coba" 1762134038.55532 0
   "../gambar/CHEBYSEV_NMPC.png" 1761532278 17559 0344ef5f480ecdc723d6baadd52ca623 ""
   "../gambar/NMPC_BIASA.png" 1761532278 6945 1b97a67169f97abda048b3d8c12037e6 ""
   "C:/Users/user/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1761739988 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
@@ -71,9 +71,9 @@
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/l3packages/xparse/xparse.sty" 1724854269 9783 ab4bee47700c04aadedb8da27591b0ab ""
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/physics/physics.sty" 1356002062 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1749468414 13236 71253d8fde2c80ecebae7e3f7da0c2b0 ""
-  "coba-coba.aux" 1761740018 1560 94ec3a9dafe62610f75515d9fcdb97ef "pdflatex"
-  "coba-coba.tex" 1761740016 15431 02f6a3aad1df607745ff3a25b493f5d1 ""
-  "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" 1761740016 15431 02f6a3aad1df607745ff3a25b493f5d1 ""
+  "coba-coba.aux" 1762134038 1561 6dfdb7fae36139cdb3769e8284804b50 "pdflatex"
+  "coba-coba.tex" 1762134037 15643 13bb5a6315f4dd7f6987c90d2e32e5b9 ""
+  "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" 1762134037 15643 13bb5a6315f4dd7f6987c90d2e32e5b9 ""
   (generated)
   "coba-coba.aux"
   "coba-coba.log"
