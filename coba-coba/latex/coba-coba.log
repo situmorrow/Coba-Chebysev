@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  3 NOV 2025 18:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.25)  4 NOV 2025 20:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex
-(d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex
+**d:/Kuliah/TA/LATEX/coba-coba/latex/coba-coba.tex
+(d:/Kuliah/TA/LATEX/coba-coba/latex/coba-coba.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
-(C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+(C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
-(C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+(C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count275
@@ -23,21 +23,21 @@ File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2025/06/16 v2.17y AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
-(C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen149
-)) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+)) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen150
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count283
@@ -87,16 +87,16 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2949.
 LaTeX Info: Redefining \] on input line 2950.
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
+)) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks22
 \thm@bodyfont=\toks23
@@ -107,200 +107,353 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip55
 \thm@headsep=\skip56
 \dth@everypar=\toks27
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/tools\bm.sty
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\enitkv@toks@=\toks28
+\labelindent=\skip57
+\enit@outerparindent=\dimen158
+\enit@toks=\toks29
+\enit@inbox=\box55
+\enit@count@id=\count295
+\enitdp@description=\count296
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen159
+\lightrulewidth=\dimen160
+\cmidrulewidth=\dimen161
+\belowrulesep=\dimen162
+\belowbottomsep=\dimen163
+\aboverulesep=\dimen164
+\abovetopsep=\dimen165
+\cmidrulesep=\dimen166
+\cmidrulekern=\dimen167
+\defaultaddspace=\dimen168
+\@cmidla=\count297
+\@cmidlb=\count298
+\@aboverulesep=\dimen169
+\@belowrulesep=\dimen170
+\@thisruleclass=\count299
+\@lastruleclass=\count300
+\@thisrulewidth=\dimen171
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count301
+\float@exts=\toks30
+\float@box=\box56
+\@float@everytoks=\toks31
+\@floatcapt=\box57
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/tools\bm.sty
 Package: bm 2023/12/19 v1.2f Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup6
 \symboldletters=\mathgroup7
 \symboldsymbols=\mathgroup8
-Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
+Package bm Info: No bold for \OMX/lmex/m/n, using \pmb.
 Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks28
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+\KV@toks@=\toks32
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen158
-\Gin@req@width=\dimen159
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/physics\physics.sty
+\Gin@req@height=\dimen172
+\Gin@req@width=\dimen173
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/physics\physics.sty
 Package: physics 
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
 Package: expl3 2025-09-02 L3 programming layer (loader) 
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count295
+\l__color_backend_stack_int=\count302
 ))
 Package: xparse 2024-08-16 L3 Experimental document command parser
-)) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+)) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen160
-\captionmargin=\dimen161
-\caption@leftmargin=\dimen162
-\caption@rightmargin=\dimen163
-\caption@width=\dimen164
-\caption@indent=\dimen165
-\caption@parindent=\dimen166
-\caption@hangindent=\dimen167
+\caption@tempdima=\dimen174
+\captionmargin=\dimen175
+\caption@leftmargin=\dimen176
+\caption@rightmargin=\dimen177
+\caption@width=\dimen178
+\caption@indent=\dimen179
+\caption@parindent=\dimen180
+\caption@hangindent=\dimen181
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count296
-\c@continuedfloat=\count297
+\c@caption@flags=\count303
+\c@continuedfloat=\count304
+Package caption Info: float package is loaded.
 )
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count298
+\c@subfigure=\count305
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count299
+\c@subtable=\count306
+)
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 15.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (coba-coba.aux)
 \openout1 = `coba-coba.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count300
-\scratchdimen=\dimen168
-\scratchbox=\box55
-\nofMPsegments=\count301
-\nofMParguments=\count302
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count303
-\MPscratchDim=\dimen169
-\MPnumerator=\count304
-\makeMPintoPDFobject=\count305
-\everyMPtoPDFconversion=\toks30
-) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+\scratchcounter=\count307
+\scratchdimen=\dimen182
+\scratchbox=\box58
+\nofMPsegments=\count308
+\nofMParguments=\count309
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count310
+\MPscratchDim=\dimen183
+\MPnumerator=\count311
+\makeMPintoPDFobject=\count312
+\everyMPtoPDFconversion=\toks34
+) (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 20.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 20.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 20.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 20.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 20.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
- (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (16.84589pt too wide) in paragraph at lines 18--18
-[]\OT1/cmr/bx/n/12 Bagaimana at-u-ran dari Diskrit ke kon-tinu dan bagaimana
+Overfull \hbox (2.44365pt too wide) in paragraph at lines 59--61
+\OT1/lmr/m/n/10 Berikut adalah langkah-langkah mem-per-oleh Cheby-shev{Gauss{Lobatto (CGL).
  []
 
 
 
 [1
 
-{C:/Users/user/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+{C:/Users/VICTUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 89.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 88--90
 
-Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 67.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--107
+
+ []
 
 
 
-[2]
+[2{C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
 
 [3]
-<../gambar/CHEBYSEV_NMPC.png, id=25, 330.48468pt x 301.125pt>
-File: ../gambar/CHEBYSEV_NMPC.png Graphic file (type png)
-<use ../gambar/CHEBYSEV_NMPC.png>
-Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 201.
-(pdftex.def)             Requested size: 165.59853pt x 150.89294pt.
-<../gambar/NMPC_BIASA.png, id=27, 208.52907pt x 243.91125pt>
-File: ../gambar/NMPC_BIASA.png Graphic file (type png)
-<use ../gambar/NMPC_BIASA.png>
-Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 209.
-(pdftex.def)             Requested size: 120.7521pt x 141.24158pt.
-
 
 [4]
+LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 271.
+ (C:\Users\VICTUS\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmtt.fd
+File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+<../gambar/obj_kontinu.png, id=27, 591.71063pt x 217.5628pt>
+File: ../gambar/obj_kontinu.png Graphic file (type png)
+<use ../gambar/obj_kontinu.png>
+Package pdftex.def Info: ../gambar/obj_kontinu.png  used on input line 281.
+(pdftex.def)             Requested size: 165.59853pt x 60.88728pt.
+<../gambar/obj_diskrit.png, id=29, 615.80063pt x 237.13594pt>
+File: ../gambar/obj_diskrit.png Graphic file (type png)
+<use ../gambar/obj_diskrit.png>
+Package pdftex.def Info: ../gambar/obj_diskrit.png  used on input line 288.
+(pdftex.def)             Requested size: 120.7521pt x 46.50003pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 294.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 294.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 294.
 
-[5 <../gambar/CHEBYSEV_NMPC.png> <../gambar/NMPC_BIASA.png>]
-Overfull \hbox (12.44658pt too wide) detected at line 268
-\OML/cmm/m/it/10 D \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 :
+Overfull \hbox (1.9959pt too wide) in paragraph at lines 297--297
+[]\OT1/lmr/bx/n/12 Alasan ke-napa poli-no-mial Cheby-shev di-gu-nakan? Bisa
  []
 
 
-Overfull \hbox (52.4309pt too wide) detected at line 278
-[]
+Overfull \hbox (16.84595pt too wide) in paragraph at lines 299--299
+[]\OT1/lmr/bx/n/12 Bagaimana at-u-ran dari Diskrit ke kon-tinu dan bagaimana
  []
+
+
+
+[5{C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.enc} <../gambar/obj_kontinu.png> <../gambar/obj_diskrit.png>]
+
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 348.
 
 
 
 [6]
-Overfull \hbox (32.97482pt too wide) detected at line 287
-[]
- []
-
-
-Overfull \hbox (8.7732pt too wide) detected at line 305
-[]
- []
-
-
-Overfull \hbox (4.71092pt too wide) detected at line 314
-[]
- []
-
-
 
 [7]
-Overfull \hbox (32.36186pt too wide) in paragraph at lines 332--333
-\OT1/cmr/m/n/10 asanya titik-titik Cheby-shev{Gauss{Lobatto atau Leg-en-dre{Gauss{Lobatto) 
- []
-
-
 
 [8]
+<../gambar/CHEBYSEV_NMPC.png, id=49, 330.48468pt x 301.125pt>
+File: ../gambar/CHEBYSEV_NMPC.png Graphic file (type png)
+<use ../gambar/CHEBYSEV_NMPC.png>
+Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 482.
+(pdftex.def)             Requested size: 165.59853pt x 150.89294pt.
+<../gambar/NMPC_BIASA.png, id=50, 208.52907pt x 243.91125pt>
+File: ../gambar/NMPC_BIASA.png Graphic file (type png)
+<use ../gambar/NMPC_BIASA.png>
+Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 490.
+(pdftex.def)             Requested size: 120.7521pt x 141.24158pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
 
 [9]
 
-[10] (coba-coba.aux)
+[10 <../gambar/CHEBYSEV_NMPC.png> <../gambar/NMPC_BIASA.png>]
+Overfull \hbox (12.44608pt too wide) detected at line 549
+\OML/lmm/m/it/10 D \OT1/lmr/m/n/10 = [] \OML/lmm/m/it/10 :
+ []
+
+
+Overfull \hbox (52.43015pt too wide) detected at line 559
+[]
+ []
+
+
+Overfull \hbox (32.97412pt too wide) detected at line 568
+[]
+ []
+
+
+
+[11]
+Overfull \hbox (8.84457pt too wide) detected at line 586
+[]
+ []
+
+
+Overfull \hbox (4.78249pt too wide) detected at line 595
+[]
+ []
+
+
+
+[12]
+Overfull \hbox (32.36246pt too wide) in paragraph at lines 613--614
+\OT1/lmr/m/n/10 asanya titik-titik Cheby-shev{Gauss{Lobatto atau Leg-en-dre{Gauss{Lobatto) 
+ []
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 617.
+
+
+[13]
+
+[14]
+
+[15] (coba-coba.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4844 strings out of 468081
- 76438 string characters out of 5426272
- 501865 words of memory out of 5000000
- 33469 multiletter control sequences out of 15000+600000
- 642701 words of font info for 95 fonts, out of 8000000 for 9000
+ 5528 strings out of 468081
+ 89736 string characters out of 5425304
+ 505013 words of memory out of 5000000
+ 34107 multiletter control sequences out of 15000+600000
+ 689066 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,14n,77p,378b,504s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on coba-coba.pdf (10 pages, 230552 bytes).
+ 73i,14n,77p,529b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb>
+Output written on coba-coba.pdf (15 pages, 510079 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 149 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
