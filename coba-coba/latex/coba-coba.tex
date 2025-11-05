@@ -158,117 +158,112 @@ Disebut Chebyshev--Gauss--Lobatto karena berasal teori quadrature (integrasi num
 
 \subsection{Langkah-langkah Chebyshev Pseudospectral Method (CPM) secara umum}
 
-\subsubsection{Aproksimasi Fungsi}
-
-Misalkan $x(t)$ adalah fungsi keadaan kontinu pada interval waktu $[t_0, t_f]$. 
-CPM mendekati fungsi tersebut menggunakan deret polinomial Chebyshev $T_k(\tau)$ 
-yang didefinisikan pada domain standar $\tau \in [-1,1]$. 
-Hubungan antara waktu sebenarnya dan waktu terstandar diberikan oleh transformasi linear:
-
+\subsubsection{Melakukan Aproksimasi Fungsi}
+Misalkan terdapat $x(t)$ adalah fungsi kontinu dengan interval waktu $[t_0, t_f]$. Fungsi ini akan diaproksimasi dengan interpolasi polinomial Langrange, namun sebelum itu perlu dilakukan pengubahan domain fungsi yang awalnya pada $[t_0, t_f]$ menjadi pada domain standar $\tau \in [-1,1]$. Hubungan antara waktu sebenarnya dan waktu terstandar diberikan oleh transformasi linear:
 \[
-\tau = \frac{2(t - t_0)}{t_f - t_0} - 1, 
-\quad \text{sehingga} \quad 
-\frac{d}{dt} = \frac{2}{t_f - t_0} \frac{d}{d\tau}
+\tau = \frac{2(t - t_0)}{t_f - t_0} - 1
 \]
-Dengan demikian, fungsi keadaan dapat diaproksimasi sebagai:
-
+Setelah itu fungsi $x(t)$ dapat diaproksimasi dengan polinomial langrange yaitu
 \[
-x(\tau) \approx \sum_{k=0}^{N} a_k T_k(\tau)
+x(\tau) = \sum_{i=0}^{N} x_i \, \phi_i(\tau) \label{eq.S_tau}
 \]
-di mana $T_k(\tau) = \cos(k \arccos \tau)$ merupakan polinomial Chebyshev 
-jenis pertama dan $a_k$ adalah koefisien yang akan ditentukan.
+Dengan N adalah order polinomial dan $\phi_i$ adalah basis fungsi langrange.
+\[
+    \phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j} \label{eq.phi_tau}
+\]
 
 \subsubsection{Kolokasi di Titik Chebyshev--Gauss--Lobatto}
 
-Dalam CPM, persamaan diferensial tidak dihitung secara simbolik, 
-melainkan dipaksa benar pada sejumlah titik kolokasi nonuniform yang dikenal 
-sebagai \textit{Chebyshev--Gauss--Lobatto (CGL) nodes}. 
-Titik-titik ini diambil dari ekstrem polinomial Chebyshev $T_N(\tau)$, yaitu:
-
-\[
-\tau_i = \cos\left( \frac{i\pi}{N} \right), 
-\quad i = 0, 1, \ldots, N
-\]
-Titik-titik ini termasuk batas domain $-1$ dan $+1$, 
-dan lebih rapat di ujung interval untuk mengurangi fenomena osilasi (Runge phenomenon).
-
-Persamaan dinamik sistem kontinu:
-\[
-\dot{x}(t) = f(x(t), u(t))
-\]
-akan dikolokasikan menjadi:
-\[
-\frac{2}{t_f - t_0} \dot{x}(\tau_i) = f(x(\tau_i), u(\tau_i))
-\]
+\begin{itemize}[noitemsep]
+    \item Pilih node non-uniform:
+    \[
+    \tau_i = \cos\left( \frac{i\pi}{N} \right), \quad i = 0, 1, \ldots, N.
+    \]
+    
+    \item Node ini mencakup ujung domain $(-1, +1)$ dan rapat di tepi $\Rightarrow$ stabil dan mengurangi osilasi di batas.
+    
+    \item Persamaan dinamik kontinu $\dot{x}(t) = f(x(t), u(t))$ setelah transformasi waktu menjadi:
+    \[
+    \frac{2}{t_f - t_0}\dot{x}(\tau_i) = f(x(\tau_i), u(\tau_i)),
+    \]
+    dan dipaksa benar (kolokasi) pada setiap $\tau_i$.
+\end{itemize}
 
 \subsubsection{Diferensiasi via Matriks Chebyshev}
 
-Turunan dari fungsi yang diaproksimasi menggunakan polinomial Chebyshev 
-dapat direpresentasikan dalam bentuk matriks diferensiasi Chebyshev ($D$):
-
-\[
-\dot{x}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} x(\tau_j)
-\]
-
-dengan elemen-elemen matriks $D_{ij}$ diberikan oleh:
-\[
-D_{ij} = 
-\begin{cases}
-\displaystyle \frac{c_i}{c_j} \frac{(-1)^{i+j}}{\tau_i - \tau_j}, & i \neq j, \\[1.2em]
-\displaystyle -\frac{\tau_j}{2(1 - \tau_j^2)}, & i = j \neq 0,N, \\[0.8em]
-\displaystyle \frac{2N^2 + 1}{6}, & i = j = 0, \\[0.8em]
-\displaystyle -\frac{2N^2 + 1}{6}, & i = j = N
-\end{cases}
-\]
-dengan $c_0 = c_N = 2$ dan $c_j = 1$ untuk $j = 1, \ldots, N-1$.
+\begin{itemize}[noitemsep]
+    \item Turunan aproksimasi Lagrange di titik kolokasi bisa ditulis sebagai operasi matriks:
+    \[
+    \dot{x}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} x(\tau_j)
+    \]
+    
+    \item Elemen \textbf{Chebyshev differentiation matrix} $D$ untuk node CGL:
+    \[
+    D_{ij} =
+    \begin{cases}
+        \dfrac{c_i (-1)^{i+j}}{c_j (\tau_i - \tau_j)}, & i \neq j, \\[8pt]
+        -\dfrac{\tau_j}{2(1 - \tau_j^2)}, & i = j, \; j = 1, \ldots, N-1, \\[10pt]
+        \dfrac{2N^2 + 1}{6}, & i = j = 0, \\[6pt]
+        -\dfrac{2N^2 + 1}{6}, & i = j = N,
+    \end{cases}
+    \]
+    dengan $c_0 = c_N = 2$, dan $c_j = 1$ untuk lainnya.
+\end{itemize}
 
 \subsubsection{Formulasi Kolokasi Diskrit}
 
-Dengan menggunakan transformasi waktu dan matriks diferensiasi, 
-persamaan dinamik kontinu dapat ditulis dalam bentuk kolokasi aljabar:
-
-\[
-\frac{2}{t_f - t_0} D X = F(X, U)
-\]
-dengan $X = [x(\tau_0), x(\tau_1), \ldots, x(\tau_N)]^T$ dan $U = [u(\tau_0), u(\tau_1), \ldots, u(\tau_N)]^T$.
-
-Persamaan ini menghubungkan semua titik keadaan secara global dan 
-menjadi constraint utama dalam formulasi optimasi Nonlinear Programming (NLP).
+\begin{itemize}[noitemsep]
+    \item Kumpulkan semua state pada node menjadi vektor 
+    \[
+    X = [x(\tau_0), \ldots, x(\tau_N)]^\top,
+    \]
+    dan input 
+    \[
+    U = [u(\tau_0), \ldots, u(\tau_N)]^\top.
+    \]
+    
+    \item Kendala dinamik global (untuk semua node) menjadi sistem aljabar:
+    \[
+    \frac{2}{t_f - t_0} DX = F(X, U),
+    \]
+    dengan
+    \[
+    F(X,U) = [f(x(\tau_0),u(\tau_0)), \ldots, f(x(\tau_N),u(\tau_N))]^\top.
+    \]
+    
+    \item Tambahkan kondisi awal $x(\tau_0) = x(t_0)$ (dan kondisi terminal bila ada).
+\end{itemize}
 
 \subsubsection{Kuantifikasi Integral (Quadrature)}
 
-Integral dari fungsi objektif dalam domain $[-1,1]$ dapat dihitung 
-menggunakan bobot integrasi Chebyshev (\textit{quadrature weights}):
+\begin{itemize}[noitemsep]
+    \item Integral pada $[-1,1]$ diganti jumlah berbobot (aturan Chebyshev--Gauss--Lobatto):
+    \[
+    \int_{-1}^{1} g(\tau)\, d\tau \approx \sum_{i=0}^{N} w_i g(\tau_i).
+    \]
+    \item Gunakan bobot CGL $w_i$; sesuai $N$ genap/ganjil — nanti digunakan untuk biaya (tracking dan effort kontrol).
+\end{itemize}
 
-\[
-\int_{-1}^{1} g(\tau) \, d\tau \approx 
-\sum_{i=0}^{N} w_i g(\tau_i)
-\]
-dengan $w_i$ ditentukan dari aturan integrasi Chebyshev--Gauss--Lobatto.
-
-\subsubsection{Formulasi Masalah Optimal Diskrit}
-
-Dengan demikian, masalah kontrol optimal kontinu:
-
-\[
-\min_{u(\cdot)} J = \int_{t_0}^{t_f} L(x(t),u(t))\,dt
-\]
-
-dengan constraint $\dot{x} = f(x,u)$ dapat ditransformasikan menjadi bentuk diskrit:
-
-\[
-\min_{X,U} J = \frac{t_f - t_0}{2} 
-\sum_{i=0}^{N} w_i L(x_i, u_i)
-\]
-
-subject to:
-
-\[
-\frac{2}{t_f - t_0} D X = F(X,U), \quad x_0 = x(t_0)
-\]
-
-yang kemudian diselesaikan menggunakan solver Nonlinear Programming (misalnya 
-\texttt{fmincon}, \texttt{IPOPT}, atau \texttt{CasADi}).
+\subsubsection{Formulasi Masalah Optimal Diskrit (OCP $\rightarrow$ NLP)}
+\begin{itemize}[noitemsep]
+    \item Biaya kontinu:
+    \[
+    J = \int_{t_0}^{t_f} L(x(t), u(t))\, dt
+    \]
+    menjadi:
+    \[
+    J \approx \frac{t_f - t_0}{2} \sum_{i=0}^{N} w_i L(x(\tau_i), u(\tau_i)).
+    \]
+    
+    \item NLP akhir:
+    \[
+    \begin{aligned}
+    \min_{X,U}\quad & J = \frac{t_f - t_0}{2} \sum_{i=0}^{N} w_i L(x_i, u_i) \\
+    \text{s.t.} \quad & \frac{2}{t_f - t_0} D X = F(X, U), \quad x_0 = x(t_0), \\
+    & \text{kendala state/input lain (box, rate, obstacle, dst).}
+    \end{aligned}
+    \]
+\end{itemize}
 
 \subsection{Bagaimana Chebyshev mengubah fungsi objektif dan kendala?}
 
