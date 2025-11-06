@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.27)  5 NOV 2025 16:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  5 NOV 2025 22:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/agus/Coba-Chebysev/coba-coba/latex/coba-coba.tex
-(d:/agus/Coba-Chebysev/coba-coba/latex/coba-coba.tex
+**d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex
+(d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-09>
+L3 programming layer <2025-09-02>
 (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
@@ -206,12 +206,12 @@ File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/physics\physics.sty
 Package: physics 
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse.sty (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
-Package: expl3 2025-10-09 L3 programming layer (loader) 
+Package: expl3 2025-09-02 L3 programming layer (loader) 
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count302
 ))
-Package: xparse 2025-10-09 L3 Experimental document command parser
+Package: xparse 2024-08-16 L3 Experimental document command parser
 )) (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
@@ -345,99 +345,101 @@ Overfull \hbox (3.01666pt too wide) in paragraph at lines 185--186
 [3]
 
 [4]
-<../gambar/obj_kontinu.png, id=24, 591.71063pt x 217.5628pt>
+<../gambar/Chebyshev vs Ode45.png, id=24, 666.3294pt x 437.9562pt>
+File: ../gambar/Chebyshev vs Ode45.png Graphic file (type png)
+<use ../gambar/Chebyshev vs Ode45.png>
+Package pdftex.def Info: ../gambar/Chebyshev vs Ode45.png  used on input line 272.
+(pdftex.def)             Requested size: 241.49895pt x 158.72665pt.
+<../gambar/obj_kontinu.png, id=25, 591.71063pt x 217.5628pt>
 File: ../gambar/obj_kontinu.png Graphic file (type png)
 <use ../gambar/obj_kontinu.png>
-Package pdftex.def Info: ../gambar/obj_kontinu.png  used on input line 276.
+Package pdftex.def Info: ../gambar/obj_kontinu.png  used on input line 283.
 (pdftex.def)             Requested size: 165.59853pt x 60.88728pt.
-<../gambar/obj_diskrit.png, id=26, 615.80063pt x 237.13594pt>
+<../gambar/obj_diskrit.png, id=27, 615.80063pt x 237.13594pt>
 File: ../gambar/obj_diskrit.png Graphic file (type png)
 <use ../gambar/obj_diskrit.png>
-Package pdftex.def Info: ../gambar/obj_diskrit.png  used on input line 283.
+Package pdftex.def Info: ../gambar/obj_diskrit.png  used on input line 290.
 (pdftex.def)             Requested size: 120.7521pt x 46.50003pt.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 289.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 289.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 289.
 
-Overfull \hbox (1.9959pt too wide) in paragraph at lines 292--292
+
+[5 <../gambar/Chebyshev vs Ode45.png (PNG copy)>]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 296.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 296.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 296.
+
+Overfull \hbox (1.9959pt too wide) in paragraph at lines 299--299
 []\OT1/lmr/bx/n/12 Alasan ke-napa poli-no-mial Cheby-shev di-gu-nakan? Bisa
  []
 
 
-Overfull \hbox (16.84595pt too wide) in paragraph at lines 294--294
+Overfull \hbox (16.84595pt too wide) in paragraph at lines 301--301
 []\OT1/lmr/bx/n/12 Bagaimana at-u-ran dari Diskrit ke kon-tinu dan bagaimana
  []
 
 
 
-[5 <../gambar/obj_kontinu.png> <../gambar/obj_diskrit.png>]
+[6 <../gambar/obj_kontinu.png> <../gambar/obj_diskrit.png>]
 
-Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 343.
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 350.
 
 
-
-[6]
 
 [7]
 
 [8]
-<../gambar/CHEBYSEV_NMPC.png, id=48, 330.48468pt x 301.125pt>
+<../gambar/CHEBYSEV_NMPC.png, id=49, 330.48468pt x 301.125pt>
 File: ../gambar/CHEBYSEV_NMPC.png Graphic file (type png)
 <use ../gambar/CHEBYSEV_NMPC.png>
-Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 477.
+Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 484.
 (pdftex.def)             Requested size: 165.59853pt x 150.89294pt.
-<../gambar/NMPC_BIASA.png, id=49, 208.52907pt x 243.91125pt>
+<../gambar/NMPC_BIASA.png, id=50, 208.52907pt x 243.91125pt>
 File: ../gambar/NMPC_BIASA.png Graphic file (type png)
 <use ../gambar/NMPC_BIASA.png>
-Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 485.
+Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 492.
 (pdftex.def)             Requested size: 120.7521pt x 141.24158pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 
 
 [9]
 
 [10 <../gambar/CHEBYSEV_NMPC.png> <../gambar/NMPC_BIASA.png>]
-Overfull \hbox (12.44608pt too wide) detected at line 544
+Overfull \hbox (12.44608pt too wide) detected at line 551
 \OML/lmm/m/it/10 D \OT1/lmr/m/n/10 = [] \OML/lmm/m/it/10 :
  []
 
 
-Overfull \hbox (52.43015pt too wide) detected at line 554
-[]
- []
-
-
-Overfull \hbox (32.97412pt too wide) detected at line 563
+Overfull \hbox (52.43015pt too wide) detected at line 561
 []
  []
 
 
 
 [11]
-Overfull \hbox (8.84457pt too wide) detected at line 581
+Overfull \hbox (32.97412pt too wide) detected at line 570
 []
  []
 
 
-Overfull \hbox (4.78249pt too wide) detected at line 590
+Overfull \hbox (8.84457pt too wide) detected at line 588
+[]
+ []
+
+
+Overfull \hbox (4.78249pt too wide) detected at line 597
 []
  []
 
 
 
 [12]
-Overfull \hbox (32.36246pt too wide) in paragraph at lines 608--609
+Overfull \hbox (32.36246pt too wide) in paragraph at lines 615--616
 \OT1/lmr/m/n/10 asanya titik-titik Cheby-shev{Gauss{Lobatto atau Leg-en-dre{Gauss{Lobatto) 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 612.
+(Font)              <14.4> on input line 619.
 
 
 [13]
@@ -447,7 +449,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [15] (coba-coba.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
-L3 programming layer <2025-10-09>
+L3 programming layer <2025-09-02>
  ***********
 
 
@@ -455,17 +457,17 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5492 strings out of 468080
- 89028 string characters out of 5426255
- 505151 words of memory out of 5000000
- 34077 multiletter control sequences out of 15000+600000
+ 5501 strings out of 468081
+ 89361 string characters out of 5426272
+ 511013 words of memory out of 5000000
+ 34085 multiletter control sequences out of 15000+600000
  688755 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,14n,77p,532b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,14n,77p,534b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on coba-coba.pdf (15 pages, 486707 bytes).
+Output written on coba-coba.pdf (15 pages, 533615 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
+ 144 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

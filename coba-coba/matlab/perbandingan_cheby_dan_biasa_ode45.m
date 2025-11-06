@@ -7,7 +7,7 @@ clear; clc; close all;
 %% ===== Parameter & Horizon
 u0_surge = 2.0;      % u0' (m/s) - kecepatan surge konstan
 T        = 10.0;     % panjang horizon (detik)
-N        = 55;        % orde Chebyshev (disarankan 4-8 untuk awal)
+N        = 20;        % orde Chebyshev (disarankan 4-8 untuk awal)
 s0       = [0; 0; 0; 0; 0];  % [v' r' psi' x' y'] awal
 
 % Kontrol (kemudi) step kecil 5 derajat mulai t>=T/4

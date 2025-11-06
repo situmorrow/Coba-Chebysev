@@ -1,6 +1,6 @@
-PWD d:\agus\Coba-Chebysev\coba-coba\latex
+PWD d:\TES\TA\Coba-chebysev\coba-coba\latex
 INPUT C:\Users\user\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\agus\Coba-Chebysev\coba-coba\latex\coba-coba.tex
+INPUT d:\TES\TA\Coba-chebysev\coba-coba\latex\coba-coba.tex
 OUTPUT coba-coba.log
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -131,6 +131,12 @@ INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmr10.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
 INPUT ..\gambar\obj_kontinu.png
 INPUT ..\gambar\obj_kontinu.png
 INPUT ..\gambar\obj_kontinu.png
