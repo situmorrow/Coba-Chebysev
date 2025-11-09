@@ -59,23 +59,23 @@ Dengan contoh polinomial pertama yaitu:
 Metode Chebyshev Pseudospectral adalah salah satu dari PSM yang menggunakan Chebyshev–Gauss–Lobatto (CGL) sebegai titik-titik kolokasi. Titik ini berasal dari ekstrem (maksimum dan minimum) polinomial Chebyshev $T_n(x)$. Berikut adalah langkah-langkah memperoleh Chebyshev–Gauss–Lobatto (CGL).
 Definisi dasar Chebyshev:
 \[
-T_N(x) = \cos(N\theta), \qquad x = \cos(\theta)
+T_n(x) = \cos(n\theta), \qquad x = \cos(\theta)
 \]
 Langkah 1: Cari titik ekstrem (maksimum dan minimum) \\
 Titik ekstrem diperoleh saat turunan terhadap $x$ bernilai nol:
 \[
-\frac{dT_N(x)}{dx} = 0
+\frac{dT_n(x)}{dx} = 0
 \]
 Karena $x = \cos\theta$, gunakan turunan rantai:
 \[
-\frac{dT_N(x)}{dx} = 
-\frac{dT_N}{d\theta} \cdot \frac{d\theta}{dx}
+\frac{dT_n(x)}{dx} = 
+\frac{dT_n}{d\theta} \cdot \frac{d\theta}{dx}
 \]
 Kita tahu:
 \[
-T_N(x) = \cos(N\theta)
+T_n(x) = \cos(n\theta)
 \quad \Rightarrow \quad 
-\frac{dT_N}{d\theta} = -N \sin(N\theta)
+\frac{dT_n}{d\theta} = -n \sin(n\theta)
 \]
 dan
 \[
@@ -83,32 +83,32 @@ dan
 \]
 Sehingga:
 \[
-\frac{dT_N}{dx} = 
-\frac{N \sin(N\theta)}{\sqrt{1 - x^2}}
+\frac{dT_n}{dx} = 
+\frac{n \sin(n\theta)}{\sqrt{1 - x^2}}
 \]
 Langkah 2: Syarat ekstrem → nolkan turunan \\
 
 \[
-\frac{dT_N}{dx} = 0 
+\frac{dT_n}{dx} = 0 
 \quad \Rightarrow \quad 
-\sin(N\theta) = 0
+\sin(n\theta) = 0
 \]
 Solusi:
 \[
-N\theta_i = i\pi, 
-\qquad i = 0, 1, 2, \ldots, N
+n\theta_i = i\pi, 
+\qquad i = 0, 1, 2, \ldots, n
 \]
 
 \[
 \Rightarrow \quad 
-\theta_i = \frac{i\pi}{N}
+\theta_i = \frac{i\pi}{n}
 \]
 Langkah 3: Kembalikan ke $x$ \\
 
 \[
 x_i = \cos(\theta_i) 
-= \cos\left(\frac{i\pi}{N}\right),
-\qquad i = 0, 1, \ldots, N
+= \cos\left(\frac{i\pi}{n}\right),
+\qquad i = 0, 1, \ldots, n
 \]
 Nah, inilah rumus \textbf{Chebyshev--Gauss--Lobatto nodes.}
 
@@ -285,21 +285,161 @@ Fungsi tujuan NMPC pada dasarnya bersifat kontinu. Hanya saja, untuk keperluan k
         \label{fig:obj_kontinu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}{0.35\textwidth}
+    \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{obj_diskrit.png}
-        \caption{Fungsi Objektif Kontinu}
+        \caption{Fungsi Objektif Diskrit}
         \label{fig:obj_diskrit}
     \end{subfigure}
 \end{figure}
 
 \subsection{$\tau$ itu apa dan bagaimana?}
-Variabel $\tau$ merupakan waktu terstandar (domain komputasi) yang digunakan pada metode Chebyshev. Semua polinomial Chebyshev didefinisikan dan bersifat ortogonal pada interval [-1, 1], sehingga domain ini menjadi ruang dasar untuk aproksimasi dan kolokasi dalam Chebyshev Pseudospectral Method.
+Variabel $\tau$ merupakan waktu terstandar (domain komputasi) yang digunakan pada metode Chebyshev. Semua polinomial Chebyshev didefinisikan dan bersifat ortogonal pada interval [-1, 1], sehingga domain ini menjadi ruang dasar untuk aproksimasi dan kolokasi dalam Chebyshev Pseudospectral Method. Berikut adalah contoh perubahan domain waktu biasa dan $\tau$ pada menggambar fungsi.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{waktu_tau_vs_biasa.png}
+    \caption{Perbandingan waktu biasa vs $\tau$}
+    \label{fig:waktu_tau}
+\end{figure}
+
 
 \subsection{Alasan kenapa polinomial Chebyshev digunakan? Bisa bandingin dengan Laguerre dan Langrange}
+Ada beberapa kelebihan dari Polinomial Chebyshev yaitu
+\begin{enumerate}
+    \item Akurasi tinggi (eksponensial konvergen)
+    \item Lebih sedikit titik kolokasi dibanding metode grid uniform
+\end{enumerate}
+Dibalik kelebihan, terdapat kekurangan dari Polinomial Chebyshev, yaitu
+\begin{enumerate}
+    \item Kurang cocok untuk horizon sangat panjang (clustering di ujung)
+    \item Butuh transformasi domain untuk tiap horizon
+\end{enumerate}
 
+Jika membandingkan dengan polinomial Laguerre dan Lagrange adalah 
 \subsection{Bagaimana aturan dari Diskrit ke kontinu dan bagaimana jika kontinu ke diskrit}
 
+\subsection{Sifat Orthogonalitas berpengaruh dimana?}
+Sifat ortogonalitas polinomial Chebyshev menyebabkan setiap basis fungsi bekerja secara independen, sehingga menghindari interferensi antar komponen aproksimasi. Dalam Pseudospectral Method, hal ini meningkatkan kestabilan numerik dan mempercepat konvergensi. Akibatnya, pada implementasi Nonlinear Model Predictive Control (NMPC), prediksi lintasan menjadi lebih akurat dan penyelesaian optimasi lebih efisien.
+
+\subsection{Fungsi COLREGS di Chebyshev}
+
+\subsection{Metodologi}
+\subsubsection{Pengkajian Model Kapal}
+Pada tahap ini akan menghasilkan model kapal tak linier, yaitu:
+\[
+\mathbf{\dot{s}} = \mathbf{f}(\mathbf{s},u)
+\]
+dan model pengukuran
+\[
+\mathbf{h=Cs}
+\]
+\subsubsection{Pengubahan domain waktu menjadi domain standar}
+Pada tahap ini, waktu yang awalnya pada $[t_0,t_f]$, diubah menjadi domain standar $\tau \in [-1,1]$. Hubungan antara waktu sebenarnya dan waktu terstandar diberikan oleh transformasi linear:
+\[
+\tau = \frac{2(t-t_0)}{t_f-t_0}-1
+\]
+Sehingga model kapal yang sebelumnya masih berdomain waktu akan diubah menjadi domain standar $\tau$, dengan 
+\[
+\tau = \frac{2(t - t_0)}{t_f-t_0} - 1 
+\qquad \Longleftrightarrow \qquad 
+t = t_0 + \frac{t_f-t_0}{2}(\tau + 1).
+\]
+Turunkan $t$ terhadap $\tau$:
+\[
+\frac{dt}{d\tau} = \frac{t_f-t_0}{2}.
+\]
+Dengan menggunakan aturan rantai untuk turunan terhadap $\tau$, diperoleh
+\[
+\frac{d\mathbf{s}}{d\tau} = \frac{d\mathbf{s}}{dt} \frac{dt}{d\tau} 
+= \mathbf{f}(\mathbf{s}(\tau), u(\tau)) \cdot \frac{t_f-t_0}{2}.
+\]
+Sehingga persamaan model $\dot{\mathbf{s}} = \mathbf{f}(\mathbf{s},u)$ menjadi $\mathbf{s}(\tau) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau),u(\tau))$.
+
+\subsubsection{Aproksimasi fungsi dengan polinomial Langrange}
+Fungsi $x(\tau)$ dapat diaproksimasi dengan polinomial Lagrange yaitu
+\[
+x(\tau) = \sum_{i=0}^{N} x_i \, \phi_i(\tau) \label{eq.S_tau}
+\]
+Dengan N adalah order polinomial $\phi_i$ adalah basis fungsi Lagrange yaitu
+\[
+\phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}
+\]
+\subsubsection{Kolokasi di Titik Chebyshev-Gauss-Lobatto}
+Disinilah inti dari Metode Chebyshev Pseudospectral, sebab titik kolokasi yang digunakan adalah titik Chebyshev–Gauss–Lobatto, yaitu:
+\[
+\tau_i = \cos\left( \frac{i\pi}{N} \right), \quad i = 0, 1, \ldots, N.
+\]
+Dengan persaman model adalah
+\[
+\dot{\mathbf{s}}(\tau_i) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau_i),u(\tau_i))
+\]
+\subsubsection{Diferensiasi via Matriks Chebyshev}
+\[
+\dot{\mathbf{s}}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} \mathbf{s}(\tau_j)
+\]
+Elemen \textbf{Chebyshev differentiation matrix} $D$ untuk node CGL:
+\[
+D_{ij} =
+\begin{cases}
+    \dfrac{c_i (-1)^{i+j}}{c_j (\tau_i - \tau_j)}, & i \neq j, \\[8pt]
+    -\dfrac{\tau_j}{2(1 - \tau_j^2)}, & i = j, \; j = 1, \ldots, N-1, \\[10pt]
+    \dfrac{2N^2 + 1}{6}, & i = j = 0, \\[6pt]
+    -\dfrac{2N^2 + 1}{6}, & i = j = N,
+\end{cases}
+\]
+dengan $c_0 = c_N = 2$, dan $c_j = 1$ untuk lainnya.\\
+Sehingga model kapal menjadi
+\[
+\sum_{j=0}^{N} D_{ij} \mathbf{s}(\tau_j)= \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau_i),u(\tau_i))
+\]
+
+\subsubsection{Kuantifikasi Integral (Quadrature) NMPC}
+Integral pada $[-1,1]$ diganti jumlah berbobot (aturan Chebyshev--Gauss--Lobatto):
+\[
+\int_{-1}^{1} g(\tau)\, d\tau \approx \sum_{i=0}^{N} w_i g(\tau_i).
+\]
+Sehingga fungsi tujuan yang awalnya adalah 
+\[
+J = \int_{t_0}^{t_f} L(x(t), u(t))\, dt
+\]
+menjadi:
+\[
+J \approx \frac{t_f - t_0}{2} \sum_{i=0}^{N} w_i L(x(\tau_i), (\tau_i)).
+\]
+untuk $k = 0, \ldots, N$. Untuk $N$ genap, $w_k$ adalah
+\[
+w_0 = w_N = \frac{1}{N^2 - 1},
+\]
+
+\[
+w_k = \frac{2}{N} 
+\left[
+\gamma(0,k) + \gamma\left(\frac{N}{2},k\right) 
++ 2 \sum_{i=1}^{N/2 - 1} \gamma(i,k)
+\right],
+\]
+untuk $k = 1, \ldots, N - 1$, dan untuk $N$  ganjil adalah
+
+\[
+w_0 = w_N = \frac{1}{N^2},
+\]
+
+\[
+w_k = \frac{2}{N} 
+\left[
+\gamma(0,k) + 2 \sum_{i=1}^{(N-1)/2} \gamma(i,k)
+\right],
+\]
+dengan
+
+\[
+\gamma(i,k) = \frac{1}{1 - 4i^2} \cos \qty(\frac{2\pi i k}{N}).
+\] 
+
+jelasin metode quadraturenya, fungsi tujuannya. dan hasil fungsi tujuannya
+
+
+\newpage
 \section*{Model Kapal}
 
 \begin{align*}
