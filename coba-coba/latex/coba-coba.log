@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.25)  9 NOV 2025 14:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.25)  9 NOV 2025 15:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -400,11 +400,21 @@ Overfull \hbox (11.47162pt too wide) in paragraph at lines 322--323
  []
 
 
+Overfull \hbox (89.87042pt too wide) detected at line 332
+\OML/lmm/m/it/10 ^^^[] \OT1/lmr/m/n/10 = [] \OML/lmm/m/it/10 w[]F[][]p[]\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 k \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 j\OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 k\OT1/lmr/m/n/10 )[] + [] \OML/lmm/m/it/10 w[]F[][]p[]\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 k \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 j\OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 k\OT1/lmr/m/n/10 )[] + [] \OML/lmm/m/it/10 w[]F[][]p[]\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 k \OT1/lmr/m/n/10 + \OML/lmm/m/it/10 j\OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 k\OT1/lmr/m/n/10 )[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--338
+
+ []
+
+
 
 [7]
 
 [8]
-Overfull \hbox (11.06343pt too wide) in paragraph at lines 397--398
+Overfull \hbox (11.06343pt too wide) in paragraph at lines 435--436
 \OT1/lmr/m/n/10 Integral pada $[\OMS/lmsy/m/n/10 ^^@\OT1/lmr/m/n/10 1\OML/lmm/m/it/10 ; \OT1/lmr/m/n/10 1]$ di-ganti jum-lah berbobot (at-u-ran Chebyshev--Gauss--Lobatto): 
  []
 
@@ -412,72 +422,74 @@ Overfull \hbox (11.06343pt too wide) in paragraph at lines 397--398
 
 [9]
 
-Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 490.
-
-
-
 [10]
+
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 525.
+
+
 
 [11]
 
 [12]
-<../gambar/CHEBYSEV_NMPC.png, id=62, 330.48468pt x 301.125pt>
+
+[13]
+<../gambar/CHEBYSEV_NMPC.png, id=66, 330.48468pt x 301.125pt>
 File: ../gambar/CHEBYSEV_NMPC.png Graphic file (type png)
 <use ../gambar/CHEBYSEV_NMPC.png>
-Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 624.
+Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 659.
 (pdftex.def)             Requested size: 165.59853pt x 150.89294pt.
-<../gambar/NMPC_BIASA.png, id=63, 208.52907pt x 243.91125pt>
+<../gambar/NMPC_BIASA.png, id=67, 208.52907pt x 243.91125pt>
 File: ../gambar/NMPC_BIASA.png Graphic file (type png)
 <use ../gambar/NMPC_BIASA.png>
-Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 632.
+Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 667.
 (pdftex.def)             Requested size: 120.7521pt x 141.24158pt.
 
 
-[13 <../gambar/CHEBYSEV_NMPC.png> <../gambar/NMPC_BIASA.png>]
+[14 <../gambar/CHEBYSEV_NMPC.png> <../gambar/NMPC_BIASA.png>]
 
-[14]
-Overfull \hbox (12.44608pt too wide) detected at line 691
+[15]
+Overfull \hbox (12.44608pt too wide) detected at line 726
 \OML/lmm/m/it/10 D \OT1/lmr/m/n/10 = [] \OML/lmm/m/it/10 :
  []
 
 
-Overfull \hbox (52.43015pt too wide) detected at line 701
-[]
- []
-
-
-
-[15]
-Overfull \hbox (32.97412pt too wide) detected at line 710
-[]
- []
-
-
-Overfull \hbox (8.84457pt too wide) detected at line 728
-[]
- []
-
-
-Overfull \hbox (4.78249pt too wide) detected at line 737
+Overfull \hbox (52.43015pt too wide) detected at line 736
 []
  []
 
 
 
 [16]
-Overfull \hbox (32.36246pt too wide) in paragraph at lines 755--756
+Overfull \hbox (32.97412pt too wide) detected at line 745
+[]
+ []
+
+
+Overfull \hbox (8.84457pt too wide) detected at line 763
+[]
+ []
+
+
+Overfull \hbox (4.78249pt too wide) detected at line 772
+[]
+ []
+
+
+
+[17]
+Overfull \hbox (32.36246pt too wide) in paragraph at lines 790--791
 \OT1/lmr/m/n/10 asanya titik-titik Cheby-shev{Gauss{Lobatto atau Leg-en-dre{Gauss{Lobatto) 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 759.
+(Font)              <14.4> on input line 794.
 
-
-[17]
 
 [18]
 
-[19] (coba-coba.aux)
+[19]
+
+[20] (coba-coba.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
@@ -496,9 +508,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  73i,14n,77p,529b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/VICTUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on coba-coba.pdf (19 pages, 597298 bytes).
+Output written on coba-coba.pdf (20 pages, 604985 bytes).
 PDF statistics:
- 158 PDF objects out of 1000 (max. 8388607)
+ 161 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

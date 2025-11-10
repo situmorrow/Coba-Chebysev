@@ -322,6 +322,44 @@ Jika membandingkan dengan polinomial Laguerre dan Lagrange adalah
 Sifat ortogonalitas polinomial Chebyshev menyebabkan setiap basis fungsi bekerja secara independen, sehingga menghindari interferensi antar komponen aproksimasi. Dalam Pseudospectral Method, hal ini meningkatkan kestabilan numerik dan mempercepat konvergensi. Akibatnya, pada implementasi Nonlinear Model Predictive Control (NMPC), prediksi lintasan menjadi lebih akurat dan penyelesaian optimasi lebih efisien.
 
 \subsection{Fungsi COLREGS di Chebyshev}
+\subsubsection{Fungsi COLREGS pada umumnya}
+Fungsi COLREGS adalah fungsi taklinear. Tujuannya adalah memberikan pembobotan pada posisi kapal relatif terhadap halangan. Fungsi COLREGS didefinisikan sebagai berikut
+\[
+\phi_{\text{COLREGS}} =
+\sum_{i \in \text{GW}} w_{\text{GW}} F_{\text{GW}}\big(p_{\text{rel}}(k + j|k)\big)
++ \sum_{i \in \text{HO}} w_{\text{HO}} F_{\text{HO}}\big(p_{\text{rel}}(k + j|k)\big)
++ \sum_{i \in \text{OT}} w_{\text{OT}} F_{\text{OT}}\big(p_{\text{rel}}(k + j|k)\big)
+\]
+dengan: \\
+i : setiap halangan yang terdeteksi \\
+$w_{OT}, w_{HO}, w_{GW}$: nilai pembobot \\
+$F_{OT}, F_{HO}, F_{GM}$: fungsi lapangan potensial\\
+$\mathbf{p}_{rel}(k+j|k)$: prediksi posisi titik tengah kapal relatif pada koordinat sumbu kapal halangan untuk $t=k+j$ pada saat $t=k$.\\
+
+Perhitungan posisi titik tengah kapal relatif terhadap halangan adalah sebagai berikut:
+\[
+p_{\text{rel}}(k + j|k) = 
+R\big(\psi_{\text{TS}}(k + j|k)\big)
+\big[
+p_{\text{OS}}(k + j|k) - p_{\text{TS}}(k + j|k)
+\big]
+\]
+
+dengan
+
+\[
+R\big(\psi_{\text{TS}}(k + j|k)\big) =
+\begin{bmatrix}
+\cos\big(\psi_{\text{TS}}(k + j|k)\big) & \sin\big(\psi_{\text{TS}}(k + j|k)\big) \\
+-\sin\big(\psi_{\text{TS}}(k + j|k)\big) & \cos\big(\psi_{\text{TS}}(k + j|k)\big)
+\end{bmatrix}
+\]
+dimana:
+
+
+
+\subsubsection{Fungsi COLREGS di Chebyshev}
+
 
 \subsection{Metodologi}
 \subsubsection{Pengkajian Model Kapal}
@@ -434,10 +472,7 @@ dengan
 
 \[
 \gamma(i,k) = \frac{1}{1 - 4i^2} \cos \qty(\frac{2\pi i k}{N}).
-\] 
-
-jelasin metode quadraturenya, fungsi tujuannya. dan hasil fungsi tujuannya
-
+\]
 
 \newpage
 \section*{Model Kapal}
