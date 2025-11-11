@@ -3,60 +3,59 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Apa itu metode pseudospectral Method}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Polinomial Chebyshev}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Chebyshev Pseudospectral Method}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Langkah-langkah Chebyshev Pseudospectral Method (CPM) secara umum}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.1}Melakukan Aproksimasi Fungsi}{3}{}\protected@file@percent }
-\newlabel{eq.S_tau}{{1.4.1}{3}{}{subsubsection.1.4.1}{}}
-\newlabel{eq.phi_tau}{{1.4.1}{3}{}{subsubsection.1.4.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.2}Kolokasi di Titik Chebyshev--Gauss--Lobatto}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.3}Diferensiasi via Matriks Chebyshev}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.4}Formulasi Kolokasi Diskrit}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.5}Kuantifikasi Integral (Quadrature)}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.6}Formulasi Masalah Optimal Diskrit (OCP $\rightarrow $ NLP)}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Contoh Penggunaan Polinomial Chebysev}{5}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Perbandingan polinomial Chebysev dan ode45}}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Metodologi}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.1}Pengkajian Model Kapal}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.2}Pengubahan domain waktu menjadi domain standar}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.3}Aproksimasi fungsi dengan polinomial Langrange}{3}{}\protected@file@percent }
+\newlabel{eq.S_tau}{{1.4.3}{3}{}{subsubsection.1.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.4}Kolokasi di Titik Chebyshev-Gauss-Lobatto}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.5}Diferensiasi via Matriks Chebyshev}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.6}Kuantifikasi Integral (Quadrature) NMPC Secara Umum}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.7}Chebyshev NMPC}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Contoh Penggunaan Polinomial Chebysev}{6}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Perbandingan polinomial Chebysev dan ode45}}{6}{}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:perbandingan}{{1}{5}{}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Fungsi tujuan di NMPC apakah diskrit atau kontinu?}{5}{}\protected@file@percent }
+\newlabel{fig:perbandingan}{{1}{6}{}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.6}Fungsi tujuan di NMPC apakah diskrit atau kontinu?}{6}{}\protected@file@percent }
 \newlabel{fig:obj_kontinu}{{2a}{6}{}{subfigure.2.1}{}}
 \newlabel{sub@fig:obj_kontinu}{{a}{6}{}{subfigure.2.1}{}}
 \newlabel{fig:obj_diskrit}{{2b}{6}{}{subfigure.2.2}{}}
 \newlabel{sub@fig:obj_diskrit}{{b}{6}{}{subfigure.2.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.7}$\tau $ itu apa dan bagaimana?}{6}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Perbandingan waktu biasa vs $\tau $}}{6}{}\protected@file@percent }
-\newlabel{fig:waktu_tau}{{3}{6}{}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.8}Alasan kenapa polinomial Chebyshev digunakan? Bisa bandingin dengan Laguerre dan Langrange}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.9}Bagaimana aturan dari Diskrit ke kontinu dan bagaimana jika kontinu ke diskrit}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.10}Sifat Orthogonalitas berpengaruh dimana?}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.11}Fungsi COLREGS di Chebyshev}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.1}Fungsi COLREGS pada umumnya}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.2}Fungsi COLREGS di Chebyshev}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.12}Metodologi}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.12.1}Pengkajian Model Kapal}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.12.2}Pengubahan domain waktu menjadi domain standar}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.12.3}Aproksimasi fungsi dengan polinomial Langrange}{8}{}\protected@file@percent }
-\newlabel{eq.S_tau}{{1.12.3}{8}{}{subsubsection.1.12.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.12.4}Kolokasi di Titik Chebyshev-Gauss-Lobatto}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.12.5}Diferensiasi via Matriks Chebyshev}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.12.6}Kuantifikasi Integral (Quadrature) NMPC}{9}{}\protected@file@percent }
-\newlabel{eq.S_tau}{{1}{11}{}{equation.1}{}}
-\newlabel{eq.u_tau}{{2}{11}{}{equation.2}{}}
-\newlabel{eq.phi_tau}{{3}{12}{}{equation.3}{}}
-\newlabel{eq.DKi}{{4}{14}{}{equation.4}{}}
-\newlabel{eq:Dki}{{5}{14}{}{equation.5}{}}
-\newlabel{fig:Chebyshev}{{4a}{14}{}{subfigure.4.1}{}}
-\newlabel{sub@fig:Chebyshev}{{a}{14}{}{subfigure.4.1}{}}
-\newlabel{fig:nmpc}{{4b}{14}{}{subfigure.4.2}{}}
-\newlabel{sub@fig:nmpc}{{b}{14}{}{subfigure.4.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Perbandingan hasil simulasi antara NMPC Chebyshev dan NMPC biasa.}}{14}{}\protected@file@percent }
-\newlabel{fig:comparison}{{4}{14}{}{figure.4}{}}
-\@writefile{toc}{\contentsline {paragraph}{Persamaan kolokasi.}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Matriks diferensiasi CGL ($N=4$).}{16}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(1) Komponen $v'$:}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(2) Komponen $r'$:}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(3) Komponen $\psi '$:}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(4) Komponen $x'$:}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{(5) Komponen $y'$:}{17}{}\protected@file@percent }
-\newlabel{eq:Dki_general}{{10}{19}{}{equation.10}{}}
-\newlabel{eq:Dki_offdiag}{{13}{19}{}{equation.13}{}}
-\newlabel{eq:Dki_diag}{{15}{19}{}{equation.15}{}}
-\gdef \@abspage@last{20}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7}$\tau $ itu apa dan bagaimana?}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Perbandingan waktu biasa vs $\tau $}}{7}{}\protected@file@percent }
+\newlabel{fig:waktu_tau}{{3}{7}{}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.8}Alasan kenapa polinomial Chebyshev digunakan? Bisa bandingin dengan Laguerre dan Langrange}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.9}Sifat Orthogonalitas berpengaruh dimana?}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.10}Fungsi COLREGS di Chebyshev}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.10.1}Fungsi COLREGS pada umumnya}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.11}Langkah-langkah Chebyshev Pseudospectral Method (CPM) secara umum}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.1}Melakukan Aproksimasi Fungsi}{10}{}\protected@file@percent }
+\newlabel{eq.S_tau}{{1.11.1}{10}{}{subsubsection.1.11.1}{}}
+\newlabel{eq.phi_tau}{{1.11.1}{10}{}{subsubsection.1.11.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.2}Kolokasi di Titik Chebyshev--Gauss--Lobatto}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.3}Diferensiasi via Matriks Chebyshev}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.4}Formulasi Kolokasi Diskrit}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.5}Kuantifikasi Integral (Quadrature)}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {1.11.6}Formulasi Masalah Optimal Diskrit (OCP $\rightarrow $ NLP)}{12}{}\protected@file@percent }
+\newlabel{eq.S_tau}{{1}{13}{}{equation.1}{}}
+\newlabel{eq.u_tau}{{2}{13}{}{equation.2}{}}
+\newlabel{eq.phi_tau}{{3}{14}{}{equation.3}{}}
+\newlabel{eq.DKi}{{4}{16}{}{equation.4}{}}
+\newlabel{eq:Dki}{{5}{16}{}{equation.5}{}}
+\newlabel{fig:Chebyshev}{{4a}{16}{}{subfigure.4.1}{}}
+\newlabel{sub@fig:Chebyshev}{{a}{16}{}{subfigure.4.1}{}}
+\newlabel{fig:nmpc}{{4b}{16}{}{subfigure.4.2}{}}
+\newlabel{sub@fig:nmpc}{{b}{16}{}{subfigure.4.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Perbandingan hasil simulasi antara NMPC Chebyshev dan NMPC biasa.}}{16}{}\protected@file@percent }
+\newlabel{fig:comparison}{{4}{16}{}{figure.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Persamaan kolokasi.}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Matriks diferensiasi CGL ($N=4$).}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(1) Komponen $v'$:}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(2) Komponen $r'$:}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(3) Komponen $\psi '$:}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(4) Komponen $x'$:}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{(5) Komponen $y'$:}{19}{}\protected@file@percent }
+\newlabel{eq:Dki_general}{{10}{21}{}{equation.10}{}}
+\newlabel{eq:Dki_offdiag}{{13}{21}{}{equation.13}{}}
+\newlabel{eq:Dki_diag}{{15}{21}{}{equation.15}{}}
+\gdef \@abspage@last{22}

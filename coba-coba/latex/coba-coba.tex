@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{enumitem}
+\usepackage{tabularx}
 \usepackage{lmodern}
 \usepackage{booktabs}
 \usepackage{float}
@@ -118,43 +119,354 @@ Disebut Chebyshev--Gauss--Lobatto karena berasal teori quadrature (integrasi num
     \item Lobatto = modifikasi Gauss quadrature yang juga menyertakan titik ujung domain (-1 dan +1).
 \end{enumerate}
 
-% \subsection{Langkah-langkah PSM secara umum}
-% \subsubsection{Aproksimasi Fungsi}
-% Misalkan $x(t)$ adalah fungsi keadaan kontinu pada interval waktu $[t_0, t_f]$.
-% PSM mendekati fungsi tersebut dengan deret polinomial ortogonal:
-% \[
-% x(t) \approx \sum_{k=0}^{N} a_k \, \phi_k(t)
-% \]
-% di mana $\phi_k(t)$ adalah polinomial basis (misalnya Chebyshev $T_k$ atau Legendre $L_k$) 
-% dan $a_k$ adalah koefisien yang akan ditentukan.
+\subsection{Metodologi}
+\subsubsection{Pengkajian Model Kapal}
+Pada tahap ini akan menghasilkan model kapal tak linier, yaitu:
+\[
+\mathbf{\dot{s}} = \mathbf{f}(\mathbf{s},u)
+\]
+dan model pengukuran
+\[
+\mathbf{h=Cs}
+\]
+\subsubsection{Pengubahan domain waktu menjadi domain standar}
+Pada tahap ini, waktu yang awalnya pada $[t_0,t_f]$, diubah menjadi domain standar $\tau \in [-1,1]$. Hubungan antara waktu sebenarnya dan waktu terstandar diberikan oleh transformasi linear:
+\[
+\tau = \frac{2(t-t_0)}{t_f-t_0}-1
+\]
+Sehingga model kapal yang sebelumnya masih berdomain waktu akan diubah menjadi domain standar $\tau$, dengan 
+\[
+\tau = \frac{2(t - t_0)}{t_f-t_0} - 1 
+\qquad \Longleftrightarrow \qquad 
+t = t_0 + \frac{t_f-t_0}{2}(\tau + 1).
+\]
+Turunkan $t$ terhadap $\tau$:
+\[
+\frac{dt}{d\tau} = \frac{t_f-t_0}{2}.
+\]
+Dengan menggunakan aturan rantai untuk turunan terhadap $\tau$, diperoleh
+\[
+\frac{d\mathbf{s}}{d\tau} = \frac{d\mathbf{s}}{dt} \frac{dt}{d\tau} 
+= \mathbf{f}(\mathbf{s}(\tau), u(\tau)) \cdot \frac{t_f-t_0}{2}.
+\]
+Sehingga persamaan model $\dot{\mathbf{s}} = \mathbf{f}(\mathbf{s},u)$ menjadi $\mathbf{\dot{s}}(\tau) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau),u(\tau))$.
 
-% \subsubsection{Kolokasi di Titik Pseudospektral}
-% PSM tidak menghitung turunan secara simbolik, tetapi 
-% \textbf{mendefinisikan turunan fungsi pada sejumlah titik kolokasi}:
+\subsubsection{Aproksimasi fungsi dengan polinomial Langrange}
+Fungsi $x(\tau)$ dapat diaproksimasi dengan polinomial Lagrange yaitu
+\[
+x(\tau) = \sum_{i=0}^{N} x_i \, \phi_i(\tau) \label{eq.S_tau}
+\]
+Dengan N adalah order polinomial $\phi_i$ adalah basis fungsi Lagrange yaitu
+\[
+\phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}
+\]
+\subsubsection{Kolokasi di Titik Chebyshev-Gauss-Lobatto}
+Disinilah inti dari Metode Chebyshev Pseudospectral, sebab titik kolokasi yang digunakan adalah titik Chebyshev–Gauss–Lobatto, yaitu:
+\[
+\tau_i = \cos\left( \frac{i\pi}{N} \right), \quad i = 0, 1, \ldots, N.
+\]
+Dengan persaman model adalah
+\[
+\dot{\mathbf{s}}(\tau_i) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau_i),u(\tau_i))
+\]
+\subsubsection{Diferensiasi via Matriks Chebyshev}
+\[
+\dot{\mathbf{s}}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} \mathbf{s}(\tau_j)
+\]
+Elemen \textbf{Chebyshev differentiation matrix} $D$ untuk node CGL:
+\[
+D_{ij} =
+\begin{cases}
+    \dfrac{c_i (-1)^{i+j}}{c_j (\tau_i - \tau_j)}, & i \neq j, \\[8pt]
+    -\dfrac{\tau_j}{2(1 - \tau_j^2)}, & i = j, \; j = 1, \ldots, N-1, \\[10pt]
+    \dfrac{2N^2 + 1}{6}, & i = j = 0, \\[6pt]
+    -\dfrac{2N^2 + 1}{6}, & i = j = N,
+\end{cases}
+\]
+dengan $c_0 = c_N = 2$, dan $c_j = 1$ untuk lainnya.\\
+Sehingga model kapal menjadi
+\[
+\sum_{j=0}^{N} D_{ij} \mathbf{s}(\tau_j)= \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau_i),u(\tau_i))
+\]
 
-% \[
-% \dot{x}(t_i) = f(x(t_i), u(t_i))
-% \]
-% Titik-titik ini adalah \textbf{titik kolokasi nonuniform} seperti:
+\subsubsection{Kuantifikasi Integral (Quadrature) NMPC Secara Umum}
+Integral pada $[-1,1]$ diganti jumlah berbobot (aturan Chebyshev--Gauss--Lobatto):
+\[
+\int_{-1}^{1} g(\tau)\, d\tau \approx \sum_{i=0}^{N} w_i g(\tau_i).
+\]
+Sehingga fungsi tujuan yang awalnya adalah 
+\[
+J = \int_{t_0}^{t_f} L(x(t), u(t))\, dt
+\]
+menjadi:
+\[
+J \approx \frac{t_f - t_0}{2} \sum_{i=0}^{N} w_i L(x(\tau_i), u(\tau_i)).
+\]
 
-% \begin{itemize}[noitemsep]
-%     \item \textbf{Chebyshev--Gauss--Lobatto nodes:}
-%     \[
-%     \tau_i = \cos\left( \frac{i \pi}{N} \right), 
-%     \quad i = 0, 1, \ldots, N
-%     \]
-%     \item \textbf{Legendre--Gauss--Lobatto nodes:}
-%     akar dari $(1 - \tau^2)L_N'(\tau) = 0$
-% \end{itemize}
+\subsubsection{Chebyshev NMPC}
+Fungsi tujuan NMPC yaitu:
+\begin{align*}
+J = \int_{t_0}^{t_f} 
+\left(
+\| h_{\mathrm{ref}}(t) - h(t) \|_{Q(t)}^2 
++ \| u(t) \|_{R(t)}^2 + \phi_{\mathrm{COLREGS}}
+\right) 
+dt
+\end{align*}
+dengan kendala
+\begin{align*}
+\mathbf{\dot{s}} &= \mathbf{f}(\mathbf{s},u) \\
+\mathbf{h} &= C\mathbf{s} \\
+\mathbf{s}_{\min} &\leq \mathbf{s}(t) \leq \mathbf{s}_{\max} \\
+\mathbf{u}_{\min} &\leq \mathbf{u}(t) \leq \mathbf{u}_{\max} \\
+\Delta \mathbf{u}_{\min} &\leq \Delta \mathbf{u}(t) \leq \Delta \mathbf{u}_{\max}
+\end{align*}
+Dengan $\Delta \mathbf{u}(k) = \mathbf{u}(k) - \mathbf{u}(k-1)$
 
-% \subsubsection{Diferensiasi via Matriks}
-% Turunan dari fungsi yang diaproksimasi bisa dituliskan dalam bentuk 
-% \textbf{Chebyshev Differentiation Matrix} ($D$) atau 
-% \textbf{Legendre Differentiation Matrix}:
+Fungsi tujuan Chebyshev NMPC menjadi:
+\[
+J = \frac{T}{2} 
+\sum_{i=0}^{N} w_i 
+\left[
+\| h_{\mathrm{ref},i} - h_i \|_Q^2 
++ \| u_i \|_R^2 
++ \phi_{\mathrm{COLREGS},i}
+\right]
+\]
+dengan kendala
+\begin{align*}
+    \frac{2}{T} \sum_{j=0}^{N} D_{kj} s_j &= f(s_k, u_k) \\
+    h_k &= C s_k \\
+    s_{\min} \le &s_k \le s_{\max}\\
+    u_{\min} \le &u_k \le u_{\max} \\
+    \dot{u}_{\min} \le \frac{2}{T} &\sum_{j=0}^{N} D_{kj} u_j \le \dot{u}_{\max} \\
+\end{align*}
+untuk $k = 0, \ldots, N$. Untuk $N$ genap, $w_k$ adalah
+\[
+w_0 = w_N = \frac{1}{N^2 - 1},
+\]
 
-% \[
-% \dot{x}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} \, x(\tau_j)
-% \]
+\[
+w_k = \frac{2}{N} 
+\left[
+\gamma(0,k) + \gamma\left(\frac{N}{2},k\right) 
++ 2 \sum_{i=1}^{N/2 - 1} \gamma(i,k)
+\right],
+\]
+untuk $k = 1, \ldots, N - 1$, dan untuk $N$  ganjil adalah
+
+\[
+w_0 = w_N = \frac{1}{N^2},
+\]
+
+\[
+w_k = \frac{2}{N} 
+\left[
+\gamma(0,k) + 2 \sum_{i=1}^{(N-1)/2} \gamma(i,k)
+\right],
+\]
+dengan
+
+\[
+\gamma(i,k) = \frac{1}{1 - 4i^2} \cos \qty(\frac{2\pi i k}{N}).
+\]
+
+
+\subsection{Contoh Penggunaan Polinomial Chebysev}
+Berikut adalah perbandingan polinomial Chebysev dan ode45 dalam menyelesaikan persamaan differensial $\dot{x}=x$.
+\begin{figure}[H] 
+    \centering 
+    \includegraphics[width=0.7 \textwidth]{Chebyshev vs Ode45.png} 
+    \caption{Perbandingan polinomial Chebysev dan ode45} 
+    \label{fig:perbandingan}
+\end{figure}
+
+\subsection{Fungsi tujuan di NMPC apakah diskrit atau kontinu?}
+Fungsi tujuan NMPC pada dasarnya bersifat kontinu. Hanya saja, untuk keperluan komputasi numerik, fungsi tujuan harus dalam bentuk diskrit (sigma). Sumber buku:
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{obj_kontinu.png}
+        \caption{Fungsi Objektif Kontinu}
+        \label{fig:obj_kontinu}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{obj_diskrit.png}
+        \caption{Fungsi Objektif Diskrit}
+        \label{fig:obj_diskrit}
+    \end{subfigure}
+\end{figure}
+
+\subsection{$\tau$ itu apa dan bagaimana?}
+Variabel $\tau$ merupakan waktu terstandar (domain komputasi) yang digunakan pada metode Chebyshev. Semua polinomial Chebyshev didefinisikan dan bersifat ortogonal pada interval [-1, 1], sehingga domain ini menjadi ruang dasar untuk aproksimasi dan kolokasi dalam Chebyshev Pseudospectral Method. Berikut adalah contoh perubahan domain waktu biasa dan $\tau$ pada menggambar fungsi.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{waktu_tau_vs_biasa.png}
+    \caption{Perbandingan waktu biasa vs $\tau$}
+    \label{fig:waktu_tau}
+\end{figure}
+
+
+\subsection{Alasan kenapa polinomial Chebyshev digunakan? Bisa bandingin dengan Laguerre dan Langrange}
+Ada beberapa kelebihan dari Polinomial Chebyshev yaitu
+\begin{enumerate}
+    \item Akurasi tinggi (eksponensial konvergen)
+    \item Lebih sedikit titik kolokasi dibanding metode grid uniform
+\end{enumerate}
+Dibalik kelebihan, terdapat kekurangan dari Polinomial Chebyshev, yaitu
+\begin{enumerate}
+    \item Kurang cocok untuk horizon sangat panjang (clustering di ujung)
+    \item Butuh transformasi domain untuk tiap horizon
+\end{enumerate}
+
+Jika dibandingan dengan polinomial legendre dan Laguerre:
+\begin{tabularx}{\textwidth}{lXXX}
+\toprule
+\textbf{Aspek} & \textbf{Chebyshev PSM} & \textbf{Legendre PSM} & \textbf{Laguerre PSM} \\
+\midrule
+
+\textbf{Basis polinomial} &
+$T_n(\tau) = \cos(n \arccos \tau)$ &
+$L_n(\tau)$ (Legendre polynomial) &
+$L_n(x)$ (Laguerre polynomial) \\
+
+\textbf{Domain definisi} &
+$[-1, 1]$ — finite horizon &
+$[-1, 1]$ — finite horizon &
+$[0, \infty)$ — infinite horizon \\
+
+\textbf{Titik kolokasi} &
+Chebyshev–Gauss–Lobatto (CGL): $\tau_i = \cos\left(\dfrac{i\pi}{N}\right)$ (eksplisit) &
+Legendre–Gauss–Lobatto: akar dari $(1-\tau^2)L_N'(\tau)=0$ (implisit) &
+Laguerre–Gauss: akar dari $L_N'(x)=0$ di $[0,\infty)$ \\
+
+\textbf{Perhitungan node} &
+Mudah, langsung dari fungsi cos &
+Perlu solusi numerik akar polinomial &
+Perlu solusi numerik + skala domain tak hingga \\
+
+\textbf{Bobot integrasi (quadrature)} &
+Bentuk tertutup, sederhana &
+Lebih kompleks, dihitung numerik &
+Bobot berkurang eksponensial $e^{-x}$ \\
+
+\textbf{Distribusi titik} &
+Padat di ujung domain, jarang di tengah &
+Lebih merata di tengah &
+Padat di dekat nol, jarang di jauh (meluruh) \\
+
+\textbf{Akurasi} &
+Eksponensial untuk fungsi halus di domain terbatas &
+Eksponensial juga; sedikit lebih stabil di tengah domain &
+Eksponensial untuk fungsi yang meluruh eksponensial di domain tak hingga \\
+
+\textbf{Kelebihan utama} &
+Node dan $D$-matrix eksplisit, komputasi cepat &
+Simetri dan cocok untuk fungsi interior &
+Ideal untuk masalah dengan horizon tak hingga dan fungsi meluruh \\
+
+\textbf{Kelemahan utama} &
+Kurang efisien untuk horizon sangat panjang (cluster di tepi) &
+Perlu komputasi akar polinomial &
+Tidak cocok untuk horizon terbatas; sulit normalisasi waktu \\
+
+\textbf{Sifat ortogonalitas} &
+Terhadap bobot $1/\sqrt{1-\tau^2}$ &
+Terhadap bobot $1$ &
+Terhadap bobot $e^{-x}$ \\
+
+\textbf{Aplikasi umum} &
+NMPC, trajectory optimization, kapal/pesawat, sistem dinamis dengan waktu terbatas &
+Aerospace dan sistem finite-time; benchmark PSM NASA &
+Infinite-horizon control, adaptif, atau sistem termal yang meluruh \\
+
+\textbf{Keterkaitan domain} &
+Perlu transformasi linear $t \leftrightarrow \tau$ &
+Sama, domain tetap terbatas &
+Tidak perlu transformasi (sudah semi tak hingga) \\
+
+\textbf{Kemudahan implementasi} &
+Sangat mudah, $O(N^2)$ matrix bisa ditulis analitik &
+Sedang, butuh akar numerik &
+Paling sulit, domain tak hingga dan bobot eksponensial \\
+
+\textbf{Kesesuaian untuk NMPC} &
+\textbf{Sangat cocok} untuk finite $h \downarrow$ — cepat \& stabil &
+Cocok juga, tapi komputasi lebih berat &
+Tidak cocok untuk NMPC finite horizon (domain tak hingga) \\
+
+\bottomrule
+\end{tabularx}
+
+\subsection{Sifat Orthogonalitas berpengaruh dimana?}
+Sifat ortogonalitas polinomial Chebyshev menyebabkan setiap basis fungsi bekerja secara independen, sehingga menghindari interferensi antar komponen aproksimasi. Dalam Pseudospectral Method, hal ini meningkatkan kestabilan numerik dan mempercepat konvergensi. Akibatnya, pada implementasi Nonlinear Model Predictive Control (NMPC), prediksi lintasan menjadi lebih akurat dan penyelesaian optimasi lebih efisien.
+
+Secara sederhana, jika menggunakan \textbf{polinomial biasa (non-ortogonal)}, perubahan pada satu koefisien aproksimasi dapat mempengaruhi seluruh fungsi aproksimasi, sehingga memperumit perhitungan dan mengurangi akurasi. Dengan \textbf{polinomial ortogonal} seperti Chebyshev, setiap koefisien hanya mempengaruhi bagian tertentu dari fungsi, sehingga memudahkan optimasi dan meningkatkan performa NMPC.
+
+\subsection{Fungsi COLREGS di Chebyshev}
+\subsubsection{Fungsi COLREGS pada umumnya}
+Fungsi COLREGS adalah fungsi taklinear. Tujuannya adalah memberikan pembobotan pada posisi kapal relatif terhadap halangan. Fungsi COLREGS didefinisikan sebagai berikut
+\begin{align*}
+    \phi_{\text{COLREGS}} =
+&\sum_{i \in \text{GW}} w_{\text{GW}} F_{\text{GW}}\big(p_{\text{rel}}(k + j|k)\big)+ \\
+&\sum_{i \in \text{HO}} w_{\text{HO}} F_{\text{HO}}\big(p_{\text{rel}}(k + j|k)\big)
++ \\
+&\sum_{i \in \text{OT}} w_{\text{OT}} F_{\text{OT}}\big(p_{\text{rel}}(k + j|k)\big)
+\end{align*}
+dengan: \\
+i : setiap halangan yang terdeteksi \\
+$w_{OT}, w_{HO}, w_{GW}$: nilai pembobot \\
+$F_{OT}, F_{HO}, F_{GM}$: fungsi lapangan potensial\\
+$\mathbf{p}_{rel}(k+j|k)$: prediksi posisi titik tengah kapal relatif pada koordinat sumbu kapal halangan untuk $t=k+j$ pada saat $t=k$.\\
+
+Perhitungan posisi titik tengah kapal relatif terhadap halangan adalah sebagai berikut:
+\[
+p_{\text{rel}}(k + j|k) = 
+R\big(\psi_{\text{TS}}(k + j|k)\big)
+\big[
+p_{\text{OS}}(k + j|k) - p_{\text{TS}}(k + j|k)
+\big]
+\]
+
+dengan
+
+\[
+R\big(\psi_{\text{TS}}(k + j|k)\big) =
+\begin{bmatrix}
+\cos\big(\psi_{\text{TS}}(k + j|k)\big) & \sin\big(\psi_{\text{TS}}(k + j|k)\big) \\
+-\sin\big(\psi_{\text{TS}}(k + j|k)\big) & \cos\big(\psi_{\text{TS}}(k + j|k)\big)
+\end{bmatrix}
+\]
+dimana: \\
+$p_{\text{OS}}(k+j|k)$: posisi titik tengah kapal sendiri (own-ship) \\
+$p_{\text{TS}}(k+j|k)$: posisi titik tengah kapal halangan (target-ship). 
+
+Fungsi lapangan potensial $F_{\text{OT}}, F_{\text{HO}}, F_{\text{GW}}$ 
+dirancang agar kapal dapat melakukan manuver untuk menghindari tabrakan 
+dengan mengacu kepada \textit{COLREGS}. Rancangan fungsi lapangan potensial diberikan sebagai berikut:
+
+\begin{align*}
+F_{\text{GW}} &= 0.5 \times f(\alpha_{x1} x_{\text{rel}}(k+j|k)) 
+\times \big(1 + f(\alpha_{y1}(y_{\text{rel}}(k+j|k) - y_{0,\text{GW}}))\big) \\
+F_{\text{HO}} &= 0.5 \times f(\alpha_{y2} y_{\text{rel}}(k+j|k)) 
+\times \big(1 + f(\alpha_{x2}(x_{0,\text{HO}} - x_{\text{rel}}(k+j|k)))\big) \\
+F_{\text{OT}} &= 0.5 \times f(\alpha_{x3}(x_{0,\text{OT}} - x_{\text{rel}}(k+j|k))) 
+\times f(\alpha_{y3}(y_{\text{rel}}(k+j|k) - y_{0,\text{OT}}))
+\end{align*}
+dengan $\alpha_{x1}, \alpha_{x2}, \alpha_{x3}, \alpha_{y1}, \alpha_{y2}, \alpha_{y3}$ 
+merupakan parameter untuk menentukan kemiringan dari fungsi lapangan potensial.  
+Parameter $y_{0,\text{GW}}, x_{0,\text{HO}}, x_{0,\text{OT}}, y_{0,\text{OT}}$ 
+menentukan pergeseran untuk menyesuaikan fungsi potensial.
+
+Fungsi $f$ merupakan fungsi taklinier sebagai berikut:
+\[
+f(x) = \frac{x}{\sqrt{1 + x^2}}.
+\]
+
+Fungsi COLREGS tidak diubah menjadi dalam domain Chebyshev karena fungsi ini hanya berfungsi sebagai penalti pada fungsi tujuan NMPC. Sehingga fungsi COLREGS tetap dalam domain waktu biasa.
 
 \subsection{Langkah-langkah Chebyshev Pseudospectral Method (CPM) secara umum}
 
@@ -265,214 +577,10 @@ Dengan N adalah order polinomial dan $\phi_i$ adalah basis fungsi langrange.
     \]
 \end{itemize}
 
-\subsection{Contoh Penggunaan Polinomial Chebysev}
-Berikut adalah perbandingan polinomial Chebysev dan ode45 dalam menyelesaikan persamaan differensial $\dot{x}=x$.
-\begin{figure}[H] 
-    \centering 
-    \includegraphics[width=0.7 \textwidth]{Chebyshev vs Ode45.png} 
-    \caption{Perbandingan polinomial Chebysev dan ode45} 
-    \label{fig:perbandingan}
-\end{figure}
-
-\subsection{Fungsi tujuan di NMPC apakah diskrit atau kontinu?}
-Fungsi tujuan NMPC pada dasarnya bersifat kontinu. Hanya saja, untuk keperluan komputasi numerik, fungsi tujuan harus dalam bentuk diskrit (sigma). Sumber buku:
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{obj_kontinu.png}
-        \caption{Fungsi Objektif Kontinu}
-        \label{fig:obj_kontinu}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{obj_diskrit.png}
-        \caption{Fungsi Objektif Diskrit}
-        \label{fig:obj_diskrit}
-    \end{subfigure}
-\end{figure}
-
-\subsection{$\tau$ itu apa dan bagaimana?}
-Variabel $\tau$ merupakan waktu terstandar (domain komputasi) yang digunakan pada metode Chebyshev. Semua polinomial Chebyshev didefinisikan dan bersifat ortogonal pada interval [-1, 1], sehingga domain ini menjadi ruang dasar untuk aproksimasi dan kolokasi dalam Chebyshev Pseudospectral Method. Berikut adalah contoh perubahan domain waktu biasa dan $\tau$ pada menggambar fungsi.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{waktu_tau_vs_biasa.png}
-    \caption{Perbandingan waktu biasa vs $\tau$}
-    \label{fig:waktu_tau}
-\end{figure}
-
-
-\subsection{Alasan kenapa polinomial Chebyshev digunakan? Bisa bandingin dengan Laguerre dan Langrange}
-Ada beberapa kelebihan dari Polinomial Chebyshev yaitu
-\begin{enumerate}
-    \item Akurasi tinggi (eksponensial konvergen)
-    \item Lebih sedikit titik kolokasi dibanding metode grid uniform
-\end{enumerate}
-Dibalik kelebihan, terdapat kekurangan dari Polinomial Chebyshev, yaitu
-\begin{enumerate}
-    \item Kurang cocok untuk horizon sangat panjang (clustering di ujung)
-    \item Butuh transformasi domain untuk tiap horizon
-\end{enumerate}
-
-Jika membandingkan dengan polinomial Laguerre dan Lagrange adalah 
-\subsection{Bagaimana aturan dari Diskrit ke kontinu dan bagaimana jika kontinu ke diskrit}
-
-\subsection{Sifat Orthogonalitas berpengaruh dimana?}
-Sifat ortogonalitas polinomial Chebyshev menyebabkan setiap basis fungsi bekerja secara independen, sehingga menghindari interferensi antar komponen aproksimasi. Dalam Pseudospectral Method, hal ini meningkatkan kestabilan numerik dan mempercepat konvergensi. Akibatnya, pada implementasi Nonlinear Model Predictive Control (NMPC), prediksi lintasan menjadi lebih akurat dan penyelesaian optimasi lebih efisien.
-
-\subsection{Fungsi COLREGS di Chebyshev}
-\subsubsection{Fungsi COLREGS pada umumnya}
-Fungsi COLREGS adalah fungsi taklinear. Tujuannya adalah memberikan pembobotan pada posisi kapal relatif terhadap halangan. Fungsi COLREGS didefinisikan sebagai berikut
-\[
-\phi_{\text{COLREGS}} =
-\sum_{i \in \text{GW}} w_{\text{GW}} F_{\text{GW}}\big(p_{\text{rel}}(k + j|k)\big)
-+ \sum_{i \in \text{HO}} w_{\text{HO}} F_{\text{HO}}\big(p_{\text{rel}}(k + j|k)\big)
-+ \sum_{i \in \text{OT}} w_{\text{OT}} F_{\text{OT}}\big(p_{\text{rel}}(k + j|k)\big)
-\]
-dengan: \\
-i : setiap halangan yang terdeteksi \\
-$w_{OT}, w_{HO}, w_{GW}$: nilai pembobot \\
-$F_{OT}, F_{HO}, F_{GM}$: fungsi lapangan potensial\\
-$\mathbf{p}_{rel}(k+j|k)$: prediksi posisi titik tengah kapal relatif pada koordinat sumbu kapal halangan untuk $t=k+j$ pada saat $t=k$.\\
-
-Perhitungan posisi titik tengah kapal relatif terhadap halangan adalah sebagai berikut:
-\[
-p_{\text{rel}}(k + j|k) = 
-R\big(\psi_{\text{TS}}(k + j|k)\big)
-\big[
-p_{\text{OS}}(k + j|k) - p_{\text{TS}}(k + j|k)
-\big]
-\]
-
-dengan
-
-\[
-R\big(\psi_{\text{TS}}(k + j|k)\big) =
-\begin{bmatrix}
-\cos\big(\psi_{\text{TS}}(k + j|k)\big) & \sin\big(\psi_{\text{TS}}(k + j|k)\big) \\
--\sin\big(\psi_{\text{TS}}(k + j|k)\big) & \cos\big(\psi_{\text{TS}}(k + j|k)\big)
-\end{bmatrix}
-\]
-dimana:
 
 
 
-\subsubsection{Fungsi COLREGS di Chebyshev}
 
-
-\subsection{Metodologi}
-\subsubsection{Pengkajian Model Kapal}
-Pada tahap ini akan menghasilkan model kapal tak linier, yaitu:
-\[
-\mathbf{\dot{s}} = \mathbf{f}(\mathbf{s},u)
-\]
-dan model pengukuran
-\[
-\mathbf{h=Cs}
-\]
-\subsubsection{Pengubahan domain waktu menjadi domain standar}
-Pada tahap ini, waktu yang awalnya pada $[t_0,t_f]$, diubah menjadi domain standar $\tau \in [-1,1]$. Hubungan antara waktu sebenarnya dan waktu terstandar diberikan oleh transformasi linear:
-\[
-\tau = \frac{2(t-t_0)}{t_f-t_0}-1
-\]
-Sehingga model kapal yang sebelumnya masih berdomain waktu akan diubah menjadi domain standar $\tau$, dengan 
-\[
-\tau = \frac{2(t - t_0)}{t_f-t_0} - 1 
-\qquad \Longleftrightarrow \qquad 
-t = t_0 + \frac{t_f-t_0}{2}(\tau + 1).
-\]
-Turunkan $t$ terhadap $\tau$:
-\[
-\frac{dt}{d\tau} = \frac{t_f-t_0}{2}.
-\]
-Dengan menggunakan aturan rantai untuk turunan terhadap $\tau$, diperoleh
-\[
-\frac{d\mathbf{s}}{d\tau} = \frac{d\mathbf{s}}{dt} \frac{dt}{d\tau} 
-= \mathbf{f}(\mathbf{s}(\tau), u(\tau)) \cdot \frac{t_f-t_0}{2}.
-\]
-Sehingga persamaan model $\dot{\mathbf{s}} = \mathbf{f}(\mathbf{s},u)$ menjadi $\mathbf{s}(\tau) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau),u(\tau))$.
-
-\subsubsection{Aproksimasi fungsi dengan polinomial Langrange}
-Fungsi $x(\tau)$ dapat diaproksimasi dengan polinomial Lagrange yaitu
-\[
-x(\tau) = \sum_{i=0}^{N} x_i \, \phi_i(\tau) \label{eq.S_tau}
-\]
-Dengan N adalah order polinomial $\phi_i$ adalah basis fungsi Lagrange yaitu
-\[
-\phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}
-\]
-\subsubsection{Kolokasi di Titik Chebyshev-Gauss-Lobatto}
-Disinilah inti dari Metode Chebyshev Pseudospectral, sebab titik kolokasi yang digunakan adalah titik Chebyshev–Gauss–Lobatto, yaitu:
-\[
-\tau_i = \cos\left( \frac{i\pi}{N} \right), \quad i = 0, 1, \ldots, N.
-\]
-Dengan persaman model adalah
-\[
-\dot{\mathbf{s}}(\tau_i) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau_i),u(\tau_i))
-\]
-\subsubsection{Diferensiasi via Matriks Chebyshev}
-\[
-\dot{\mathbf{s}}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} \mathbf{s}(\tau_j)
-\]
-Elemen \textbf{Chebyshev differentiation matrix} $D$ untuk node CGL:
-\[
-D_{ij} =
-\begin{cases}
-    \dfrac{c_i (-1)^{i+j}}{c_j (\tau_i - \tau_j)}, & i \neq j, \\[8pt]
-    -\dfrac{\tau_j}{2(1 - \tau_j^2)}, & i = j, \; j = 1, \ldots, N-1, \\[10pt]
-    \dfrac{2N^2 + 1}{6}, & i = j = 0, \\[6pt]
-    -\dfrac{2N^2 + 1}{6}, & i = j = N,
-\end{cases}
-\]
-dengan $c_0 = c_N = 2$, dan $c_j = 1$ untuk lainnya.\\
-Sehingga model kapal menjadi
-\[
-\sum_{j=0}^{N} D_{ij} \mathbf{s}(\tau_j)= \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau_i),u(\tau_i))
-\]
-
-\subsubsection{Kuantifikasi Integral (Quadrature) NMPC}
-Integral pada $[-1,1]$ diganti jumlah berbobot (aturan Chebyshev--Gauss--Lobatto):
-\[
-\int_{-1}^{1} g(\tau)\, d\tau \approx \sum_{i=0}^{N} w_i g(\tau_i).
-\]
-Sehingga fungsi tujuan yang awalnya adalah 
-\[
-J = \int_{t_0}^{t_f} L(x(t), u(t))\, dt
-\]
-menjadi:
-\[
-J \approx \frac{t_f - t_0}{2} \sum_{i=0}^{N} w_i L(x(\tau_i), (\tau_i)).
-\]
-untuk $k = 0, \ldots, N$. Untuk $N$ genap, $w_k$ adalah
-\[
-w_0 = w_N = \frac{1}{N^2 - 1},
-\]
-
-\[
-w_k = \frac{2}{N} 
-\left[
-\gamma(0,k) + \gamma\left(\frac{N}{2},k\right) 
-+ 2 \sum_{i=1}^{N/2 - 1} \gamma(i,k)
-\right],
-\]
-untuk $k = 1, \ldots, N - 1$, dan untuk $N$  ganjil adalah
-
-\[
-w_0 = w_N = \frac{1}{N^2},
-\]
-
-\[
-w_k = \frac{2}{N} 
-\left[
-\gamma(0,k) + 2 \sum_{i=1}^{(N-1)/2} \gamma(i,k)
-\right],
-\]
-dengan
-
-\[
-\gamma(i,k) = \frac{1}{1 - 4i^2} \cos \qty(\frac{2\pi i k}{N}).
-\]
 
 \newpage
 \section*{Model Kapal}
