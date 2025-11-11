@@ -1,177 +1,148 @@
-%% ===== PARAMETERS =====
-clear; clc; close all;
-time_sampling = 1.0;     % [s] receding step
-T = 60.0;                % [s] horizon length
-N = 20;                  % Chebyshev order
-Np = N;
-situation = 'cheb_collision_free';
-axis_lim = [-200 5000 -200 2800];
+% CHEBYSHEV NMPC: Pure MATLAB Implementation
+% Point stabilization for ship using Chebyshev Pseudospectral Method
+% Requirements: MATLAB Optimization Toolbox (fmincon)
 
-% Batasan
-r_max = 0.0932;  r_min = -r_max;
-u_max = 35*pi/180; u_min = -u_max;  % Konversi manual deg2rad
-rrot_max = 7*pi/180; rrot_min = -rrot_max;
+clc; clear all; close all;
 
-% Bobot
-weights.w_pos = 5;       weights.w_yaw = 0.02;   weights.w_u = 1e-4;
-weights.w_ur = 2e-3;     weights.w_r = 1e-2;
-weights.w_pos_T = 20*weights.w_pos;  weights.w_yaw_T = 5*weights.w_yaw;
-weights.w_r_T = 5e-2;   weights.w_u_T = 1e-2;  weights.w_tan_T = 5;
-weights.R_switch = 250; weights.sigma_sw = 60;
-
-% Parameter kapal
-ship_params.Lpp = 101.07; ship_params.B = 14; ship_params.Td = 3.7;
-ship_params.m = 2423e3; ship_params.os_surge = 15.4;
-ship_params.CB = 0.65; ship_params.xG = 5.25; ship_params.rho = 1024;
-ship_params.Adelta = 5.7224; ship_params.gyr = 0.156*ship_params.Lpp;
-
-% Koefisien hidrodinamika
-Yvdot = -((1+0.16*ship_params.CB*(ship_params.B/ship_params.Td)-5.1*(ship_params.B/ship_params.Lpp)^2)*pi*(ship_params.Td/ship_params.Lpp)^2);
-Yrdot = -((0.67*(ship_params.B/ship_params.Lpp)-0.0033*(ship_params.B/ship_params.Td)^2)*pi*(ship_params.Td/ship_params.Lpp)^2);
-Nvdot = -((1.1*(ship_params.B/ship_params.Lpp)-0.041*(ship_params.B/ship_params.Td))*pi*(ship_params.Td/ship_params.Lpp)^2);
-Nrdot = -(((1/12)+0.017*(ship_params.CB*ship_params.B/ship_params.Td)-0.33*(ship_params.B/ship_params.Lpp))*pi*(ship_params.Td/ship_params.Lpp)^2);
-Yv = -((1+0.4*(ship_params.CB*ship_params.B/ship_params.Td))*pi*(ship_params.Td/ship_params.Lpp)^2);
-Yr = -((-0.5+2.2*(ship_params.B/ship_params.Lpp)-0.08*(ship_params.B/ship_params.Td))*pi*(ship_params.Td/ship_params.Lpp)^2);
-Nv = -((0.5+2.4*(ship_params.Td/ship_params.Lpp))*pi*(ship_params.Td/ship_params.Lpp)^2);
-Nr = -((0.25+0.039*(ship_params.B/ship_params.Td)-0.56*(ship_params.B/ship_params.Lpp))*pi*(ship_params.Td/ship_params.Lpp)^2);
-
-Ydelta = ship_params.rho*pi*ship_params.Adelta/(4*ship_params.Lpp*ship_params.Td);
-Ir = (ship_params.m*(ship_params.gyr)^2)/(0.5*ship_params.rho*ship_params.Lpp^5);
-Iz = (ship_params.m*(ship_params.xG^2))/(0.5*ship_params.rho*ship_params.Lpp^5) + Ir;
-
-nd_u = 1; nd_m = ship_params.m/(0.5*ship_params.rho*ship_params.Lpp^3); nd_xG = ship_params.xG/ship_params.Lpp;
-M = [nd_m-Yvdot, nd_m*nd_xG-Yrdot; nd_m*nd_xG-Nvdot, Iz-Nrdot];
-Nmat = [-Yv, nd_m*nd_u-Yr; -Nv, nd_m*nd_xG*nd_u-Nr];
-A_lin = -inv(M)*Nmat;
-
-ship_params.a11 = A_lin(1,1); ship_params.a12 = A_lin(1,2);
-ship_params.a21 = A_lin(2,1); ship_params.a22 = A_lin(2,2);
-b = [0.01; 1];
-ship_params.b11 = b(1); ship_params.b12 = b(2)/ship_params.Lpp;
-
-%% ===== CHEBYSHEV SETUP =====
-[taus, w_cc, D] = cheb_nodes_weights_D(N);
-alpha = 2/T;
-n_states = 5; n_controls = 1; n_nodes = N+1;
-n_z = n_states*n_nodes + n_controls*n_nodes;
-
-%% ===== BOUNDS =====
-lb = -inf(n_z, 1); ub = inf(n_z, 1);
-% Yaw rate bounds
-for k = 1:n_nodes
-    idx_r = (k-1)*n_states + 2;
-    lb(idx_r) = r_min; ub(idx_r) = r_max;
-end
-% Rudder angle bounds
-for k = 1:n_nodes
-    idx_u = n_states*n_nodes + k;
-    lb(idx_u) = u_min; ub(idx_u) = u_max;
+% Check for required toolbox
+if ~exist('fmincon', 'file')
+    error('MATLAB Optimization Toolbox is required but not installed.');
 end
 
-%% ===== LINEAR INEQUALITY: CONTROL RATE =====
-A_rate = zeros(2*n_nodes, n_z); b_rate = zeros(2*n_nodes, 1);
-for k = 1:n_nodes
-    % ur <= rrot_max
-    for i = 1:n_nodes
-        idx_u_i = n_states*n_nodes + i;
-        A_rate(k, idx_u_i) = alpha * D(k,i);
+%% Setup
+fprintf('=== Chebyshev NMPC Ship Control ===\n\n');
+
+% Load ship parameters
+params = setupShipParams();
+
+% NMPC parameters
+N = 20;                 % Prediction horizon (polynomial order)
+T = 30;                 % Prediction horizon time (seconds)
+time_sampling = 1;      % Sampling time (seconds)
+
+% Generate Chebyshev nodes and matrices
+fprintf('Generating Chebyshev nodes and matrices... ');
+tau = chebyshevNodes(N);        % (N+1)x1 nodes in [-1,1]
+D = chebyshevDiffMatrix(tau);   % (N+1)x(N+1) differentiation matrix
+w = chebyshevWeights(N);        % (N+1)x1 quadrature weights
+fprintf('Done.\n');
+
+% Simulation parameters
+x0 = [0; 0; 0; 0; pi/2];        % Initial state: [v; r; x; y; psi]
+reference_pose = [500; 2000; 0]; % Reference: [x; y; psi]
+simulation_time = 300;          % Max simulation time (s)
+distance_threshold = 10;        % Stopping distance (m)
+
+% Initial storage
+state_history = x0;
+control_history = 0;
+time_history = 0;
+solve_times = zeros(1, simulation_time);
+
+%% Simulation Loop
+mpc_iter = 0;
+distance_to_goal = norm(x0(3:4) - reference_pose(1:2));
+fprintf('Initial distance to goal: %.2f m\n', distance_to_goal);
+fprintf('Starting MPC loop...\n\n');
+
+while distance_to_goal > distance_threshold && mpc_iter < simulation_time/time_sampling
+    % Solve Chebyshev NMPC
+    tic;
+    [u_opt, pred_states, info] = chebyshevNMPCSolver(...
+        x0, reference_pose, params, N, T, tau, D, w);
+    solve_time = toc;
+    
+    % Store solve time
+    solve_times(mpc_iter+1) = solve_time;
+    
+    % Check solver status
+    if info.exitflag <= 0
+        fprintf('Warning: Solver failed at iteration %d (exitflag: %d)\n', ...
+            mpc_iter, info.exitflag);
     end
-    b_rate(k) = rrot_max;
     
-    % -ur <= -rrot_min  => ur >= rrot_min
-    for i = 1:n_nodes
-        idx_u_i = n_states*n_nodes + i;
-        A_rate(n_nodes+k, idx_u_i) = -alpha * D(k,i);
+    % Apply control and simulate
+    u_current = u_opt;
+    xdot = shipModel(x0, u_current, params);
+    x_next = x0 + time_sampling * xdot;
+    
+    % Update state
+    x0 = x_next;
+    
+    % Store results
+    state_history = [state_history, x0];
+    control_history = [control_history, u_current];
+    time_history = [time_history, mpc_iter * time_sampling];
+    
+    % Update distance
+    distance_to_goal = norm(x0(3:4) - reference_pose(1:2));
+    
+    % Display progress
+    if mod(mpc_iter, 15) == 0
+        fprintf('Iter %3d | Pos=(%6.1f,%6.1f) | Dist=%8.2f | Ctrl=%6.2f° | Time=%6.3fs\n', ...
+            mpc_iter, x0(3), x0(4), distance_to_goal, rad2deg(u_current), solve_time);
     end
-    b_rate(n_nodes+k) = -rrot_min;
+    
+    mpc_iter = mpc_iter + 1;
 end
 
-%% ===== INITIAL GUESS & SIMULATION =====
-x0_val = [0; 0; 0; 0; pi/2];
-reference_pose = [4000; 2000; 0];
-z0 = zeros(n_z, 1);
-array_state = x0_val;
-array_state_history = [];
-control_sequence = [];
-simulation_time = 300;
-mpciter = 0;
+fprintf('\n=== Simulation Complete ===\n');
+fprintf('Final position: (%.2f, %.2f)\n', x0(3), x0(4));
+fprintf('Final distance to goal: %.2f m\n', distance_to_goal);
+fprintf('Average solve time: %.4f s\n', mean(solve_times(1:mpc_iter)));
+fprintf('Total iterations: %d\n', mpc_iter);
 
-% Fungsi tujuan dan kendala
-cost_func = @(z) mpc_cost_cheb(z, [x0_val; reference_pose], N, T, ship_params, weights);
-constraint_func = @(z) mpc_constraints_cheb(z, [x0_val; reference_pose], N, T, ship_params);
+%% Plotting
+figure('Name', 'Ship Trajectory', 'Position', [100 100 1200 500]);
 
-% Options fmincon
-options = optimoptions('fmincon', 'Display', 'off', 'MaxIterations', 600, ...
-                       'MaxFunctionEvaluations', 5000, 'TolCon', 1e-6);
+% Trajectory plot
+subplot(1,2,1);
+plot(state_history(3,:), state_history(4,:), '-b', 'LineWidth', 2);
+hold on;
+plot(reference_pose(1), reference_pose(2), 'r*', 'MarkerSize', 15, 'LineWidth', 2);
+xlabel('X Position (m)', 'FontSize', 12);
+ylabel('Y Position (m)', 'FontSize', 12);
+title('Ship Path', 'FontSize', 14);
+legend('Trajecttory', 'Reference', 'Location', 'best');
+grid on;
+axis equal;
 
-%% ===== MPC LOOP =====
-while mpciter < simulation_time/time_sampling
-    fprintf('Iterasi %d ...\n', mpciter);
-    
-    % Update parameter
-    p_val = [x0_val; reference_pose];
-    cost_func = @(z) mpc_cost_cheb(z, p_val, N, T, ship_params, weights);
-    constraint_func = @(z) mpc_constraints_cheb(z, p_val, N, T, ship_params);
-    
-    % SOLVE NLP
-    [z_opt, fval] = fmincon(cost_func, z0, A_rate, b_rate, [], [], lb, ub, ...
-                           constraint_func, options);
-    
-    % Extract solusi
-    S_opt = reshape(z_opt(1:n_states*n_nodes), n_states, n_nodes);
-    U_opt = reshape(z_opt(n_states*n_nodes+1:end), n_controls, n_nodes);
-    
-    % Simpan history
-    pred_states = [S_opt.'; S_opt(:,end).'];
-    array_state_history(:,:,end+1) = pred_states;
-    
-    % Kontrol diterapkan
-    u_apply = U_opt(:,1);
-    control_sequence = [control_sequence; u_apply];
-    
-    % Propagasi
-    xdot_now = ship_dynamics(x0_val, u_apply, ship_params);
-    next_state = x0_val + time_sampling * xdot_now;
-    next_state(5) = mod(next_state(5), 2*pi);
-    x0_val = next_state;
-    array_state(:,end+1) = x0_val;
-    
-    % Warm start
-    z0 = z_opt;
-    
-    % Update iterasi
-    mpciter = mpciter + 1;
-    
-    % Cek kondisi berhenti
-    dist_nodes = sqrt((S_opt(3,:) - reference_pose(1)).^2 + ...
-                       (S_opt(4,:) - reference_pose(2)).^2);
-    [dist_min, idx_min] = min(dist_nodes);
-    r_at_min = S_opt(2, idx_min);
-    u_at_min = U_opt(1, idx_min);
-    dist_actual = norm(x0_val(3:4) - reference_pose(1:2));
-    
-    if (dist_min <= 60 && abs(r_at_min) <= 0.01 && abs(u_at_min) <= 1*pi/180) || ...
-       dist_actual <= 60
-        fprintf('MISSION COMPLETE pada iterasi %d (dist_min=%.2f m)\n', mpciter, dist_min);
-        break;
-    end
-end
+% State plots
+subplot(1,2,2);
+yyaxis left;
+plot(time_history, rad2deg(state_history(5,:)), '-b', 'LineWidth', 1.5);
+ylabel('Heading (deg)', 'FontSize', 12);
+yyaxis right;
+stairs(time_history(2:end), rad2deg(control_history(2:end)), '-k', 'LineWidth', 1.5);
+ylabel('Rudder Angle (deg)', 'FontSize', 12);
+xlabel('Time (s)', 'FontSize', '12');
+title('Heading and Control', 'FontSize', 14);
+grid on;
 
-%% ===== OUTPUT =====
-T_sim = size(array_state,2);
-time = 0:time_sampling:(T_sim-1)*time_sampling;
-total_time_index = T_sim + N + 1;
-time_plot = linspace(0, time_sampling*(mpciter+Np), total_time_index);
+% Detailed control plot
+figure('Name', 'Control and Rates', 'Position', [100 600 1200 400]);
+subplot(2,1,1);
+stairs(time_history(2:end), rad2deg(control_history(2:end)), '-k', 'LineWidth', 1.5);
+hold on;
+yline(rad2deg(params.u_max), '--r');
+yline(rad2deg(params.u_min), '--r');
+ylabel('Rudder Angle (°)', 'FontSize', 12);
+title('Control Input and Constraints', 'FontSize', 14);
+legend('Rudder', 'Constraints', 'Location', 'best');
+grid on;
 
-% Padding history terakhir
-if isempty(array_state_history)
-    last_hist = repmat(array_state(:,end).', Np+2, 1);
-else
-    last_hist = array_state_history(:,:,end);
-end
-state_last = last_hist(2:end,:).';
-array_state = cat(2, array_state, state_last);
+subplot(2,1,2);
+r_rate = diff(control_history) / time_sampling;
+plot(time_history(2:end-1), rad2deg(r_rate), '-m', 'LineWidth', 1.5);
+hold on;
+yline(rad2deg(params.rrot_max), '--r');
+yline(rad2deg(params.rrot_min), '--r');
+ylabel('Rudder Rate (°/s)', 'FontSize', 12);
+xlabel('Time (s)', 'FontSize', 12);
+legend('Rate', 'Constraints', 'Location', 'best');
+grid on;
 
-% Visualisasi
-draw_collision_free(array_state, array_state_history, ...
-    reference_pose, total_time_index, axis_lim, Np, situation, time_plot);
+% Save results
+results = [time_history; state_history; control_history];
+writematrix(results', 'chebyshev_nmpc_results.csv');
+fprintf('Results saved to: chebyshev_nmpc_results.csv\n');

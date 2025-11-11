@@ -6,6 +6,8 @@
 \usepackage{tabularx}
 \usepackage{lmodern}
 \usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{geometry}
 \usepackage{float}
 \usepackage{bm}
 \usepackage{graphicx}
@@ -223,7 +225,15 @@ dengan kendala
 \end{align*}
 Dengan $\Delta \mathbf{u}(k) = \mathbf{u}(k) - \mathbf{u}(k-1)$
 
-Fungsi tujuan Chebyshev NMPC menjadi:
+Karena $\Delta \mathbf{u}(k)$ merupakan perubahan input terhadap waktu, maka perubahan input dapat dituliskan sebagai turunan terhadap waktu, yaitu
+\[
+\Delta \mathbf{u}(k) = \mathbf{u}(k) - \mathbf{u}(k-1) \approx \dot{\mathbf{u}(k)}
+\]
+Dengan cara yang sama dengan untuk diferensiasi state, maka turunan input dapat diaproksimasi dengan matriks diferensiasi Chebyshev, yaitu
+\[
+\dot{\mathbf{u}}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} \mathbf{u}(\tau_j)
+\]
+Sehingga fungsi tujuan Chebyshev NMPC menjadi:
 \[
 J = \frac{T}{2} 
 \sum_{i=0}^{N} w_i 
@@ -271,7 +281,7 @@ dengan
 \gamma(i,k) = \frac{1}{1 - 4i^2} \cos \qty(\frac{2\pi i k}{N}).
 \]
 
-
+\newpage
 \subsection{Contoh Penggunaan Polinomial Chebysev}
 Berikut adalah perbandingan polinomial Chebysev dan ode45 dalam menyelesaikan persamaan differensial $\dot{x}=x$.
 \begin{figure}[H] 
@@ -323,83 +333,92 @@ Dibalik kelebihan, terdapat kekurangan dari Polinomial Chebyshev, yaitu
 \end{enumerate}
 
 Jika dibandingan dengan polinomial legendre dan Laguerre:
-\begin{tabularx}{\textwidth}{lXXX}
+\begin{longtable}{p{3.5cm} p{4cm} p{4cm} p{4cm}}
 \toprule
 \textbf{Aspek} & \textbf{Chebyshev PSM} & \textbf{Legendre PSM} & \textbf{Laguerre PSM} \\
 \midrule
+\endfirsthead
+\multicolumn{4}{c}{{Lanjutan dari halaman sebelumnya}} \\
+\toprule
+\textbf{Aspek} & \textbf{Chebyshev PSM} & \textbf{Legendre PSM} & \textbf{Laguerre PSM} \\
+\midrule
+\endhead
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
 
-\textbf{Basis polinomial} &
-$T_n(\tau) = \cos(n \arccos \tau)$ &
+Basis polinomial &
+$T_n(\tau)=\cos(n\arccos\tau)$ &
 $L_n(\tau)$ (Legendre polynomial) &
 $L_n(x)$ (Laguerre polynomial) \\
 
-\textbf{Domain definisi} &
-$[-1, 1]$ — finite horizon &
-$[-1, 1]$ — finite horizon &
-$[0, \infty)$ — infinite horizon \\
+Domain definisi &
+$[-1,1]$ (finite horizon) &
+$[-1,1]$ (finite horizon) &
+$[0,\infty)$ (infinite horizon) \\
 
-\textbf{Titik kolokasi} &
-Chebyshev–Gauss–Lobatto (CGL): $\tau_i = \cos\left(\dfrac{i\pi}{N}\right)$ (eksplisit) &
-Legendre–Gauss–Lobatto: akar dari $(1-\tau^2)L_N'(\tau)=0$ (implisit) &
-Laguerre–Gauss: akar dari $L_N'(x)=0$ di $[0,\infty)$ \\
+Titik kolokasi &
+Chebyshev–Gauss–Lobatto: $\tau_i=\cos\left(\frac{i\pi}{N}\right)$ (eksplisit) &
+Legendre–Gauss–Lobatto: akar $(1-\tau^2)L_N'(\tau)=0$ (implisit) &
+Laguerre–Gauss: akar $L_N'(x)=0$ di $[0,\infty)$ \\
 
-\textbf{Perhitungan node} &
-Mudah, langsung dari fungsi cos &
+Perhitungan node &
+Langsung dari fungsi cos &
 Perlu solusi numerik akar polinomial &
-Perlu solusi numerik + skala domain tak hingga \\
+Perlu solusi numerik + domain tak hingga \\
 
-\textbf{Bobot integrasi (quadrature)} &
+Bobot integrasi (quadrature) &
 Bentuk tertutup, sederhana &
 Lebih kompleks, dihitung numerik &
-Bobot berkurang eksponensial $e^{-x}$ \\
+Bobot menurun eksponensial $e^{-x}$ \\
 
-\textbf{Distribusi titik} &
+Distribusi titik &
 Padat di ujung domain, jarang di tengah &
-Lebih merata di tengah &
+Merata di tengah &
 Padat di dekat nol, jarang di jauh (meluruh) \\
 
-\textbf{Akurasi} &
+Akurasi &
 Eksponensial untuk fungsi halus di domain terbatas &
-Eksponensial juga; sedikit lebih stabil di tengah domain &
-Eksponensial untuk fungsi yang meluruh eksponensial di domain tak hingga \\
+Eksponensial juga, lebih stabil di tengah &
+Eksponensial untuk fungsi yang meluruh di domain tak hingga \\
 
-\textbf{Kelebihan utama} &
+Kelebihan utama &
 Node dan $D$-matrix eksplisit, komputasi cepat &
 Simetri dan cocok untuk fungsi interior &
-Ideal untuk masalah dengan horizon tak hingga dan fungsi meluruh \\
+Ideal untuk horizon tak hingga dan fungsi meluruh \\
 
-\textbf{Kelemahan utama} &
-Kurang efisien untuk horizon sangat panjang (cluster di tepi) &
+Kelemahan utama &
+Kurang efisien untuk horizon panjang (cluster di tepi) &
 Perlu komputasi akar polinomial &
-Tidak cocok untuk horizon terbatas; sulit normalisasi waktu \\
+Tidak cocok untuk horizon terbatas, sulit normalisasi waktu \\
 
-\textbf{Sifat ortogonalitas} &
+Sifat ortogonalitas &
 Terhadap bobot $1/\sqrt{1-\tau^2}$ &
 Terhadap bobot $1$ &
 Terhadap bobot $e^{-x}$ \\
 
-\textbf{Aplikasi umum} &
-NMPC, trajectory optimization, kapal/pesawat, sistem dinamis dengan waktu terbatas &
-Aerospace dan sistem finite-time; benchmark PSM NASA &
-Infinite-horizon control, adaptif, atau sistem termal yang meluruh \\
+Aplikasi umum &
+NMPC, optimasi lintasan kapal/pesawat &
+Aerospace dan finite-time benchmark (NASA) &
+Infinite-horizon control, adaptif, sistem termal \\
 
-\textbf{Keterkaitan domain} &
+Keterkaitan domain &
 Perlu transformasi linear $t \leftrightarrow \tau$ &
 Sama, domain tetap terbatas &
-Tidak perlu transformasi (sudah semi tak hingga) \\
+Tidak perlu transformasi (semi-tak hingga) \\
 
-\textbf{Kemudahan implementasi} &
-Sangat mudah, $O(N^2)$ matrix bisa ditulis analitik &
+Kemudahan implementasi &
+Sangat mudah, $O(N^2)$ matrix analitik &
 Sedang, butuh akar numerik &
 Paling sulit, domain tak hingga dan bobot eksponensial \\
 
-\textbf{Kesesuaian untuk NMPC} &
-\textbf{Sangat cocok} untuk finite $h \downarrow$ — cepat \& stabil &
-Cocok juga, tapi komputasi lebih berat &
+Kesesuaian untuk NMPC &
+\textbf{Sangat cocok} untuk finite horizon, cepat dan stabil &
+Cocok juga tapi komputasi lebih berat &
 Tidak cocok untuk NMPC finite horizon (domain tak hingga) \\
 
-\bottomrule
-\end{tabularx}
+\end{longtable}
 
 \subsection{Sifat Orthogonalitas berpengaruh dimana?}
 Sifat ortogonalitas polinomial Chebyshev menyebabkan setiap basis fungsi bekerja secara independen, sehingga menghindari interferensi antar komponen aproksimasi. Dalam Pseudospectral Method, hal ini meningkatkan kestabilan numerik dan mempercepat konvergensi. Akibatnya, pada implementasi Nonlinear Model Predictive Control (NMPC), prediksi lintasan menjadi lebih akurat dan penyelesaian optimasi lebih efisien.
@@ -407,7 +426,6 @@ Sifat ortogonalitas polinomial Chebyshev menyebabkan setiap basis fungsi bekerja
 Secara sederhana, jika menggunakan \textbf{polinomial biasa (non-ortogonal)}, perubahan pada satu koefisien aproksimasi dapat mempengaruhi seluruh fungsi aproksimasi, sehingga memperumit perhitungan dan mengurangi akurasi. Dengan \textbf{polinomial ortogonal} seperti Chebyshev, setiap koefisien hanya mempengaruhi bagian tertentu dari fungsi, sehingga memudahkan optimasi dan meningkatkan performa NMPC.
 
 \subsection{Fungsi COLREGS di Chebyshev}
-\subsubsection{Fungsi COLREGS pada umumnya}
 Fungsi COLREGS adalah fungsi taklinear. Tujuannya adalah memberikan pembobotan pada posisi kapal relatif terhadap halangan. Fungsi COLREGS didefinisikan sebagai berikut
 \begin{align*}
     \phi_{\text{COLREGS}} =
