@@ -3,7 +3,7 @@ clc; clear; close all;
 %% Parameters
 % Simulation parameters
 time_sampling = 1; % seconds
-Np = 60; % prediction horizon (dikurangi untuk stabilitas)
+Np = 30; % prediction horizon (dikurangi untuk stabilitas)
 simulation_time = 300;
 
 % Ship constraints
@@ -139,7 +139,7 @@ end
 %% Simplified Chebyshev NMPC Optimization
 function [U_opt, cost] = chebyshev_nmpc_optimize(x0, reference, taus, D, weights, T_scale, ...
                                                os_A, os_B, os_surge, u_min, u_max, r_min, r_max, ...
-                                               w_position, w_orientation, w_control)
+                                               w_position, w_orientation, w_control);
     N = length(taus) - 1;
     
     % Initial guess - zero control sequence
@@ -161,7 +161,7 @@ end
 
 %% Objective Function
 function J = objective_function(U, x0, reference, taus, D, weights, T_scale, ...
-                              os_A, os_B, os_surge, w_position, w_orientation, w_control)
+                              os_A, os_B, os_surge, w_position, w_orientation, w_control);
     N = length(taus) - 1;
     
     % Solve for states using Chebyshev collocation

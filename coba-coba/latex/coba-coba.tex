@@ -154,7 +154,7 @@ Dengan menggunakan aturan rantai untuk turunan terhadap $\tau$, diperoleh
 Sehingga persamaan model $\dot{\mathbf{s}} = \mathbf{f}(\mathbf{s},u)$ menjadi $\mathbf{\dot{s}}(\tau) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau),u(\tau))$.
 
 \subsubsection{Aproksimasi fungsi dengan polinomial Langrange}
-Fungsi $x(\tau)$ dapat diaproksimasi dengan polinomial Lagrange yaitu
+Fungsi $x(\tau)$ dapat diaproksimasi dengan \textbf{polinomial Lagrange\textsuperscript{(2)}} yaitu
 \[
 x(\tau) = \sum_{i=0}^{N} x_i \, \phi_i(\tau) \label{eq.S_tau}
 \]
@@ -162,6 +162,13 @@ Dengan N adalah order polinomial $\phi_i$ adalah basis fungsi Lagrange yaitu
 \[
 \phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}
 \]
+\begin{flushleft}
+\textsuperscript{(2)}Pendekatan dengan menggunakan fungsi Lagrange dilakukan karena fungsi basis Lagrange secara langsung memastikan nilai aproksimasi melewati setiap titik kolokasi yang telah ditentukan, sehingga memudahkan perhitungan nilai fungsi dan turunannya di setiap node tanpa perlu menghitung koefisien ortogonal polinomial Chebyshev secara eksplisit.
+\end{flushleft}
+
+
+
+
 \subsubsection{Kolokasi di Titik Chebyshev-Gauss-Lobatto}
 Disinilah inti dari Metode Chebyshev Pseudospectral, sebab titik kolokasi yang digunakan adalah titik Chebyshev–Gauss–Lobatto, yaitu:
 \[
@@ -420,6 +427,8 @@ Tidak cocok untuk NMPC finite horizon (domain tak hingga) \\
 
 \end{longtable}
 
+Sehingga dapat disimpulkan Metode NMPC berbasis Chebyshev Pseudospectral Method dipilih karena memiliki kemampuan tinggi dalam menyelesaikan permasalahan kontrol optimal pada sistem dengan dinamika nonlinear kompleks seperti kapal, dengan keunggulan utama berupa akurasi tinggi, efisiensi komputasi, dan kestabilan numerik yang sangat baik.
+
 \subsection{Sifat Orthogonalitas berpengaruh dimana?}
 Sifat ortogonalitas polinomial Chebyshev menyebabkan setiap basis fungsi bekerja secara independen, sehingga menghindari interferensi antar komponen aproksimasi. Dalam Pseudospectral Method, hal ini meningkatkan kestabilan numerik dan mempercepat konvergensi. Akibatnya, pada implementasi Nonlinear Model Predictive Control (NMPC), prediksi lintasan menjadi lebih akurat dan penyelesaian optimasi lebih efisien.
 
@@ -483,122 +492,16 @@ Fungsi $f$ merupakan fungsi taklinier sebagai berikut:
 \[
 f(x) = \frac{x}{\sqrt{1 + x^2}}.
 \]
+Untuk gambaran fungsi COLREGS dapat dilihat pada gambar berikut:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{fungsi_lapangan.png}
+    \caption{Gambaran Fungsi COLREGS}
+    \label{fig:colregs_field}
+\end{figure}
+Nilai positif pada fungsi lapangan potensial menunjukkan area bahaya yang harus dihindari oleh kapal sendiri. Sedangkan nilai negatif menunjukkan area aman untuk dilalui kapal sendiri.
 
 Fungsi COLREGS tidak diubah menjadi dalam domain Chebyshev karena fungsi ini hanya berfungsi sebagai penalti pada fungsi tujuan NMPC. Sehingga fungsi COLREGS tetap dalam domain waktu biasa.
-
-\subsection{Langkah-langkah Chebyshev Pseudospectral Method (CPM) secara umum}
-
-\subsubsection{Melakukan Aproksimasi Fungsi}
-Misalkan terdapat $x(t)$ adalah fungsi kontinu dengan interval waktu $[t_0, t_f]$. Fungsi ini akan diaproksimasi dengan interpolasi polinomial Langrange, namun sebelum itu perlu dilakukan pengubahan domain fungsi yang awalnya pada $[t_0, t_f]$ menjadi pada domain standar $\tau \in [-1,1]$. Hubungan antara waktu sebenarnya dan waktu terstandar diberikan oleh transformasi linear:
-\[
-\tau = \frac{2(t - t_0)}{t_f - t_0} - 1
-\]
-Setelah itu fungsi $x(t)$ dapat diaproksimasi dengan polinomial langrange yaitu
-\[
-x(\tau) = \sum_{i=0}^{N} x_i \, \phi_i(\tau) \label{eq.S_tau}
-\]
-Dengan N adalah order polinomial dan $\phi_i$ adalah basis fungsi langrange.
-\[
-    \phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j} \label{eq.phi_tau}
-\]
-
-\subsubsection{Kolokasi di Titik Chebyshev--Gauss--Lobatto}
-
-\begin{itemize}[noitemsep]
-    \item Pilih node non-uniform:
-    \[
-    \tau_i = \cos\left( \frac{i\pi}{N} \right), \quad i = 0, 1, \ldots, N.
-    \]
-    
-    \item Node ini mencakup ujung domain $(-1, +1)$ dan rapat di tepi $\Rightarrow$ stabil dan mengurangi osilasi di batas.
-    
-    \item Persamaan dinamik kontinu $\dot{x}(t) = f(x(t), u(t))$ setelah transformasi waktu menjadi:
-    \[
-    \frac{2}{t_f - t_0}\dot{x}(\tau_i) = f(x(\tau_i), u(\tau_i)),
-    \]
-    dan dipaksa benar (kolokasi) pada setiap $\tau_i$.
-\end{itemize}
-
-\subsubsection{Diferensiasi via Matriks Chebyshev}
-
-\begin{itemize}[noitemsep]
-    \item Turunan aproksimasi Lagrange di titik kolokasi bisa ditulis sebagai operasi matriks:
-    \[
-    \dot{x}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} x(\tau_j)
-    \]
-    
-    \item Elemen \textbf{Chebyshev differentiation matrix} $D$ untuk node CGL:
-    \[
-    D_{ij} =
-    \begin{cases}
-        \dfrac{c_i (-1)^{i+j}}{c_j (\tau_i - \tau_j)}, & i \neq j, \\[8pt]
-        -\dfrac{\tau_j}{2(1 - \tau_j^2)}, & i = j, \; j = 1, \ldots, N-1, \\[10pt]
-        \dfrac{2N^2 + 1}{6}, & i = j = 0, \\[6pt]
-        -\dfrac{2N^2 + 1}{6}, & i = j = N,
-    \end{cases}
-    \]
-    dengan $c_0 = c_N = 2$, dan $c_j = 1$ untuk lainnya.
-\end{itemize}
-
-\subsubsection{Formulasi Kolokasi Diskrit}
-
-\begin{itemize}[noitemsep]
-    \item Kumpulkan semua state pada node menjadi vektor 
-    \[
-    X = [x(\tau_0), \ldots, x(\tau_N)]^\top,
-    \]
-    dan input 
-    \[
-    U = [u(\tau_0), \ldots, u(\tau_N)]^\top.
-    \]
-    
-    \item Kendala dinamik global (untuk semua node) menjadi sistem aljabar:
-    \[
-    \frac{2}{t_f - t_0} DX = F(X, U),
-    \]
-    dengan
-    \[
-    F(X,U) = [f(x(\tau_0),u(\tau_0)), \ldots, f(x(\tau_N),u(\tau_N))]^\top.
-    \]
-    
-    \item Tambahkan kondisi awal $x(\tau_0) = x(t_0)$ (dan kondisi terminal bila ada).
-\end{itemize}
-
-\subsubsection{Kuantifikasi Integral (Quadrature)}
-
-\begin{itemize}[noitemsep]
-    \item Integral pada $[-1,1]$ diganti jumlah berbobot (aturan Chebyshev--Gauss--Lobatto):
-    \[
-    \int_{-1}^{1} g(\tau)\, d\tau \approx \sum_{i=0}^{N} w_i g(\tau_i).
-    \]
-    \item Gunakan bobot CGL $w_i$; sesuai $N$ genap/ganjil — nanti digunakan untuk biaya (tracking dan effort kontrol).
-\end{itemize}
-
-\subsubsection{Formulasi Masalah Optimal Diskrit (OCP $\rightarrow$ NLP)}
-\begin{itemize}[noitemsep]
-    \item Biaya kontinu:
-    \[
-    J = \int_{t_0}^{t_f} L(x(t), u(t))\, dt
-    \]
-    menjadi:
-    \[
-    J \approx \frac{t_f - t_0}{2} \sum_{i=0}^{N} w_i L(x(\tau_i), u(\tau_i)).
-    \]
-    
-    \item NLP akhir:
-    \[
-    \begin{aligned}
-    \min_{X,U}\quad & J = \frac{t_f - t_0}{2} \sum_{i=0}^{N} w_i L(x_i, u_i) \\
-    \text{s.t.} \quad & \frac{2}{t_f - t_0} D X = F(X, U), \quad x_0 = x(t_0), \\
-    & \text{kendala state/input lain (box, rate, obstacle, dst).}
-    \end{aligned}
-    \]
-\end{itemize}
-
-
-
-
-
 
 \newpage
 \section*{Model Kapal}

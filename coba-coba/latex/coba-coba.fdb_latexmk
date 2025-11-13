@@ -1,8 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1762863776.57709 "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" "coba-coba.pdf" "coba-coba" 1762863777.42791 0
+["pdflatex"] 1762926690.37795 "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" "coba-coba.pdf" "coba-coba" 1762926691.33198 0
   "../gambar/CHEBYSEV_NMPC.png" 1761532278 17559 0344ef5f480ecdc723d6baadd52ca623 ""
   "../gambar/Chebyshev vs Ode45.png" 1762356023 47445 f1e79107b1e18d8eadcd51f782ae4679 ""
   "../gambar/NMPC_BIASA.png" 1761532278 6945 1b97a67169f97abda048b3d8c12037e6 ""
+  "../gambar/fungsi_lapangan.png" 1762926519 612276 c10c35889731ba0bb2482e32a45e52b1 ""
   "../gambar/obj_diskrit.png" 1762339768 153361 c7ee20ec4a531d09447269f930fde29a ""
   "../gambar/obj_kontinu.png" 1762339768 98129 38ea6160adf567399810a7a3ff510300 ""
   "../gambar/waktu_tau_vs_biasa.png" 1762738252 53273 ab958ce14105dc96e39422f0d924f888 ""
@@ -113,9 +114,9 @@
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1749468414 13236 71253d8fde2c80ecebae7e3f7da0c2b0 ""
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/tools/longtable.sty" 1749468414 15912 618223a798a4d829f4d8e1ccf24e518f ""
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1749468414 7243 a2c17f18e2c9b702b84fad03d5f9c78b ""
-  "coba-coba.aux" 1762863777 5831 274684bc1fa5b6710306ee3f415c4232 "pdflatex"
-  "coba-coba.tex" 1762863774 37622 770025526118ab102a05d3fb122ef110 ""
-  "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" 1762863774 37622 770025526118ab102a05d3fb122ef110 ""
+  "coba-coba.aux" 1762926691 4905 ba702e4c2312e9f50d10483f38ad518d "pdflatex"
+  "coba-coba.tex" 1762926689 34901 645f6a5d9932fa71f22c257a6718e0b4 ""
+  "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" 1762926689 34901 645f6a5d9932fa71f22c257a6718e0b4 ""
   (generated)
   "coba-coba.aux"
   "coba-coba.log"
