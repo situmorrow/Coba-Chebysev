@@ -17,110 +17,6 @@
 
 \begin{document}
 \section{Bimbingan}
-\subsection{Apa itu metode pseudospectral Method}
-Pseudospectral Method (PSM) adalah metode numerik untuk menyelesaikan persamaan diferensial dengan mengaproksimasi fungsi menggunakan polinomial ortogonal (biasanya Chebyshev atau Legendre).
-
-Berbeda dengan metode numerik konvensional (seperti Euler atau Runge-Kutta) yang mendiskritisasi waktu secara seragam, PSM menggunakan \textbf{titik kolokasi nonuniform}\textsuperscript{(1)} yang mengikuti distribusi akar atau ekstrem dari polinomial ortogonal. Tujuannya adalah untuk mencapai akurasi sangat tinggi (eksponensial) dengan jumlah titik yang jauh lebih sedikit.
-
-\begin{flushleft}
-\textsuperscript{(1)} Titik kolokasi adalah titik-titik tertentu dalam domain waktu (atau ruang) di mana persamaan diferensial dianggap “benar” secara eksak.
-\end{flushleft}
-Kalau begitu apa bedanya dengan diskritisasi? \\
-jawab: Diskritisasi adalah proses \textbf{membagi domain waktu} menjadi titik-titik diskret untuk menghitung solusi numerik lokal, sedangkan kolokasi adalah \textbf{memilih titik diskret khusus} untuk memaksa persamaan diferensial “benar” pada titik-titik itu, lalu membangun solusi global berbasis polinomial.
-
-Disinilah letak mengapa diperlukan PSM pada NMPC, sebab PSM membuat NMPC lebih cepat karena ia mengganti integrasi langkah demi langkah dengan aproksimasi polinomial global berorde tinggi yang langsung bisa dimasukkan ke dalam optimasi nonlinear. 
-
-\subsection{Polinomial Chebyshev}
-Polinomial Chebyshev adalah dua deret polinomial ortogonal yang berhubungan dengan fungsi kosinus dan sinus, dinotasikan sebagai $T_n(x)$ dan $U_n(x)$. Dengan
-\[
-T_n(\cos (\theta)) = \cos (n\theta)
-\]
-\[
-U_n(\cos(\theta))\sin\theta = \sin((n+1)\theta)
-\]
-Artinya jika $x = \cos\theta$, maka
-\[
-T_0 = 1, \quad T_1=\cos(\theta), \quad T_2=\cos(2\theta), \quad T_3=\cos(3\theta)
-\]
-Dengan contoh polinomial pertama yaitu:
-\begin{table}[H]
-    \centering
-    \begin{tabular}{c c}
-        \toprule
-        $n$ & $T_n(x)$ \\
-        \midrule
-        0 & $1$ \\
-        1 & $x$ \\
-        2 & $2x^2 - 1$ \\
-        3 & $4x^3 - 3x$ \\
-        4 & $8x^4 - 8x^2 + 1$ \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
-\subsection{Chebyshev Pseudospectral Method}
-Metode Chebyshev Pseudospectral adalah salah satu dari PSM yang menggunakan Chebyshev–Gauss–Lobatto (CGL) sebegai titik-titik kolokasi. Titik ini berasal dari ekstrem (maksimum dan minimum) polinomial Chebyshev $T_n(x)$. Berikut adalah langkah-langkah memperoleh Chebyshev–Gauss–Lobatto (CGL).
-Definisi dasar Chebyshev:
-\[
-T_n(x) = \cos(n\theta), \qquad x = \cos(\theta)
-\]
-Langkah 1: Cari titik ekstrem (maksimum dan minimum) \\
-Titik ekstrem diperoleh saat turunan terhadap $x$ bernilai nol:
-\[
-\frac{dT_n(x)}{dx} = 0
-\]
-Karena $x = \cos\theta$, gunakan turunan rantai:
-\[
-\frac{dT_n(x)}{dx} = 
-\frac{dT_n}{d\theta} \cdot \frac{d\theta}{dx}
-\]
-Kita tahu:
-\[
-T_n(x) = \cos(n\theta)
-\quad \Rightarrow \quad 
-\frac{dT_n}{d\theta} = -n \sin(n\theta)
-\]
-dan
-\[
-\frac{d\theta}{dx} = -\frac{1}{\sqrt{1 - x^2}}
-\]
-Sehingga:
-\[
-\frac{dT_n}{dx} = 
-\frac{n \sin(n\theta)}{\sqrt{1 - x^2}}
-\]
-Langkah 2: Syarat ekstrem → nolkan turunan \\
-
-\[
-\frac{dT_n}{dx} = 0 
-\quad \Rightarrow \quad 
-\sin(n\theta) = 0
-\]
-Solusi:
-\[
-n\theta_i = i\pi, 
-\qquad i = 0, 1, 2, \ldots, n
-\]
-
-\[
-\Rightarrow \quad 
-\theta_i = \frac{i\pi}{n}
-\]
-Langkah 3: Kembalikan ke $x$ \\
-
-\[
-x_i = \cos(\theta_i) 
-= \cos\left(\frac{i\pi}{n}\right),
-\qquad i = 0, 1, \ldots, n
-\]
-Nah, inilah rumus \textbf{Chebyshev--Gauss--Lobatto nodes.}
-
-Disebut Chebyshev--Gauss--Lobatto karena berasal teori quadrature (integrasi numerik):
-\begin{enumerate}
-    \item Gauss quadrature = metode integrasi numerik berbasis akar polinomial ortogonal (misal, Chebyshev atau Legendre).
-    \item Lobatto = modifikasi Gauss quadrature yang juga menyertakan titik ujung domain (-1 dan +1).
-\end{enumerate}
-
 \subsection{Metodologi}
 \subsubsection{Pengkajian Model Kapal}
 Pada tahap ini akan menghasilkan model kapal tak linier, yaitu:
@@ -289,6 +185,127 @@ dengan
 \]
 
 \newpage
+\subsection{Apa itu metode pseudospectral Method}
+Pseudospectral Method (PSM) adalah metode numerik untuk menyelesaikan persamaan diferensial dengan mengaproksimasi fungsi menggunakan polinomial ortogonal (biasanya Chebyshev atau Legendre).
+
+Berbeda dengan metode numerik konvensional (seperti Euler atau Runge-Kutta) yang mendiskritisasi waktu secara seragam, PSM menggunakan \textbf{titik kolokasi nonuniform}\textsuperscript{(1)} yang mengikuti distribusi akar atau ekstrem dari polinomial ortogonal. Tujuannya adalah untuk mencapai akurasi sangat tinggi (eksponensial) dengan jumlah titik yang jauh lebih sedikit.
+
+\textbf{PSM tidak menghitung turunan secara simbolik, tetapi mendefinisikan turunan fungsi pada sejumlah titik kolokasi} menggunakan matriks diferensiasi yang dibangun dari basis polinomial. Dengan cara ini, PSM mengubah persamaan diferensial menjadi sistem aljabar yang dapat diselesaikan dengan metode numerik standar.
+
+\begin{flushleft}
+\textsuperscript{(1)} Titik kolokasi adalah titik-titik tertentu dalam domain waktu (atau ruang) di mana persamaan diferensial dianggap “benar” secara eksak.
+\end{flushleft}
+Kalau begitu apa bedanya dengan diskritisasi? \\
+jawab: Diskritisasi adalah proses \textbf{membagi domain waktu} menjadi titik-titik diskret untuk menghitung solusi numerik lokal, sedangkan kolokasi adalah \textbf{memilih titik diskret khusus} untuk memaksa persamaan diferensial “benar” pada titik-titik itu, lalu membangun solusi global berbasis polinomial.
+
+Disinilah letak mengapa diperlukan PSM pada NMPC, sebab PSM membuat NMPC lebih cepat karena ia mengganti integrasi langkah demi langkah dengan aproksimasi polinomial global berorde tinggi yang langsung bisa dimasukkan ke dalam optimasi nonlinear. 
+
+\subsection{Polinomial Chebyshev}
+Polinomial Chebyshev adalah dua deret polinomial ortogonal yang berhubungan dengan fungsi kosinus dan sinus, dinotasikan sebagai $T_n(x)$ dan $U_n(x)$. Dengan
+\[
+T_n(\cos (\theta)) = \cos (n\theta)
+\]
+\[
+U_n(\cos(\theta))\sin\theta = \sin((n+1)\theta)
+\]
+Artinya jika $x = \cos\theta$, maka
+\[
+T_0 = 1, \quad T_1=\cos(\theta), \quad T_2=\cos(2\theta), \quad T_3=\cos(3\theta)
+\]
+Dengan contoh polinomial pertama yaitu:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c}
+        \toprule
+        $n$ & $T_n(x)$ \\
+        \midrule
+        0 & $1$ \\
+        1 & $x$ \\
+        2 & $2x^2 - 1$ \\
+        3 & $4x^3 - 3x$ \\
+        4 & $8x^4 - 8x^2 + 1$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Chebyshev Pseudospectral Method}
+Metode Chebyshev Pseudospectral adalah salah satu dari PSM yang menggunakan Chebyshev–Gauss–Lobatto (CGL) sebegai titik-titik kolokasi. Titik ini berasal dari ekstrem (maksimum dan minimum) polinomial Chebyshev $T_n(x)$. Berikut adalah langkah-langkah memperoleh Chebyshev–Gauss–Lobatto (CGL).
+Definisi dasar Chebyshev:
+\[
+T_n(x) = \cos(n\theta), \qquad x = \cos(\theta)
+\]
+Langkah 1: Cari titik ekstrem (maksimum dan minimum) \\
+Titik ekstrem diperoleh saat turunan terhadap $x$ bernilai nol:
+\[
+\frac{dT_n(x)}{dx} = 0
+\]
+Karena $x = \cos\theta$, gunakan turunan rantai:
+\[
+\frac{dT_n(x)}{dx} = 
+\frac{dT_n}{d\theta} \cdot \frac{d\theta}{dx}
+\]
+Kita tahu:
+\[
+T_n(x) = \cos(n\theta)
+\quad \Rightarrow \quad 
+\frac{dT_n}{d\theta} = -n \sin(n\theta)
+\]
+dan
+\[
+\frac{d\theta}{dx} = -\frac{1}{\sqrt{1 - x^2}}
+\]
+Sehingga:
+\[
+\frac{dT_n}{dx} = 
+\frac{n \sin(n\theta)}{\sqrt{1 - x^2}}
+\]
+Langkah 2: Syarat ekstrem → nolkan turunan \\
+
+\[
+\frac{dT_n}{dx} = 0 
+\quad \Rightarrow \quad 
+\sin(n\theta) = 0
+\]
+Solusi:
+\[
+n\theta_i = i\pi, 
+\qquad i = 0, 1, 2, \ldots, n
+\]
+
+\[
+\Rightarrow \quad 
+\theta_i = \frac{i\pi}{n}
+\]
+Langkah 3: Kembalikan ke $x$ \\
+
+\[
+x_i = \cos(\theta_i) 
+= \cos\left(\frac{i\pi}{n}\right),
+\qquad i = 0, 1, \ldots, n
+\]
+Nah, inilah rumus \textbf{Chebyshev--Gauss--Lobatto nodes.}
+
+Disebut Chebyshev--Gauss--Lobatto karena berasal teori quadrature (integrasi numerik):
+\begin{enumerate}
+    \item Gauss quadrature = metode integrasi numerik berbasis akar polinomial ortogonal (misal, Chebyshev atau Legendre).
+    \item Lobatto = modifikasi Gauss quadrature yang juga menyertakan titik ujung domain (-1 dan +1).
+\end{enumerate}
+
+\subsection{Polinomial Lagrange}
+Polinomial Lagrange adalah metode interpolasi polinomial yang digunakan untuk membangun polinomial yang melewati sekumpulan titik data tertentu. Misalkan terdapat $N+1$ titik data $(x_0, y_0), (x_1, y_1), \ldots, (x_N, y_N)$, maka polinomial Lagrange $P(x)$ yang melewati semua titik tersebut dapat dituliskan sebagai:
+\[
+P(x) = \sum_{i=0}^{N} y_i \, L_i(x)
+\]
+dengan basis fungsi Lagrange $L_i(x)$ didefinisikan sebagai:
+\[
+L_i(x) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{x - x_j}{x_i - x_j}
+\]
+Dimana $L_i(x)$ memiliki sifat bahwa $L_i(x_j) = \delta_{ij}$ (delta Kronecker), yang berarti $L_i(x)$ bernilai 1 pada titik $x_i$ dan 0 pada semua titik data lainnya. Dengan demikian, polinomial Lagrange memastikan bahwa $P(x_i) = y_i$ untuk setiap titik data.
+
+Disinilah alasan mengapa pada Chebyshev Pseudospectral Method digunakan polinomial Lagrange, yaitu karena \textbf{fungsi basis Lagrange secara langsung memastikan nilai aproksimasi melewati setiap titik kolokasi yang telah ditentukan}, sehingga memudahkan perhitungan nilai fungsi dan turunannya di setiap node tanpa perlu menghitung koefisien ortogonal polinomial Chebyshev secara eksplisit.
+
+\subsection{Matriks DIfferensiasi $D_{ki}$}
+
 \subsection{Contoh Penggunaan Polinomial Chebysev}
 Berikut adalah perbandingan polinomial Chebysev dan ode45 dalam menyelesaikan persamaan differensial $\dot{x}=x$.
 \begin{figure}[H] 

@@ -142,31 +142,12 @@ INPUT C:\Users\user\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-rm.enc
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathit.enc
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathsy.enc
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\tex\latex\lm\ts1lmr.fd
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmr10.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
-INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-mathex.enc
-INPUT ..\gambar\Chebyshev vs Ode45.png
-INPUT ..\gambar\Chebyshev vs Ode45.png
-INPUT ..\gambar\Chebyshev vs Ode45.png
-INPUT ..\gambar\Chebyshev vs Ode45.png
-INPUT ..\gambar\Chebyshev vs Ode45.png
-INPUT ..\gambar\Chebyshev vs Ode45.png
-INPUT ..\gambar\obj_kontinu.png
-INPUT ..\gambar\obj_kontinu.png
-INPUT ..\gambar\obj_kontinu.png
-INPUT ..\gambar\obj_kontinu.png
-INPUT ..\gambar\obj_kontinu.png
-INPUT ..\gambar\obj_kontinu.png
-INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr9.tfm
-INPUT ..\gambar\obj_diskrit.png
-INPUT ..\gambar\obj_diskrit.png
-INPUT ..\gambar\obj_diskrit.png
-INPUT ..\gambar\obj_diskrit.png
-INPUT ..\gambar\obj_diskrit.png
-INPUT ..\gambar\obj_diskrit.png
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr8.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr6.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmi12.tfm
@@ -189,6 +170,25 @@ INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmmib7.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmbsy10.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmbsy10.tfm
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmbsy7.tfm
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\Chebyshev vs Ode45.png
+INPUT ..\gambar\obj_kontinu.png
+INPUT ..\gambar\obj_kontinu.png
+INPUT ..\gambar\obj_kontinu.png
+INPUT ..\gambar\obj_kontinu.png
+INPUT ..\gambar\obj_kontinu.png
+INPUT ..\gambar\obj_kontinu.png
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr9.tfm
+INPUT ..\gambar\obj_diskrit.png
+INPUT ..\gambar\obj_diskrit.png
+INPUT ..\gambar\obj_diskrit.png
+INPUT ..\gambar\obj_diskrit.png
+INPUT ..\gambar\obj_diskrit.png
+INPUT ..\gambar\obj_diskrit.png
 INPUT ..\gambar\waktu_tau_vs_biasa.png
 INPUT ..\gambar\waktu_tau_vs_biasa.png
 INPUT ..\gambar\waktu_tau_vs_biasa.png
@@ -237,6 +237,8 @@ INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi5.pf
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi5.pfb
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi7.pfb
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
+INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmmi8.pfb
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr10.pfb
 INPUT C:\Users\user\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmr5.pfb
