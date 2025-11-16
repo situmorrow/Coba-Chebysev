@@ -50,16 +50,16 @@ Dengan menggunakan aturan rantai untuk turunan terhadap $\tau$, diperoleh
 Sehingga persamaan model $\dot{\mathbf{s}} = \mathbf{f}(\mathbf{s},u)$ menjadi $\mathbf{\dot{s}}(\tau) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau),u(\tau))$.
 
 \subsubsection{Aproksimasi fungsi dengan polinomial Langrange}
-Fungsi $x(\tau)$ dapat diaproksimasi dengan \textbf{polinomial Lagrange\textsuperscript{(2)}} yaitu
+Fungsi $s(\tau)$ dapat diaproksimasi dengan \textbf{polinomial Lagrange\textsuperscript{(2)}} yaitu
 \[
-x(\tau) = \sum_{i=0}^{N} x_i \, \phi_i(\tau) \label{eq.S_tau}
+s(\tau) = \sum_{i=0}^{N} s_i \, \phi_i(\tau) \label{eq.S_tau}
 \]
 Dengan N adalah order polinomial $\phi_i$ adalah basis fungsi Lagrange yaitu
 \[
 \phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}
 \]
 \begin{flushleft}
-\textsuperscript{(2)}Pendekatan dengan menggunakan fungsi Lagrange dilakukan karena fungsi basis Lagrange secara langsung memastikan nilai aproksimasi melewati setiap titik kolokasi yang telah ditentukan, sehingga memudahkan perhitungan nilai fungsi dan turunannya di setiap node tanpa perlu menghitung koefisien ortogonal polinomial Chebyshev secara eksplisit.
+\textsuperscript{(2)}Pendekatan dengan menggunakan fungsi Lagrange dilakukan karena fungsi basis Lagrange secara langsung memastikan nilai aproksimasi melewati setiap titik kolokasi yang telah ditentukan.
 \end{flushleft}
 
 
@@ -126,11 +126,11 @@ dengan kendala
 \mathbf{u}_{\min} &\leq \mathbf{u}(t) \leq \mathbf{u}_{\max} \\
 \Delta \mathbf{u}_{\min} &\leq \Delta \mathbf{u}(t) \leq \Delta \mathbf{u}_{\max}
 \end{align*}
-Dengan $\Delta \mathbf{u}(k) = \mathbf{u}(k) - \mathbf{u}(k-1)$
+Dengan $\Delta \mathbf{u}(t) = \mathbf{u}(t) - \mathbf{u}(t-1)$
 
-Karena $\Delta \mathbf{u}(k)$ merupakan perubahan input terhadap waktu, maka perubahan input dapat dituliskan sebagai turunan terhadap waktu, yaitu
+Karena $\Delta \mathbf{u}(t)$ merupakan perubahan input terhadap waktu, maka perubahan input dapat dituliskan sebagai turunan terhadap waktu, yaitu
 \[
-\Delta \mathbf{u}(k) = \mathbf{u}(k) - \mathbf{u}(k-1) \approx \dot{\mathbf{u}(k)}
+\Delta \mathbf{u}(t) = \mathbf{u}(t) - \mathbf{u}(t-1) \approx \dot{\mathbf{u}}(t)
 \]
 Dengan cara yang sama dengan untuk diferensiasi state, maka turunan input dapat diaproksimasi dengan matriks diferensiasi Chebyshev, yaitu
 \[
@@ -304,7 +304,283 @@ Dimana $L_i(x)$ memiliki sifat bahwa $L_i(x_j) = \delta_{ij}$ (delta Kronecker),
 
 Disinilah alasan mengapa pada Chebyshev Pseudospectral Method digunakan polinomial Lagrange, yaitu karena \textbf{fungsi basis Lagrange secara langsung memastikan nilai aproksimasi melewati setiap titik kolokasi yang telah ditentukan}, sehingga memudahkan perhitungan nilai fungsi dan turunannya di setiap node tanpa perlu menghitung koefisien ortogonal polinomial Chebyshev secara eksplisit.
 
-\subsection{Matriks DIfferensiasi $D_{ki}$}
+\subsection{Matriks Differensiasi $D_{ki}$}
+\[
+s(\tau) = \sum_{i=0}^{N} s_i \, \phi_i(\tau)
+\]
+Dengan $N$ adalah orde polinomial dan $\phi_i$ adalah basis fungsi Lagrange yaitu
+\[
+\phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}.
+\]
+Dari persamaan $s(\tau)$ diturunkan terhadap $\tau$, sehingga menjadi
+\[
+\dot{s}(\tau) = \sum_{i=0}^{N} s_i \frac{d\phi_i(\tau)}{d\tau}.
+\]
+Matriks diferensiasi $D$ didefinisikan sebagai nilai turunan basis Lagrange pada titik kolokasi, yaitu
+\[
+D_{ki} = \left.\frac{d\phi_i(\tau)}{d\tau}\right|_{\tau=\tau_k},
+\]
+sehingga untuk setiap titik kolokasi $\tau_k$ diperoleh
+\[
+\dot{s}(\tau_k) = \sum_{i=0}^{N} s_i D_{ki}.
+\]
+
+Lalu bagaimana mencari $D_{ki}$?\\
+Diketahui jika
+\[
+\phi_i(\tau) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}.
+\]
+Jika menaruh $\tau = \tau_k$, maka akan terdapat dua kemungkinan, yaitu 
+\begin{enumerate}
+    \item Jika $k \ne i$, maka
+    \[
+    \phi_i(\tau_k) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau_k - \tau_j}{\tau_i - \tau_j},
+    \]
+    di dalam produk terdapat faktor dengan $j=k$ sehingga
+    \[
+    \frac{\tau_k-\tau_k}{\tau_i-\tau_k} = 0
+    \]
+    dan akibatnya $\phi_i(\tau_k)=0$.
+    \item Jika $k = i$, maka
+    \[
+    \phi_i(\tau_i) = \prod_{\substack{j=0 \\ j \ne i}}^{N}\frac{\tau_i - \tau_j}{\tau_i - \tau_j} = 1.
+    \]
+\end{enumerate}
+Akan dicari $D_{ki} = \dot{\phi_i}(\tau_k)$ untuk $k \ne i$ dan $k = i$.
+
+\textbf{Kasus 1: $k \ne i$}\\
+$\phi_i(\tau)$ difaktorkan sedemikian rupa sehingga memisahkan faktor $(\tau-\tau_k)$:
+\[
+\phi_i(\tau)
+= \frac{\tau-\tau_k}{\tau_i-\tau_k}
+  \prod_{\substack{j=0 \\ j \ne i,k}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}
+=: A(\tau)\,B(\tau),
+\]
+dengan
+\[
+A(\tau)=\frac{\tau-\tau_k}{\tau_i-\tau_k}, \qquad
+B(\tau)=\prod_{\substack{j=0 \\ j \ne i,k}}^{N}\frac{\tau - \tau_j}{\tau_i - \tau_j}.
+\]
+Turunan terhadap $\tau$ adalah
+\[
+\frac{d\phi_i(\tau)}{d\tau}
+= A'(\tau)B(\tau) + A(\tau)B'(\tau).
+\]
+Evaluasi pada $\tau=\tau_k$ memberikan
+\[
+A(\tau_k)=0, \qquad A'(\tau_k)=\frac{1}{\tau_i-\tau_k},
+\]
+sehingga
+\[
+D_{ki} = \dot{\phi_i}(\tau_k)
+= \frac{1}{\tau_i-\tau_k}
+   \prod_{\substack{j=0 \\ j \ne i,k}}^{N}\frac{\tau_k - \tau_j}{\tau_i - \tau_j},
+    \qquad k\ne i.
+\]
+Inilah elemen off-diagonal dari matriks diferensiasi $D$ untuk titik kolokasi umum.
+
+\textbf{Kasus 2: $k = i$}\\
+Untuk elemen diagonal, digunakan aturan turunan produk pada $\phi_i(\tau)$:
+\[
+\frac{d\phi_i(\tau)}{d\tau}
+= \sum_{\substack{m=0 \\ m \ne i}}^{N}
+   \left(
+   \prod_{\substack{j=0 \\ j \ne i, j \ne m}}^{N}
+   \frac{\tau - \tau_j}{\tau_i - \tau_j}
+   \cdot
+   \frac{1}{\tau_i - \tau_m}
+   \right).
+\]
+Evaluasi pada $\tau = \tau_i$ menghasilkan
+\[
+D_{ii} = \dot{\phi_i}(\tau_i)
+= \sum_{\substack{m=0 \\ m \ne i}}^{N}
+   \left(
+   \prod_{\substack{j=0 \\ j \ne i, j \ne m}}^{N}
+   \frac{\tau_i - \tau_j}{\tau_i - \tau_j}
+   \cdot
+   \frac{1}{\tau_i - \tau_m}
+   \right).
+\]
+Karena
+\[
+\prod_{\substack{j=0 \\ j \ne i, j \ne m}}^{N}
+\frac{\tau_i - \tau_j}{\tau_i - \tau_j} = 1,
+\]
+maka
+\[
+D_{ii} = \sum_{\substack{m=0 \\ m \ne i}}^{N} \frac{1}{\tau_i - \tau_m}.
+\]
+Dengan demikian, elemen-elemen matriks diferensiasi $D$ dinyatakan sebagai
+\[
+D_{ki} =
+\begin{cases}
+\displaystyle
+\frac{1}{\tau_i-\tau_k}
+\prod_{\substack{j=0 \\ j \ne i,k}}^{N}
+\frac{\tau_k - \tau_j}{\tau_i - \tau_j}, & k\ne i,\\[10pt]
+\displaystyle
+\sum_{\substack{m=0 \\ m \ne i}}^{N} \frac{1}{\tau_i - \tau_m}, & k=i.
+\end{cases}
+\]
+
+Untuk mempersingkat notasi, didefinisikan terlebih dahulu
+\[
+d_i = \prod_{\substack{j=0 \\ j \ne i}}^{N} (\tau_i - \tau_j),
+\qquad
+w_i = \frac{1}{d_i}
+= \frac{1}{\displaystyle\prod_{\substack{j=0 \\ j \ne i}}^{N} (\tau_i - \tau_j)},
+\]
+dengan $w_i$ dikenal sebagai \emph{barycentric weight} pada titik kolokasi $\tau_i$.
+
+Rumus off-diagonal yang diperoleh pada Kasus~1 dapat ditulis ulang sebagai
+\[
+D_{ki}
+= \frac{1}{\tau_i-\tau_k}
+\prod_{\substack{j=0 \\ j \ne i,k}}^{N}
+   \frac{\tau_k - \tau_j}{\tau_i - \tau_j}
+= \frac{d_k}{d_i}\,\frac{1}{\tau_k - \tau_i},
+\qquad k\ne i.
+\]
+Dengan menggunakan $w_i = 1/d_i$, rumus tersebut menjadi sangat ringkas:
+\[
+\boxed{
+D_{ki} = \frac{w_i}{w_k(\tau_k - \tau_i)}, \qquad k \ne i.
+}
+\]
+
+Untuk elemen diagonal, dari sifat dasar basis Lagrange berlaku
+\[
+\sum_{i=0}^{N} \phi_i(\tau) \equiv 1
+\quad\Rightarrow\quad
+\sum_{i=0}^{N} \phi_i'(\tau_k) = 0
+\quad\Rightarrow\quad
+\sum_{i=0}^{N} D_{ki} = 0,
+\]
+sehingga
+\[
+\boxed{
+D_{kk} = -\sum_{\substack{i=0 \\ i \ne k}}^{N} D_{ki}.
+}
+\]
+Persamaan ini ekuivalen dengan ekspresi eksplisit pada Kasus~2 dan sering lebih nyaman digunakan dalam implementasi numerik.
+
+\subsubsection*{Matriks diferensiasi Chebyshev--Gauss--Lobatto}
+
+Untuk Chebyshev Pseudospectral Method, titik kolokasi dipilih sebagai titik
+Chebyshev--Gauss--Lobatto (CGL)
+\[
+\tau_i = \cos\left(\frac{i\pi}{N}\right), \qquad i = 0,1,\dots,N.
+\]
+Pada titik-titik ini barycentric weight $w_i$ memiliki bentuk tertutup yang sangat sederhana:
+\[
+w_i = \frac{(-1)^i}{c_i}, \qquad
+c_i =
+\begin{cases}
+2, & i = 0,\,N,\\
+1, & 1 \le i \le N-1.
+\end{cases}
+\]
+Mensubstitusikan $w_i = (-1)^i/c_i$ ke dalam rumus barycentric $D_{ki} = \dfrac{w_i}{w_k(\tau_k-\tau_i)}$ menghasilkan
+\[
+D_{ki}
+= \frac{c_k}{c_i}\,\frac{(-1)^{k+i}}{\tau_k - \tau_i},
+\qquad k \ne i.
+\]
+Untuk elemen diagonal interior ($1 \le k \le N-1$) diperoleh secara analitik dengan menjumlahkan elemen off-diagonal tanpa k , maka akan diperoleh
+\[
+D_{kk} = -\frac{\tau_k}{2\left(1-\tau_k^2\right)}, \qquad k=1,2,\dots,N-1,
+\]
+sedangkan untuk titik ujung digunakan limit khusus sehingga
+\[
+D_{00} = \frac{2N^2 + 1}{6}, \qquad
+D_{NN} = -\frac{2N^2 + 1}{6}.
+\]
+
+Dengan demikian, matriks diferensiasi Chebyshev--Gauss--Lobatto dapat dituliskan secara ringkas sebagai
+\[
+D_{ki} =
+\begin{cases}
+\displaystyle
+\frac{c_k}{c_i}\,\frac{(-1)^{k+i}}{\tau_k - \tau_i},
+& k \ne i,\\[10pt]
+\displaystyle
+-\dfrac{\tau_k}{2\left(1-\tau_k^2\right)},
+& 1 \le k \le N-1,\\[10pt]
+\displaystyle
+\dfrac{2N^2 + 1}{6}, & k = 0,\\[6pt]
+\displaystyle
+-\dfrac{2N^2 + 1}{6}, & k = N.
+\end{cases}
+\]
+
+Rumus ini adalah bentuk standar matriks diferensiasi Chebyshev yang digunakan pada Chebyshev Pseudospectral Method dan menjadi dasar dalam diskretisasi turunan terhadap $\tau$ dalam formulasi NMPC berbasis Chebyshev.
+
+\subsection{Lagrange + CGL VS Chebysev}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.6} % jarak baris lebih longgar
+\setlength{\tabcolsep}{8pt}      % jarak kolom lebih lebar
+\footnotesize                   % ukuran font sedikit dikecilkan agar muat
+
+\begin{tabular}{p{4cm} p{6cm} p{6cm}}
+\toprule
+\textbf{Aspek} &
+\textbf{Lagrange + CGL (Nodal)} &
+\textbf{Chebyshev Murni (Modal $T_n$)} \\
+\midrule
+
+Representasi &
+Nilai fungsi di titik node &
+Koefisien polinomial $a_n$ \\
+
+Variabel dalam NLP &
+$s_k, u_k$ langsung &
+Perlu transformasi modal ke nodal \\
+
+Matriks diferensiasi &
+Dihitung sekali, langsung digunakan &
+Dibangun dari $V_d V^{-1}$ \\
+
+Ekspresi kendala &
+Sangat mudah (langsung pada node) &
+Rumit (harus dikonversi ke domain nodal) \\
+
+Implementasi &
+Implementasi sangat sederhana &
+Implementasi jauh lebih kompleks \\
+
+Stabilitas numerik &
+Sangat baik (CGL optimal) &
+Sangat baik (basis ortogonal) \\
+
+Kecepatan komputasi &
+Lebih cepat, tidak ada transformasi &
+Lebih lambat (modal–nodal transform) \\
+
+Cocok untuk NMPC &
+\textbf{Ya, standar industri} &
+Tidak cocok untuk NMPC \\
+
+Digunakan di literatur &
+GPOPS-II, Chebyshev PS Methods &
+Lebih sering pada teori analitik \\
+
+Kelebihan utama &
+Kode simpel, langsung kompatibel dengan constraint &
+Basis polinomial elegan secara teori \\
+
+Kekurangan utama &
+Tidak elegan secara modal &
+Kendala dan dinamika lebih sulit ditulis \\
+
+\bottomrule
+\end{tabular}
+
+\caption{Perbandingan metode Lagrange + CGL (nodal) vs Chebyshev murni (modal).}
+\end{table}
+
+
 
 \subsection{Contoh Penggunaan Polinomial Chebysev}
 Berikut adalah perbandingan polinomial Chebysev dan ode45 dalam menyelesaikan persamaan differensial $\dot{x}=x$.
