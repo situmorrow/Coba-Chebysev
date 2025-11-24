@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1763290592.05472 "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" "coba-coba.pdf" "coba-coba" 1763290593.09085 0
+["pdflatex"] 1763375484.44569 "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" "coba-coba.pdf" "coba-coba" 1763375485.70297 0
   "../gambar/CHEBYSEV_NMPC.png" 1761532278 17559 0344ef5f480ecdc723d6baadd52ca623 ""
   "../gambar/Chebyshev vs Ode45.png" 1762356023 47445 f1e79107b1e18d8eadcd51f782ae4679 ""
   "../gambar/NMPC_BIASA.png" 1761532278 6945 1b97a67169f97abda048b3d8c12037e6 ""
@@ -120,9 +120,9 @@
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/tools/bm.sty" 1749468414 13236 71253d8fde2c80ecebae7e3f7da0c2b0 ""
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/tools/longtable.sty" 1749468414 15912 618223a798a4d829f4d8e1ccf24e518f ""
   "C:/Users/user/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1749468414 7243 a2c17f18e2c9b702b84fad03d5f9c78b ""
-  "coba-coba.aux" 1763290592 5449 c1795feef4a0348fec3c167e3c37ce42 "pdflatex"
-  "coba-coba.tex" 1763290591 44351 21f6291ae210f456648f9f90bdf3f5a9 ""
-  "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" 1763290591 44351 21f6291ae210f456648f9f90bdf3f5a9 ""
+  "coba-coba.aux" 1763375485 5449 4df56a3eb00335801b7701c36e3a5ebd "pdflatex"
+  "coba-coba.tex" 1763375483 44827 9e2bd1c025a052a7ad525b92f7ad6204 ""
+  "d:/TES/TA/Coba-chebysev/coba-coba/latex/coba-coba.tex" 1763375483 44827 9e2bd1c025a052a7ad525b92f7ad6204 ""
   (generated)
   "coba-coba.aux"
   "coba-coba.log"

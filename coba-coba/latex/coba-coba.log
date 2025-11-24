@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  16 NOV 2025 17:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.10.17)  17 NOV 2025 17:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -412,28 +412,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [3]
 
 [4]
-Overfull \hbox (0.99532pt too wide) in paragraph at lines 191--192
+Overfull \hbox (0.99532pt too wide) in paragraph at lines 199--200
 []\OT1/lmr/m/n/10 Berbeda den-gan metode nu-merik kon-ven-sional (seperti Eu-ler atau Runge-Kutta) yang mendiskri-
  []
 
 
-Overfull \hbox (44.59227pt too wide) in paragraph at lines 232--234
+Overfull \hbox (44.59227pt too wide) in paragraph at lines 240--242
 \OT1/lmr/m/n/10 Metode Cheby-shev Pseu-dospec-tral adalah salah satu dari PSM yang meng-gu-nakan Cheby-shev{Gauss{Lobatto
  []
 
 
 
 [5]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 262.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 270.
  (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 261--263
+Underfull \hbox (badness 10000) in paragraph at lines 269--271
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--280
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
 
  []
 
@@ -441,11 +441,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 278--280
 
 [6{C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 307.
+(Font)              <12> on input line 315.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 307.
+(Font)              <8> on input line 315.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 307.
+(Font)              <6> on input line 315.
 
 
 [7]
@@ -453,26 +453,26 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [8]
 
 [9]
-Overfull \hbox (4.23183pt too wide) in paragraph at lines 500--501
+Overfull \hbox (4.23183pt too wide) in paragraph at lines 508--509
 []\OT1/lmr/m/n/10 Dengan demikian, ma-triks difer-en-si-asi Chebyshev--Gauss--Lobatto da-pat di-t-uliskan se-cara ringkas
  []
 
 
 
 [10]
-Underfull \hbox (badness 1092) in paragraph at lines 570--570
+Underfull \hbox (badness 1092) in paragraph at lines 578--578
 []|\OT1/lmr/m/n/8 Kode sim-pel, lang-sung kom-pat-i-bel den-gan
  []
 
 
-Overfull \hbox (73.23944pt too wide) in paragraph at lines 526--579
+Overfull \hbox (73.23944pt too wide) in paragraph at lines 534--587
  [][] 
  []
 
 <../gambar/Chebyshev vs Ode45.png, id=49, 666.3294pt x 437.9562pt>
 File: ../gambar/Chebyshev vs Ode45.png Graphic file (type png)
 <use ../gambar/Chebyshev vs Ode45.png>
-Package pdftex.def Info: ../gambar/Chebyshev vs Ode45.png  used on input line 589.
+Package pdftex.def Info: ../gambar/Chebyshev vs Ode45.png  used on input line 597.
 (pdftex.def)             Requested size: 301.00192pt x 197.84029pt.
 
 
@@ -480,119 +480,119 @@ Package pdftex.def Info: ../gambar/Chebyshev vs Ode45.png  used on input line 58
 <../gambar/obj_kontinu.png, id=58, 591.71063pt x 217.5628pt>
 File: ../gambar/obj_kontinu.png Graphic file (type png)
 <use ../gambar/obj_kontinu.png>
-Package pdftex.def Info: ../gambar/obj_kontinu.png  used on input line 600.
+Package pdftex.def Info: ../gambar/obj_kontinu.png  used on input line 608.
 (pdftex.def)             Requested size: 206.40038pt x 75.88918pt.
 <../gambar/obj_diskrit.png, id=60, 615.80063pt x 237.13594pt>
 File: ../gambar/obj_diskrit.png Graphic file (type png)
 <use ../gambar/obj_diskrit.png>
-Package pdftex.def Info: ../gambar/obj_diskrit.png  used on input line 607.
+Package pdftex.def Info: ../gambar/obj_diskrit.png  used on input line 615.
 (pdftex.def)             Requested size: 206.40038pt x 79.48172pt.
 <../gambar/waktu_tau_vs_biasa.png, id=61, 542.9886pt x 360.3864pt>
 File: ../gambar/waktu_tau_vs_biasa.png Graphic file (type png)
 <use ../gambar/waktu_tau_vs_biasa.png>
-Package pdftex.def Info: ../gambar/waktu_tau_vs_biasa.png  used on input line 617.
+Package pdftex.def Info: ../gambar/waktu_tau_vs_biasa.png  used on input line 626.
 (pdftex.def)             Requested size: 430.00462pt x 285.406pt.
 
 
 [12 <../gambar/Chebyshev vs Ode45.png (PNG copy)> <../gambar/obj_kontinu.png> <../gambar/obj_diskrit.png>]
-Overfull \hbox (59.01308pt too wide) in alignment at lines 636--640
+Overfull \hbox (59.01308pt too wide) in alignment at lines 645--649
  [] [] [] [] 
  []
 
 
-Overfull \hbox (59.01308pt too wide) in alignment at lines 640--645
+Overfull \hbox (59.01308pt too wide) in alignment at lines 649--654
  [] [] [] [] 
  []
 
 
-Overfull \hbox (59.01308pt too wide) in alignment at lines 645--647
+Overfull \hbox (59.01308pt too wide) in alignment at lines 654--656
  [] [] [] [] 
  []
 
 
-Overfull \hbox (59.01308pt too wide) in alignment at lines 647--649
+Overfull \hbox (59.01308pt too wide) in alignment at lines 656--658
  [] [] [] [] 
  []
 
 
-Overfull \hbox (6.84189pt too wide) in paragraph at lines 662--662
+Overfull \hbox (6.84189pt too wide) in paragraph at lines 671--671
 []|\OT1/lmr/m/n/10 Chebyshev{Gauss{Lobatto:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 663--663
+Underfull \hbox (badness 10000) in paragraph at lines 672--672
 []|\OT1/lmr/m/n/10 Legendre{Gauss{Lobatto:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--665
+Underfull \hbox (badness 10000) in paragraph at lines 673--674
 []|\OT1/lmr/m/n/10 Laguerre{Gauss: akar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 671--671
+Underfull \hbox (badness 10000) in paragraph at lines 680--680
 []|\OT1/lmr/m/n/10 Bobot in-te-grasi
  []
 
 
-Underfull \hbox (badness 2197) in paragraph at lines 672--672
+Underfull \hbox (badness 2197) in paragraph at lines 681--681
 []|\OT1/lmr/m/n/10 Bentuk ter-tutup, seder-
  []
 
 
-Underfull \hbox (badness 1708) in paragraph at lines 692--692
+Underfull \hbox (badness 1708) in paragraph at lines 701--701
 \OT1/lmr/m/n/10 zon pan-jang (clus-ter di
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--693
+Underfull \hbox (badness 10000) in paragraph at lines 702--702
 []|\OT1/lmr/m/n/10 Perlu kom-putasi akar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--697
+Underfull \hbox (badness 10000) in paragraph at lines 706--706
 []|\OT1/lmr/m/n/10 Terhadap bobot
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 704--705
+Underfull \hbox (badness 10000) in paragraph at lines 713--714
 []|\OT1/lmr/m/n/10 Infinite-horizon con-trol,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 711--711
+Underfull \hbox (badness 10000) in paragraph at lines 720--720
 []|\OT1/lmr/m/n/10 Kemudahan im-ple-
  []
 
 
-Underfull \hbox (badness 6842) in paragraph at lines 712--712
+Underfull \hbox (badness 6842) in paragraph at lines 721--721
 []|\OT1/lmr/m/n/10 Sangat mu-dah, $\OML/lmm/m/it/10 O\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 N[]\OT1/lmr/m/n/10 )$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 716--716
+Underfull \hbox (badness 10000) in paragraph at lines 725--725
 []|\OT1/lmr/m/n/10 Kesesuaian un-tuk
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 717--717
+Underfull \hbox (badness 1275) in paragraph at lines 726--726
 \OT1/lmr/m/n/10 nite hori-zon, cepat dan
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 718--718
+Underfull \hbox (badness 5548) in paragraph at lines 727--727
 []|\OT1/lmr/m/n/10 Cocok juga tapi kom-
  []
 
 
-Overfull \hbox (59.01308pt too wide) in alignment at lines 649--721
+Overfull \hbox (59.01308pt too wide) in alignment at lines 658--730
  [] [] [] [] 
  []
 
 [13 <../gambar/waktu_tau_vs_biasa.png (PNG copy)>]
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 738--744
+Underfull \hbox (badness 10000) in paragraph at lines 747--753
 
  []
 
@@ -602,13 +602,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 738--744
 <../gambar/fungsi_lapangan.png, id=78, 694.09312pt x 355.3275pt>
 File: ../gambar/fungsi_lapangan.png Graphic file (type png)
 <use ../gambar/fungsi_lapangan.png>
-Package pdftex.def Info: ../gambar/fungsi_lapangan.png  used on input line 791.
+Package pdftex.def Info: ../gambar/fungsi_lapangan.png  used on input line 800.
 (pdftex.def)             Requested size: 430.00462pt x 220.1381pt.
 
 
 [16 <../gambar/fungsi_lapangan.png>]
 
-Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 847.
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead on input line 856.
 
 
 
@@ -620,12 +620,12 @@ Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instead
 <../gambar/CHEBYSEV_NMPC.png, id=93, 330.48468pt x 301.125pt>
 File: ../gambar/CHEBYSEV_NMPC.png Graphic file (type png)
 <use ../gambar/CHEBYSEV_NMPC.png>
-Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 981.
+Package pdftex.def Info: ../gambar/CHEBYSEV_NMPC.png  used on input line 990.
 (pdftex.def)             Requested size: 206.40038pt x 188.0694pt.
 <../gambar/NMPC_BIASA.png, id=94, 208.52907pt x 243.91125pt>
 File: ../gambar/NMPC_BIASA.png Graphic file (type png)
 <use ../gambar/NMPC_BIASA.png>
-Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 989.
+Package pdftex.def Info: ../gambar/NMPC_BIASA.png  used on input line 998.
 (pdftex.def)             Requested size: 150.50424pt x 176.0514pt.
 
 
@@ -641,7 +641,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [23]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 1116.
+(Font)              <14.4> on input line 1125.
 
 
 [24]
@@ -667,7 +667,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  73i,14n,77p,488b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx8.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr5.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb>
-Output written on coba-coba.pdf (26 pages, 1401905 bytes).
+Output written on coba-coba.pdf (26 pages, 1403061 bytes).
 PDF statistics:
  212 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

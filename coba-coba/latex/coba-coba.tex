@@ -75,10 +75,18 @@ Dengan persaman model adalah
 \dot{\mathbf{s}}(\tau_i) = \frac{t_f-t_0}{2}\mathbf{f}(\mathbf{s}(\tau_i),u(\tau_i))
 \]
 \subsubsection{Diferensiasi via Matriks Chebyshev}
+Dari persamaan $s(\tau)$ diturunkan terhadap $\tau$, sehingga menjadi
+\[
+\dot{s}(\tau) = \sum_{i=0}^{N} s_i \frac{d\phi_i(\tau)}{d\tau}.
+\]
+Matriks diferensiasi $D$ didefinisikan sebagai nilai turunan basis Lagrange pada titik kolokasi, yaitu
+\[
+D_{ki} = \left.\frac{d\phi_i(\tau)}{d\tau}\right|_{\tau=\tau_k},
+\]
 \[
 \dot{\mathbf{s}}(\tau_i) \approx \sum_{j=0}^{N} D_{ij} \mathbf{s}(\tau_j)
 \]
-Elemen \textbf{Chebyshev differentiation matrix} $D$ untuk node CGL:
+Elemen \textbf{Chebyshev differentiation matrix} $D$ untuk node CGL (Sumber: Buku Spectral Methods in MATLAB):
 \[
 D_{ij} =
 \begin{cases}
@@ -95,7 +103,7 @@ Sehingga model kapal menjadi
 \]
 
 \subsubsection{Kuantifikasi Integral (Quadrature) NMPC Secara Umum}
-Integral pada $[-1,1]$ diganti jumlah berbobot (aturan Chebyshev--Gauss--Lobatto):
+Integral pada $[-1,1]$ diganti jumlah berbobot Clenshaw-Curtis quadrature rule:
 \[
 \int_{-1}^{1} g(\tau)\, d\tau \approx \sum_{i=0}^{N} w_i g(\tau_i).
 \]
@@ -138,7 +146,7 @@ Dengan cara yang sama dengan untuk diferensiasi state, maka turunan input dapat 
 \]
 Sehingga fungsi tujuan Chebyshev NMPC menjadi:
 \[
-J = \frac{T}{2} 
+J = \frac{t_f - t_0}{2} 
 \sum_{i=0}^{N} w_i 
 \left[
 \| h_{\mathrm{ref},i} - h_i \|_Q^2 
@@ -148,13 +156,13 @@ J = \frac{T}{2}
 \]
 dengan kendala
 \begin{align*}
-    \frac{2}{T} \sum_{j=0}^{N} D_{kj} s_j &= f(s_k, u_k) \\
+    \frac{2}{t_f - t_0} \sum_{j=0}^{N} D_{kj} s_j &= f(s_k, u_k) \\
     h_k &= C s_k \\
     s_{\min} \le &s_k \le s_{\max}\\
     u_{\min} \le &u_k \le u_{\max} \\
-    \dot{u}_{\min} \le \frac{2}{T} &\sum_{j=0}^{N} D_{kj} u_j \le \dot{u}_{\max} \\
+    \dot{u}_{\min} \le \frac{2}{t_f - t_0} &\sum_{j=0}^{N} D_{kj} u_j \le \dot{u}_{\max} \\
 \end{align*}
-untuk $k = 0, \ldots, N$. Untuk $N$ genap, $w_k$ adalah
+untuk $k = 0, \ldots, N$. Untuk $N$ genap, $w_k$ adalah (sumber jurnal "FAST CONSTRUCTION OF THE FORIER AND CLENSHAW–CURTIS QUADRATURE RULES")
 \[
 w_0 = w_N = \frac{1}{N^2 - 1},
 \]
@@ -609,6 +617,7 @@ Fungsi tujuan NMPC pada dasarnya bersifat kontinu. Hanya saja, untuk keperluan k
         \label{fig:obj_diskrit}
     \end{subfigure}
 \end{figure}
+
 
 \subsection{$\tau$ itu apa dan bagaimana?}
 Variabel $\tau$ merupakan waktu terstandar (domain komputasi) yang digunakan pada metode Chebyshev. Semua polinomial Chebyshev didefinisikan dan bersifat ortogonal pada interval [-1, 1], sehingga domain ini menjadi ruang dasar untuk aproksimasi dan kolokasi dalam Chebyshev Pseudospectral Method. Berikut adalah contoh perubahan domain waktu biasa dan $\tau$ pada menggambar fungsi.
